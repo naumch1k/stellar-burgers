@@ -1,11 +1,18 @@
-import AppHeader from '../AppHeader/AppHeader'
+import { Page } from '../Page'
 
-const App = () => {
+import { Header } from '../Header'
+import { BurgerIngredients } from '../BurgerIngredients';
+
+
+export const App = () => {
   return (
-    <>
-      <AppHeader />
-    </>
+    <Page>
+      <Page.Header>
+        <Header />
+      </Page.Header>
+      <Page.Content>
+        <BurgerIngredients />
+      </Page.Content>
+    </Page>
   )
 }
-
-export default App;

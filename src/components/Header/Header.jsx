@@ -5,11 +5,11 @@ import {
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
 
-import styles from './AppHeader.module.css'
+import styles from './Header.module.css'
 
-const AppHeader = () => {
+export const Header = () => {
   return (
-    <header className={styles.root}>
+    <div className={styles.root}>
       <div className={styles.content}>
         <nav className={styles.nav}>
           <ul className={styles.navList}>
@@ -42,8 +42,6 @@ const AppHeader = () => {
           </ul>
         </nav>
       </div>
-    </header>
+    </div>
   )
 }
-
-export default AppHeader
