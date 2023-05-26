@@ -12,7 +12,7 @@ export const IngredientList = (props: IngredientListProps) => {
   const { data } = props
 
   return (
-    <ul className={`${styles.root} pt-6 pr-4 pb-10 pl-4`}>
+    <ul className={`${styles.root} pr-4 pb-10 pl-4`}>
       {data.map(item => (
         <Ingredient
           key={item._id}
