@@ -4,3 +4,24 @@
   margin-bottom: 0;
   list-style: none;
 }
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: calc(100vh - 274px);
+  overflow-y: auto;
+}
+
+.menu::-webkit-scrollbar-track {
+  margin: 40px 0 20px;
+}
+
+.menu::-webkit-scrollbar {
+	width: 8px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  border: none;
+  border-radius: 0;
+}

@@ -38,7 +38,7 @@ export const BurgerIngredients = (props: BurgerIngredientsProps) => {
           </li>
         ))}
       </ul>
-      <div>
+      <ul className={`${styles.menu} custom-scroll`}>
         <IngredientGroup
           title='Buns'
           data={bunsData}
@@ -51,7 +51,7 @@ export const BurgerIngredients = (props: BurgerIngredientsProps) => {
           title='Toppings'
           data={toppingsData}
         />
-      </div>
+      </ul>
     </section>
   )
 }
