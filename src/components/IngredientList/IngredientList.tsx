@@ -5,7 +5,7 @@ import { IngredientProps } from '../../shared/types/ingredient'
 import styles from './IngredientList.module.css'
 
 interface IngredientListProps {
-  data: ReadonlyArray<IngredientProps>
+  data: IngredientProps[]
 }
 
 export const IngredientList = (props: IngredientListProps) => {

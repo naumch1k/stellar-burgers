@@ -1,16 +1,13 @@
-import { useState, useMemo } from 'react'
-
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/tab'
 import { IngredientGroup } from '../IngredientGroup'
 import { ingredientGroups } from '../../shared/constants/ingredient-groups'
 import { capitalizeFirstLetter } from '../../shared/helpers/capitalizeFirstLetter'
-
 import { IngredientProps } from '../../shared/types/ingredient'
-
 import styles from './BurgerIngredients.module.css'
 
 interface BurgerIngredientsProps {
-  data: ReadonlyArray<IngredientProps>,
+  data: IngredientProps[],
 }
 
 export const BurgerIngredients = (props: BurgerIngredientsProps) => {
@@ -22,12 +19,38 @@ export const BurgerIngredients = (props: BurgerIngredientsProps) => {
   const burgerData = useMemo(() => data.filter(item => item.type === 'burger'), [data])
   const toppingsData = useMemo(() => data.filter(item => item.type === 'topping'), [data])
 
+  const bunsIngredientGroup = useRef<HTMLHeadingElement>(null)
+  const burgersIngredientGroup = useRef<HTMLHeadingElement>(null)
+  const toppingsIngredientGroup = useRef<HTMLHeadingElement>(null)
+
+  useEffect(() => {
+    switch (currentTab) {
+      case 'buns':
+        scrollToRef(bunsIngredientGroup)
+        break
+      case 'burgers':
+        scrollToRef(burgersIngredientGroup)
+        break
+      case 'toppings':
+        scrollToRef(toppingsIngredientGroup)
+        break
+      default:
+        break
+    }
+  }, [currentTab])
+
+  const scrollToRef = (ref: React.RefObject<HTMLHeadingElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section className='mt-10'>
       <h1 className='text text_type_main-large'>Build Your Own Burger</h1>
       <ul className={`${styles.tabBar} mt-5`}>
-        {ingredientGroups.map((item, idx) => (
-          <li key={idx}>
+        {ingredientGroups.map((item) => (
+          <li key={item}>
             <Tab
               active={currentTab === item}
               value={item}
@@ -42,14 +65,17 @@ export const BurgerIngredients = (props: BurgerIngredientsProps) => {
         <IngredientGroup
           title='Buns'
           data={bunsData}
+          ref={bunsIngredientGroup}
         />
         <IngredientGroup
           title='Burger'
           data={burgerData}
+          ref={burgersIngredientGroup}
         />
         <IngredientGroup
           title='Toppings'
           data={toppingsData}
+          ref={toppingsIngredientGroup}
         />
       </ul>
     </section>

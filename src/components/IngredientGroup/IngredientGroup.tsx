@@ -1,21 +1,21 @@
+import { forwardRef } from 'react'
 import { IngredientList } from '../IngredientList'
-
 import { IngredientProps } from '../../shared/types/ingredient'
 
 interface IngredientGroupProps {
   title: string,
-  data: ReadonlyArray<IngredientProps>
+  data: IngredientProps[]
 }
 
-export const IngredientGroup = (props: IngredientGroupProps) => {
-  const { title, data } = props
+export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupProps>(
+  ({ title, data }, ref) => {
 
   return (
     <li>
-      <h2 className='text text_type_main-medium mt-10 mb-6'>{title}</h2>
+      <h2 ref={ref} className='text text_type_main-medium mt-10 mb-6'>{title}</h2>
       <IngredientList
         data={data}
       />
     </li>
   )
-}
+})
