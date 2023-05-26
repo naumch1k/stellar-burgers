@@ -1,7 +1,8 @@
 import { Page } from '../Page'
-
 import { Header } from '../Header'
 import { BurgerIngredients } from '../BurgerIngredients';
+
+import ingredientsData from '../../mocks/ingredients-data.json'
 
 
 export const App = () => {
@@ -11,7 +12,9 @@ export const App = () => {
         <Header />
       </Page.Header>
       <Page.Content>
-        <BurgerIngredients />
+        <BurgerIngredients
+          data={ingredientsData}
+        />
       </Page.Content>
     </Page>
   )
