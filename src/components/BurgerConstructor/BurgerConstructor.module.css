@@ -1,0 +1,43 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 8px 0 16px;
+  height: calc(100vh - 504px);
+  overflow-y: auto;
+}
+
+.lockedItem {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  cursor: grab;
+}
+
+.list::-webkit-scrollbar-track {
+  margin: 16px 0;
+}
+
+.list::-webkit-scrollbar {
+	width: 8px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  border: none;
+  border-radius: 0;
+}
+
+.submitGroup {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
