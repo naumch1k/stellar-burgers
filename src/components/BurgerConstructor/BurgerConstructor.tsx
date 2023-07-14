@@ -1,5 +1,4 @@
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
+import { ConstructorRow } from '../ConstructorRow'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/button'
 import { IngredientProps } from '../../shared/types/ingredient'
@@ -14,38 +13,24 @@ export const BurgerConstructor = (props: BurgerConstructorProps) => {
 
   return (
     <section className={`${styles.root} pt-25 pb-10`}>
-      <div className={`${styles.lockedItem} ml-8 pr-4`}>
-        <ConstructorElement
-          type='top'
-          text={`Crater Bun N-200i ${'(top)'}`}
-          price={117}
-          thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-          isLocked
-        />
-      </div>
+      <ConstructorRow
+        isLocked
+        type='top'
+        ingredient={data[0]}
+      />
       <ul className={`${styles.list} custom-scroll`}>
-        {data.map(element => (
-          <li
-            key={element._id}
-            className={`${styles.listItem} mt-4 mb-4`}>
-            <DragIcon type="primary"/>
-            <ConstructorElement
-              text={element.name}
-              thumbnail={element.image}
-              price={element.price}
-            />
-          </li>
+        {data.map(ingredient => (
+          <ConstructorRow
+            key={ingredient._id}
+            ingredient={ingredient}
+          />
         ))}
       </ul>
-      <div className={`${styles.lockedItem} ml-8 pr-4`}>
-        <ConstructorElement
-          type='bottom'
-          text={`Crater Bun N-200i ${'(bottom)'}`}
-          price={117}
-          thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-          isLocked
-        />
-      </div>
+      <ConstructorRow
+        isLocked
+        type='bottom'
+        ingredient={data[0]}
+      />
       <div className={`${styles.submitGroup} mt-10 pr-4 pl-4`}>
         <span className='text text_type_digits-medium mr-10'>
           610

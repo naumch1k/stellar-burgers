@@ -1,0 +1,10 @@
+.lockedItem {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  cursor: grab;
+}

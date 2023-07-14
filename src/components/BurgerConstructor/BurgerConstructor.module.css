@@ -12,17 +12,6 @@
   overflow-y: auto;
 }
 
-.lockedItem {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.listItem {
-  display: flex;
-  align-items: center;
-  cursor: grab;
-}
-
 .list::-webkit-scrollbar-track {
   margin: 16px 0;
 }
