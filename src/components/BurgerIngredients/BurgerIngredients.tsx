@@ -7,17 +7,17 @@ import { IngredientProps } from '../../shared/types/ingredient'
 import styles from './BurgerIngredients.module.css'
 
 interface BurgerIngredientsProps {
-  data: IngredientProps[],
+  ingredients: IngredientProps[],
 }
 
 export const BurgerIngredients = (props: BurgerIngredientsProps) => {
-  const { data } = props
+  const { ingredients } = props
 
   const [currentTab, setCurrentTab] = useState(ingredientGroups[0])
 
-  const bunsData = useMemo(() => data.filter(item => item.type === 'bun'), [data])
-  const burgerData = useMemo(() => data.filter(item => item.type === 'burger'), [data])
-  const toppingsData = useMemo(() => data.filter(item => item.type === 'topping'), [data])
+  const bunsData = useMemo(() => ingredients.filter(ingredient => ingredient.type === 'bun'), [ingredients])
+  const burgerData = useMemo(() => ingredients.filter(ingredient => ingredient.type === 'burger'), [ingredients])
+  const toppingsData = useMemo(() => ingredients.filter(ingredient => ingredient.type === 'topping'), [ingredients])
 
   const bunsIngredientGroup = useRef<HTMLHeadingElement>(null)
   const burgersIngredientGroup = useRef<HTMLHeadingElement>(null)

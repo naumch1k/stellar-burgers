@@ -5,21 +5,21 @@ import { IngredientProps } from '../../shared/types/ingredient'
 import styles from './BurgerConstructor.module.css'
 
 interface BurgerConstructorProps {
-  data: IngredientProps[],
+  ingredients: IngredientProps[],
 }
 
 export const BurgerConstructor = (props: BurgerConstructorProps) => {
-  const { data } = props
+  const { ingredients } = props
 
   return (
     <section className={`${styles.root} pt-25 pb-10`}>
       <ConstructorRow
         isLocked
         type='top'
-        ingredient={data[0]}
+        ingredient={ingredients[0]}
       />
       <ul className={`${styles.list} custom-scroll`}>
-        {data.map(ingredient => (
+        {ingredients.map(ingredient => (
           <ConstructorRow
             key={ingredient._id}
             ingredient={ingredient}
@@ -29,7 +29,7 @@ export const BurgerConstructor = (props: BurgerConstructorProps) => {
       <ConstructorRow
         isLocked
         type='bottom'
-        ingredient={data[0]}
+        ingredient={ingredients[0]}
       />
       <div className={`${styles.submitGroup} mt-10 pr-4 pl-4`}>
         <span className='text text_type_digits-medium mr-10'>

@@ -14,10 +14,10 @@ export const App = () => {
       </Page.Header>
       <Page.Content>
         <BurgerIngredients
-          data={ingredientsData}
+          ingredients={ingredientsData}
         />
         <BurgerConstructor
-          data={ingredientsData}
+          ingredients={ingredientsData}
         />
       </Page.Content>
     </Page>
