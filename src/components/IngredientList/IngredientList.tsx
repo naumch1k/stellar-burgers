@@ -13,14 +13,10 @@ export const IngredientList = (props: IngredientListProps) => {
 
   return (
     <ul className={`${styles.root} pr-4 pb-10 pl-4`}>
-      {data.map(item => (
+      {data.map(ingredientData => (
         <Ingredient
-          key={item._id}
-          type={item.type}
-          _id={item._id}
-          name={item.name}
-          image={item.image}
-          price={item.price}
+          key={ingredientData._id}
+          {...ingredientData}
         />
       ))}
     </ul>

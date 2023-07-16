@@ -4,10 +4,10 @@ export interface IngredientProps {
   type: string,
   price: number,
   image: string,
-/*  calories: number,
+  calories: number,
   carbohydrates: number,
   fat: number,
   proteins: number,
-  image_large:string,
-  image_mobile: string, */
+  image_large: string,
+  // image_mobile: string,
 }
