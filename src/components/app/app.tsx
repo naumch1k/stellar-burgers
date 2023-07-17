@@ -3,7 +3,7 @@ import { Page } from '../page'
 import { Header } from '../header'
 import { BurgerIngredients } from '../burger-ingredients'
 import { BurgerConstructor } from '../burger-constructor'
-import { MAIN_API } from '../../shared/constants/main-api'
+import { getIngredients } from '../../shared/utils/main-api'
 
 
 export const App = () => {
@@ -11,18 +11,11 @@ export const App = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const getIngredients = async () => {
-      try {
-        const response = await fetch(MAIN_API)
-        const data = await response.json()
+    getIngredients()
+      .then(data => {
         setIngredientsData(data)
         setIsLoading(false)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    getIngredients()
+      })
   }, [])
 
   return (
