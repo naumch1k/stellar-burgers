@@ -4,11 +4,13 @@ import { Header } from '../header'
 import { BurgerIngredients } from '../burger-ingredients'
 import { BurgerConstructor } from '../burger-constructor'
 import { IngredientsContext } from '../../contexts/ingredients-context'
+import { OrderDetailsContext } from '../../contexts/order-details-context'
 import { getIngredients } from '../../shared/utils/main-api'
 
 
 export const App = () => {
   const [ingredients, setIngredients] = useState([])
+  const [orderDetails, setOrderDetails] = useState({})
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -27,8 +29,10 @@ export const App = () => {
       <Page.Content>
       {!isLoading &&
         <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
-          <BurgerIngredients/>
-          <BurgerConstructor/>
+          <OrderDetailsContext.Provider value={{ orderDetails, setOrderDetails }}>
+            <BurgerIngredients/>
+            <BurgerConstructor/>
+          </OrderDetailsContext.Provider>
         </IngredientsContext.Provider>
       }
       </Page.Content>
