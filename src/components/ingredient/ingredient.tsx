@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { useState, useEffect, useContext } from 'react'
+import { OrderDetailsContext } from '../../contexts/order-details-context'
+import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { IIngredient } from '../../shared/types/ingredient'
 import { Modal } from '../modal'
 import { NutritionFacts } from '../nutrition-facts'
@@ -7,11 +8,14 @@ import styles from './ingredient.module.css'
 
 export const Ingredient = (props: IIngredient) => {
   const {
+    _id,
     name,
     image,
     price,
   } = props
 
+  const { orderDetails } = useContext(OrderDetailsContext)
+  const [count, setCount] = useState(0)
   const [isNutritionFactsModalOpen, setIsNutritionFactsModalOpen] = useState(false)
 
   const handleIngredientClick = () => {
@@ -19,6 +23,20 @@ export const Ingredient = (props: IIngredient) => {
   }
 
   const handleModalClose = () => setIsNutritionFactsModalOpen(false)
+
+  useEffect(() => {
+    let ingredientCount = 0
+
+    if (orderDetails?.ingredients) {
+      orderDetails.ingredients.forEach((ingredient: IIngredient)  => {
+        if (_id === ingredient._id){
+          ingredientCount += 1
+        }
+      })
+    }
+
+    setCount(ingredientCount)
+  }, [orderDetails, _id])
 
   return (
     <>
@@ -34,6 +52,7 @@ export const Ingredient = (props: IIngredient) => {
           </p>
           <p className={`${styles.name} text text_type_main-default mt-2`}>{name}</p>
         </div>
+        {count > 0 && <Counter count={count} size='default'/>}
       </li>
       {isNutritionFactsModalOpen &&
         <Modal
