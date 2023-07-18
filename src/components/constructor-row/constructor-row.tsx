@@ -1,12 +1,12 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
-import { IngredientProps } from '../../shared/types/ingredient'
+import { IIngredient } from '../../shared/types/ingredient'
 import styles from './constructor-row.module.css'
 
 interface ConstructorRowProps {
   isLocked?: boolean;
   type?: 'top' | 'bottom';
-  ingredient: IngredientProps;
+  ingredient: IIngredient;
 }
 
 export const ConstructorRow = (props: ConstructorRowProps) => {

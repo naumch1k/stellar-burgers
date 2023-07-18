@@ -5,7 +5,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/button'
 import { Modal } from '../modal'
 import { OrderDetails } from '../order-details'
-import { IngredientProps } from '../../shared/types/ingredient'
+import { IIngredient } from '../../shared/types/ingredient'
 import styles from './burger-constructor.module.css'
 
 export const BurgerConstructor = () => {
@@ -15,7 +15,7 @@ export const BurgerConstructor = () => {
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false)
 
   useEffect(() => {
-    const sum = ingredients.reduce((prev: number, ingredient: IngredientProps) => {
+    const sum = ingredients.reduce((prev: number, ingredient: IIngredient) => {
       return prev + ingredient.price
     }, 0)
 
@@ -33,7 +33,7 @@ export const BurgerConstructor = () => {
         ingredient={ingredients[0]}
       />
       <ul className={`${styles.list} custom-scroll`}>
-        {ingredients.map((ingredient: IngredientProps) => (
+        {ingredients.map((ingredient: IIngredient) => (
           <ConstructorRow
             key={ingredient._id}
             ingredient={ingredient}

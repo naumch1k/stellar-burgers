@@ -1,9 +1,9 @@
 import { Ingredient } from '../ingredient'
-import { IngredientProps } from '../../shared/types/ingredient'
+import { IIngredient } from '../../shared/types/ingredient'
 import styles from './ingredient-list.module.css'
 
 interface IngredientListProps {
-  data: IngredientProps[];
+  data: IIngredient[];
 }
 
 export const IngredientList = (props: IngredientListProps) => {

@@ -1,7 +1,7 @@
-import { IngredientProps } from '../../shared/types/ingredient'
+import { IIngredient } from '../../shared/types/ingredient'
 import styles from './nutrition-facts.module.css'
 
-export const NutritionFacts = (props: IngredientProps) => {
+export const NutritionFacts = (props: IIngredient) => {
   const {
     name,
     calories,

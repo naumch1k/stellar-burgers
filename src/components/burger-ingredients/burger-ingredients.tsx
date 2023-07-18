@@ -4,7 +4,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/
 import { IngredientGroup } from '../ingredient-group'
 import { ingredientGroups } from '../../shared/constants/ingredient-groups'
 import { capitalizeFirstLetter } from '../../shared/helpers/capitalize-first-letter'
-import { IngredientProps } from '../../shared/types/ingredient'
+import { IIngredient } from '../../shared/types/ingredient'
 import styles from './burger-ingredients.module.css'
 
 
@@ -14,9 +14,9 @@ export const BurgerIngredients = () => {
   const [currentTab, setCurrentTab] = useState(ingredientGroups[0])
 
 
-  const bunsData = useMemo(() => ingredients.filter((ingredient: IngredientProps) => ingredient.type === 'bun'), [ingredients])
-  const burgerData = useMemo(() => ingredients.filter((ingredient: IngredientProps)  => ingredient.type === 'burger'), [ingredients])
-  const toppingsData = useMemo(() => ingredients.filter((ingredient: IngredientProps) => ingredient.type === 'topping'), [ingredients])
+  const bunsData = useMemo(() => ingredients.filter((ingredient: IIngredient) => ingredient.type === 'bun'), [ingredients])
+  const burgerData = useMemo(() => ingredients.filter((ingredient: IIngredient)  => ingredient.type === 'burger'), [ingredients])
+  const toppingsData = useMemo(() => ingredients.filter((ingredient: IIngredient) => ingredient.type === 'topping'), [ingredients])
 
   const bunsIngredientGroup = useRef<HTMLHeadingElement>(null)
   const burgersIngredientGroup = useRef<HTMLHeadingElement>(null)

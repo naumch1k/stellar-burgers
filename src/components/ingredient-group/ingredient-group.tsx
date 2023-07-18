@@ -1,10 +1,10 @@
 import { forwardRef } from 'react'
 import { IngredientList } from '../ingredient-list'
-import { IngredientProps } from '../../shared/types/ingredient'
+import { IIngredient } from '../../shared/types/ingredient'
 
 interface IngredientGroupProps {
   title: string;
-  data: IngredientProps[];
+  data: IIngredient[];
 }
 
 export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupProps>(

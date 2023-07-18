@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { IngredientProps } from '../../shared/types/ingredient'
+import { IIngredient } from '../../shared/types/ingredient'
 import { Modal } from '../modal'
 import { NutritionFacts } from '../nutrition-facts'
 import styles from './ingredient.module.css'
 
-export const Ingredient = (props: IngredientProps) => {
+export const Ingredient = (props: IIngredient) => {
   const {
     name,
     image,

@@ -1,4 +1,4 @@
-export interface IngredientProps {
+export interface IIngredient {
   _id: string;
   name: string;
   type: string;
@@ -9,5 +9,4 @@ export interface IngredientProps {
   fat: number;
   proteins: number;
   image_large: string;
-  // image_mobile: string;
 }
