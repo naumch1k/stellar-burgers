@@ -10,10 +10,9 @@
       "calories": 420,
       "price": 117,
       "image": "https://code.s3.yandex.net/react/code/bun-02.png",
-      "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
-      "__v":0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b5",
       "name": "Meteorite Beef Chops",
       "type": "burger",
@@ -23,10 +22,9 @@
       "calories": 2674,
       "price": 300,
       "image": "https://code.s3.yandex.net/react/code/meat-04.png",
-      "image_large": "https://code.s3.yandex.net/react/code/meat-04-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/meat-04-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b6",
       "name": "Martian Magnolia Bio Cutlet",
       "type": "burger",
@@ -36,23 +34,21 @@
       "calories": 420,
       "price": 424,
       "image": "https://code.s3.yandex.net/react/code/meat-01.png",
-      "image_large": "https://code.s3.yandex.net/react/code/meat-01-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/meat-01-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b7",
       "name": "Spicy-X",
       "type": "topping",
-      "proteins" :30,
+      "proteins": 30,
       "fat": 20,
       "carbohydrates": 40,
       "calories": 30,
       "price": 90,
       "image": "https://code.s3.yandex.net/react/code/sauce-02.png",
-      "image_large": "https://code.s3.yandex.net/react/code/sauce-02-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-02-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b4",
       "name": "Immortal Protostomia Clams Meat",
       "type": "burger",
@@ -62,10 +58,9 @@
       "calories": 420,
       "price": 445,
       "image": "https://code.s3.yandex.net/react/code/meat-02.png",
-      "image_large": "https://code.s3.yandex.net/react/code/meat-02-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/meat-02-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b9",
       "name": "Traditional Galactic",
       "type": "topping",
@@ -75,10 +70,9 @@
       "calories": 99,
       "price": 15,
       "image": "https://code.s3.yandex.net/react/code/sauce-03.png",
-      "image_large": "https://code.s3.yandex.net/react/code/sauce-03-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-03-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b8",
       "name": "Space - Chief Special",
       "type": "topping",
@@ -88,10 +82,9 @@
       "calories": 14,
       "price": 80,
       "image": "https://code.s3.yandex.net/react/code/sauce-04.png",
-      "image_large": "https://code.s3.yandex.net/react/code/sauce-04-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-04-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9bc",
       "name": "Fallenian Tree Fruit",
       "type": "topping",
@@ -101,10 +94,9 @@
       "calories": 77,
       "price": 390,
       "image": "https://code.s3.yandex.net/react/code/sp_1.png",
-      "image_large": "https://code.s3.yandex.net/react/code/sp_1-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/sp_1-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9bb",
       "name": "Crispy Mineral Rings",
       "type": "topping",
@@ -114,12 +106,11 @@
       "calories": 986,
       "price": 300,
       "image": "https://code.s3.yandex.net/react/code/mineral_rings.png",
-      "image_large": "https://code.s3.yandex.net/react/code/mineral_rings-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/mineral_rings-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9ba",
-      "name": "Antarian Flatwalker's  Sauce",
+      "name": "Antarian Flatwalker's Sauce",
       "type": "topping",
       "proteins": 101,
       "fat": 99,
@@ -127,10 +118,9 @@
       "calories": 100,
       "price": 88,
       "image": "https://code.s3.yandex.net/react/code/sauce-01.png",
-      "image_large": "https://code.s3.yandex.net/react/code/sauce-01-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-01-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9bd",
       "name": "Martian Alpha-Saccharide Crystals",
       "type": "topping",
@@ -140,10 +130,9 @@
       "calories": 189,
       "price": 760,
       "image": "https://code.s3.yandex.net/react/code/core.png",
-      "image_large": "https://code.s3.yandex.net/react/code/core-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/core-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9be",
       "name": "Exo-Plantago Salad",
       "type": "topping",
@@ -153,10 +142,9 @@
       "calories": 6,
       "price": 440,
       "image": "https://code.s3.yandex.net/react/code/salad.png",
-      "image_large": "https://code.s3.yandex.net/react/code/salad-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/salad-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b3",
       "name": "Luminescent Tetraodontimform Fillet",
       "type": "burger",
@@ -166,10 +154,9 @@
       "calories": 643,
       "price": 600,
       "image": "https://code.s3.yandex.net/react/code/meat-03.png",
-      "image_large": "https://code.s3.yandex.net/react/code/meat-03-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/meat-03-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9bf",
       "name": "Cheese with Asteroid Mold",
       "type": "topping",
@@ -179,10 +166,9 @@
       "calories": 3377,
       "price": 410,
       "image": "https://code.s3.yandex.net/react/code/cheese.png",
-      "image_large": "https://code.s3.yandex.net/react/code/cheese-large.png",
-      "__v": 0
-     },
-     {
+      "image_large": "https://code.s3.yandex.net/react/code/cheese-large.png"
+    },
+    {
       "_id": "60666c42cc7b410027a1a9b2",
       "name": "Fluorescent Roll R2-D3",
       "type": "bun",
@@ -192,8 +178,42 @@
       "calories": 643,
       "price": 120,
       "image": "https://code.s3.yandex.net/react/code/bun-01.png",
-      "image_large": "https://code.s3.yandex.net/react/code/bun-01-large.png",
-      "__v": 0
-     }
+      "image_large": "https://code.s3.yandex.net/react/code/bun-01-large.png"
+    }
+  ],
+  "orders": [
+    {
+      "id": 0,
+      "order": {
+        "ingredients": [
+          {
+            "_id": "60666c42cc7b410027a1a9b2",
+            "name": "Fluorescent Roll R2-D3",
+            "type": "bun",
+            "proteins": 44,
+            "fat": 26,
+            "carbohydrates": 85,
+            "calories": 643,
+            "price": 120,
+            "image": "https://code.s3.yandex.net/react/code/bun-01.png",
+            "image_mobile": "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
+            "image_large": "https://code.s3.yandex.net/react/code/bun-01-large.png"
+          },
+          {
+            "_id": "60666c42cc7b410027a1a9b8",
+            "name": "Space - Chief Special",
+            "type": "topping",
+            "proteins": 50,
+            "fat": 22,
+            "carbohydrates": 11,
+            "calories": 14,
+            "price": 80,
+            "image": "https://code.s3.yandex.net/react/code/sauce-04.png",
+            "image_mobile": "https://code.s3.yandex.net/react/code/sauce-04-mobile.png",
+            "image_large": "https://code.s3.yandex.net/react/code/sauce-04-large.png"
+          }
+        ]
+      }
+    }
   ]
 }
