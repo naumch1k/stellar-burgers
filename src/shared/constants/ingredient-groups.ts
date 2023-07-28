@@ -1,1 +1,5 @@
-export const ingredientGroups = ['buns', 'burgers', 'toppings']
+export const IngredientGroups = {
+  BUNS: 'BUNS',
+  BURGERS: 'BURGERS',
+  TOPPINGS: 'TOPPINGS',
+}
