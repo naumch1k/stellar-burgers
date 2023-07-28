@@ -1,25 +1,28 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Page } from '../page'
 import { Header } from '../header'
 import { BurgerIngredients } from '../burger-ingredients'
 import { BurgerConstructor } from '../burger-constructor'
-import { IngredientsContext } from '../../contexts/ingredients-context'
+import { Loader } from '../loader'
 import { OrderDetailsContext } from '../../contexts/order-details-context'
-import { getIngredients } from '../../shared/utils/main-api'
-
+import store from '../../store/store'
+import { fetchIngredients } from '../../store/ingredients/operations'
+import { IRootState } from '../../store/store'
 
 export const App = () => {
-  const [ingredients, setIngredients] = useState([])
   const [orderDetails, setOrderDetails] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const loadingStatus = useSelector((state: IRootState) => state.ingredients.status)
 
   useEffect(() => {
-    getIngredients()
-      .then(data => {
-        setIngredients(data)
-        setIsLoading(false)
-      })
+    store.dispatch(fetchIngredients())
   }, [])
+
+  if (loadingStatus === 'loading') {
+    return (
+      <Loader/>
+    )
+  }
 
   return (
     <Page>
@@ -27,14 +30,10 @@ export const App = () => {
         <Header/>
       </Page.Header>
       <Page.Content>
-      {!isLoading &&
-        <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
-          <OrderDetailsContext.Provider value={{ orderDetails, setOrderDetails }}>
-            <BurgerIngredients/>
-            <BurgerConstructor/>
-          </OrderDetailsContext.Provider>
-        </IngredientsContext.Provider>
-      }
+        <OrderDetailsContext.Provider value={{ orderDetails, setOrderDetails }}>
+          <BurgerIngredients/>
+          {/* <BurgerConstructor/> */}
+        </OrderDetailsContext.Provider>
       </Page.Content>
     </Page>
   )

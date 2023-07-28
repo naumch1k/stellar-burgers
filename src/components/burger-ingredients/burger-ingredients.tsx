@@ -1,16 +1,15 @@
-import { useState, useMemo, useEffect, useRef, useContext } from 'react'
-import { IngredientsContext } from '../../contexts/ingredients-context'
+import { useState, useMemo, useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/tab'
 import { IngredientGroup } from '../ingredient-group'
 import { ingredientGroups } from '../../shared/constants/ingredient-groups'
 import { capitalizeFirstLetter } from '../../shared/helpers/capitalize-first-letter'
+import { selectIngredients } from '../../store/ingredients/selectors'
 import { IIngredient } from '../../shared/types/ingredient'
 import styles from './burger-ingredients.module.css'
 
-
-
 export const BurgerIngredients = () => {
-  const { ingredients } = useContext(IngredientsContext)
+  const ingredients = useSelector(selectIngredients)
   const [currentTab, setCurrentTab] = useState(ingredientGroups[0])
 
 
