@@ -20,8 +20,8 @@ const ingredientsSlice = createSlice({
     },
     ingredientsLoaded(state, { payload: ingredients }: PayloadAction<IIngredient[]>) {
       const newEntities: Record<number, IIngredient> = {}
-      ingredients.forEach((ingredient: IIngredient, i: number) => {
-        newEntities[i] = ingredient
+      ingredients.forEach((ingredient: IIngredient) => {
+        newEntities[ingredient.id] = ingredient
       })
       state.status = 'idle'
       state.entities = newEntities

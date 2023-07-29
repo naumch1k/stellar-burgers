@@ -13,7 +13,7 @@ export const IngredientList = (props: IngredientListProps) => {
     <ul className={`${styles.root} pr-4 pb-10 pl-4`}>
       {data.map(ingredientData => (
         <Ingredient
-          key={ingredientData._id}
+          key={ingredientData.id}
           {...ingredientData}
         />
       ))}

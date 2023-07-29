@@ -9,7 +9,7 @@ import styles from './ingredient.module.css'
 
 export const Ingredient = (ingredient: IIngredient) => {
   const {
-    _id,
+    id,
     name,
     image,
     price,
@@ -38,14 +38,14 @@ export const Ingredient = (ingredient: IIngredient) => {
 
     if (orderDetails?.ingredients) {
       orderDetails.ingredients.forEach((ingredient: IIngredient)  => {
-        if (_id === ingredient._id){
+        if (id === ingredient.id){
           ingredientCount += 1
         }
       })
     }
 
     setCount(ingredientCount)
-  }, [orderDetails, _id])
+  }, [orderDetails, id])
 
   return (
     <>

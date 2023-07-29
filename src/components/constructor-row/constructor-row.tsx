@@ -28,7 +28,7 @@ export const ConstructorRow = (props: ConstructorRowProps) => {
         />
       </div>
       : <li
-          key={ingredient._id}
+          key={ingredient.id}
           className={`${styles.listItem} mt-4 mb-4`}>
           <DragIcon type="primary"/>
           <ConstructorElement
