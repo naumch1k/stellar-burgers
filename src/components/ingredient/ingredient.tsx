@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
+import { useDrag } from 'react-dnd'
 import { OrderDetailsContext } from '../../contexts/order-details-context'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { IIngredient } from '../../shared/types/ingredient'
@@ -6,17 +7,25 @@ import { Modal } from '../modal'
 import { NutritionFacts } from '../nutrition-facts'
 import styles from './ingredient.module.css'
 
-export const Ingredient = (props: IIngredient) => {
+export const Ingredient = (ingredient: IIngredient) => {
   const {
     _id,
     name,
     image,
     price,
-  } = props
+  } = ingredient
 
   const { orderDetails } = useContext(OrderDetailsContext)
   const [count, setCount] = useState(0)
   const [isNutritionFactsModalOpen, setIsNutritionFactsModalOpen] = useState(false)
+
+  const [{ beingDragged }, dragRef] = useDrag({
+    type: 'ingredient',
+    item: ingredient,
+    collect: monitor => ({
+      beingDragged: monitor.isDragging(),
+    }),
+  })
 
   const handleIngredientClick = () => {
     setIsNutritionFactsModalOpen(true)
@@ -41,7 +50,8 @@ export const Ingredient = (props: IIngredient) => {
   return (
     <>
       <li
-        className={styles.root}
+        ref={dragRef}
+        className={`${styles.root} ${beingDragged ? `${styles.beingDragged}` : ''}`}
         onClick={handleIngredientClick}
       >
         <img className='mr-4 ml-4' src={image} alt={name}/>
@@ -60,7 +70,7 @@ export const Ingredient = (props: IIngredient) => {
           onClose={handleModalClose}
         >
           <NutritionFacts
-            {...props}
+            {...ingredient}
           />
         </Modal>
       }

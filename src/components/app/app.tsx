@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Page } from '../page'
 import { Header } from '../header'
 import { BurgerIngredients } from '../burger-ingredients'
@@ -31,8 +33,10 @@ export const App = () => {
       </Page.Header>
       <Page.Content>
         <OrderDetailsContext.Provider value={{ orderDetails, setOrderDetails }}>
-          <BurgerIngredients/>
-          {/* <BurgerConstructor/> */}
+          <DndProvider backend={HTML5Backend}>
+            <BurgerIngredients/>
+            <BurgerConstructor/>
+          </DndProvider>
         </OrderDetailsContext.Provider>
       </Page.Content>
     </Page>

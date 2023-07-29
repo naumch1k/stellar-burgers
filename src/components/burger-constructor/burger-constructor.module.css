@@ -12,6 +12,11 @@
   overflow-y: auto;
 }
 
+.list.isHovered {
+  border: 1px var(--colors-interface-accent) dashed;
+  border-radius: 20px;
+}
+
 .list::-webkit-scrollbar-track {
   margin: 16px 0;
 }

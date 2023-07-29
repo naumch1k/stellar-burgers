@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.root.beingDragged {
+  filter: grayscale(.8);
+}
+
 .name {
   overflow: hidden;
   height: 48px;
