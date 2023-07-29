@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import { OrderDetailsContext } from '../../contexts/order-details-context'
 import { ConstructorRow } from '../constructor-row'
@@ -6,12 +7,15 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/button'
 import { Modal } from '../modal'
 import { OrderDetails } from '../order-details'
+import { selectBurgerConstructorIngredients } from '../../store/burgerConstructor/selectors'
+import store from '../../store/store'
+import { selectIngredient } from '../../store/burgerConstructor/operations'
 import { IIngredient } from '../../shared/types/ingredient'
 import { placeOrder } from '../../shared/utils/main-api'
 import styles from './burger-constructor.module.css'
 
 export const BurgerConstructor = () => {
-  const [ingredients, setIngredients] = useState<IIngredient[]>([])
+  const ingredients = useSelector(selectBurgerConstructorIngredients)
   const { setOrderDetails } = useContext(OrderDetailsContext)
 
   const [totalPrice, setTotalPrice] = useState(0)
@@ -28,7 +32,7 @@ export const BurgerConstructor = () => {
   })
 
   const handleDrop = (item: IIngredient) => {
-    setIngredients(ingredients => [...ingredients, item])
+    store.dispatch(selectIngredient(item))
   }
 
   useEffect(() => {
@@ -60,9 +64,9 @@ return (
       ref={dropRef}
       className={`${styles.list} ${isHovered ? `${styles.isHovered}` : ''} custom-scroll`}
     >
-      {ingredients.map((ingredient: IIngredient) => (
+      {ingredients.map((ingredient: IIngredient, i) => (
         <ConstructorRow
-          key={ingredient._id}
+          key={i}
           ingredient={ingredient}
         />
       ))}
