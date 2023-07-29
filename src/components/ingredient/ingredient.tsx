@@ -1,19 +1,22 @@
 import { useState, useEffect, useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 import { OrderDetailsContext } from '../../contexts/order-details-context'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { IIngredient } from '../../shared/types/ingredient'
 import { Modal } from '../modal'
 import { NutritionFacts } from '../nutrition-facts'
+import { IIngredient } from '../../shared/types/ingredient'
+import { selectIngredientById } from '../../store/ingredients/selectors'
+import { IRootState } from '../../store/store'
 import styles from './ingredient.module.css'
 
-export const Ingredient = (ingredient: IIngredient) => {
-  const {
-    id,
-    name,
-    image,
-    price,
-  } = ingredient
+interface IngredientProps {
+  id: number;
+}
+
+export const Ingredient = ({ id }: IngredientProps) => {
+  const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
+  const { name, image, price } = ingredient
 
   const { orderDetails } = useContext(OrderDetailsContext)
   const [count, setCount] = useState(0)

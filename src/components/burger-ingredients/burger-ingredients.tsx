@@ -1,23 +1,14 @@
-import { useState, useMemo, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, useRef } from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/tab'
 import { IngredientGroup } from '../ingredient-group'
 import { IngredientGroups } from '../../shared/constants/ingredient-groups'
 import { capitalizeFirstLetter } from '../../shared/helpers/capitalize-first-letter'
-import { selectIngredients } from '../../store/ingredients/selectors'
-import { IIngredient } from '../../shared/types/ingredient'
 import styles from './burger-ingredients.module.css'
 
 const { BUNS, BURGERS, TOPPINGS } = IngredientGroups
 
 export const BurgerIngredients = () => {
-  const ingredients = useSelector(selectIngredients)
   const [currentTab, setCurrentTab] = useState(IngredientGroups.BUNS)
-
-  const bunsData = useMemo(() => ingredients.filter((ingredient: IIngredient) => ingredient.type === 'bun'), [ingredients])
-  const burgerData = useMemo(() => ingredients.filter((ingredient: IIngredient)  => ingredient.type === 'burger'), [ingredients])
-  const toppingsData = useMemo(() => ingredients.filter((ingredient: IIngredient) => ingredient.type === 'topping'), [ingredients])
-
   const ingredientsRef = useRef<HTMLUListElement>(null)
   const bunsIngredientGroupRef = useRef<HTMLHeadingElement>(null)
   const burgersIngredientGroupRef = useRef<HTMLHeadingElement>(null)
@@ -82,18 +73,15 @@ export const BurgerIngredients = () => {
         onScroll={handleIngredientsScroll}
       >
         <IngredientGroup
-          title={capitalizeFirstLetter(BUNS)}
-          data={bunsData}
+          type='bun'
           ref={bunsIngredientGroupRef}
         />
         <IngredientGroup
-          title={capitalizeFirstLetter(BURGERS)}
-          data={burgerData}
+          type='burger'
           ref={burgersIngredientGroupRef}
         />
         <IngredientGroup
-          title={capitalizeFirstLetter(TOPPINGS)}
-          data={toppingsData}
+          type='topping'
           ref={toppingsIngredientGroupRef}
         />
       </ul>

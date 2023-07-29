@@ -1,20 +1,24 @@
 import { forwardRef } from 'react'
+import { useSelector } from 'react-redux'
 import { IngredientList } from '../ingredient-list'
-import { IIngredient } from '../../shared/types/ingredient'
+import { capitalizeFirstLetter } from '../../shared/helpers/capitalize-first-letter'
+import { selectIngredientIdsByType } from '../../store/ingredients/selectors'
+import { IRootState } from '../../store/store'
 
 interface IngredientGroupProps {
-  title: string;
-  data: IIngredient[];
+  type: string;
 }
 
 export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupProps>(
-  ({ title, data }, ref) => {
+  ({ type }, ref) => {
+
+  const ingredientIds = useSelector((state: IRootState) => selectIngredientIdsByType(state, type))
 
   return (
     <li>
-      <h2 ref={ref} className='text text_type_main-medium mt-10 mb-6'>{title}</h2>
+      <h2 ref={ref} className='text text_type_main-medium mt-10 mb-6'>{capitalizeFirstLetter(type)}</h2>
       <IngredientList
-        data={data}
+        ingredientIds={ingredientIds}
       />
     </li>
   )
