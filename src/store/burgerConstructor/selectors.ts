@@ -1,14 +1,17 @@
 import { createSelector } from '@reduxjs/toolkit'
 import type { IRootState } from '../store'
 
-const selectBurgerConstructorEntities = (state: IRootState) => state.burgerConstructor.entities
+const selectFillingEntities = (state: IRootState) => state.burgerConstructor.fillings
 
-const selectBurgerConstructorIngredients = createSelector(
-  selectBurgerConstructorEntities,
+const selectFillings = createSelector(
+  selectFillingEntities,
   entities => Object.values(entities)
 )
 
+const selectBun = (state: IRootState) => state.burgerConstructor.bun
+
 export {
-  selectBurgerConstructorEntities,
-  selectBurgerConstructorIngredients,
+  selectFillingEntities,
+  selectFillings,
+  selectBun,
 }

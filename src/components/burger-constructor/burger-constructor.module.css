@@ -4,17 +4,17 @@
   flex-direction: column;
 }
 
+.isHovered {
+  outline: 1px var(--colors-interface-accent) dashed;
+  border-radius: 20px;
+}
+
 .list {
   list-style: none;
   margin: 0;
   padding: 0 8px 0 16px;
   height: calc(100vh - 504px);
   overflow-y: auto;
-}
-
-.list.isHovered {
-  border: 1px var(--colors-interface-accent) dashed;
-  border-radius: 20px;
 }
 
 .list::-webkit-scrollbar-track {

@@ -2,21 +2,26 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IIngredient } from '../../shared/types/ingredient'
 
 export interface IBurgerConstructorSliceState {
-  entities: IIngredient[];
+  bun: IIngredient | undefined;
+  fillings: IIngredient[];
 }
 
 const initialState: IBurgerConstructorSliceState = {
-  entities: [],
+  bun: undefined,
+  fillings: [],
 }
 
 const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
   reducers: {
-    selectIngredient(state, action: PayloadAction<IIngredient>) {
+    bunAdded(state, action: PayloadAction<IIngredient>) {
+      state.bun = action.payload
+    },
+    fillingAdded(state, action: PayloadAction<IIngredient>) {
       const ingredient = action.payload
-      state.entities.push(ingredient)
-    }
+      state.fillings.push(ingredient)
+    },
   },
 })
 

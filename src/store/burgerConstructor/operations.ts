@@ -1,9 +1,11 @@
 import { actions } from './slice'
 
 const {
-  selectIngredient,
+  bunAdded,
+  fillingAdded,
 } = actions
 
 export {
-  selectIngredient,
+  bunAdded,
+  fillingAdded,
 }

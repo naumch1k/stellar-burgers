@@ -6,7 +6,7 @@ import styles from './constructor-row.module.css'
 interface ConstructorRowProps {
   isLocked?: boolean;
   type?: 'top' | 'bottom';
-  ingredient: IIngredient;
+  ingredient?: IIngredient;
 }
 
 export const ConstructorRow = (props: ConstructorRowProps) => {
@@ -20,21 +20,20 @@ export const ConstructorRow = (props: ConstructorRowProps) => {
     isLocked
       ? <div className={`${styles.lockedItem} ml-8 pr-4`}>
           <ConstructorElement
-          type={type}
-          text={`${ingredient.name} ${type === 'top' ? '(top)' : 'bottom'}`}
-          price={ingredient.price}
-          thumbnail={ingredient.image}
-          isLocked
-        />
+            type={type}
+            text={ingredient ? `${ingredient.name} ${type === 'top' ? '(top)' : 'bottom'}` : 'Choose your bun'}
+            price={ingredient ? ingredient.price : 0}
+            thumbnail={ingredient ? ingredient.image : 'https://stellarburgers.nomoreparties.site/static/media/loading.89540200.svg'}
+            isLocked
+          />
       </div>
       : <li
-          key={ingredient.id}
           className={`${styles.listItem} mt-4 mb-4`}>
           <DragIcon type="primary"/>
           <ConstructorElement
-            text={ingredient.name}
-            thumbnail={ingredient.image}
-            price={ingredient.price}
+            text={ingredient!.name}
+            thumbnail={ingredient!.image}
+            price={ingredient!.price}
           />
         </li>
   )
