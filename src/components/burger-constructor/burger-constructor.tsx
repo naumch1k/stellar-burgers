@@ -41,12 +41,13 @@ export const BurgerConstructor = () => {
   }
 
   useEffect(() => {
-    const sum = fillings.reduce((prev: number, ingredient: IIngredient) => {
-      return prev + ingredient.price
+    const bunsPrice = bun ? bun.price * 2 : 0
+    const fillingsPrice = fillings.reduce((prev: number, filling: IIngredient) => {
+      return prev + filling.price
     }, 0)
 
-    setTotalPrice(sum)
-  }, [fillings])
+    setTotalPrice(bunsPrice + fillingsPrice)
+  }, [bun, fillings])
 
   const handlePlaceOrderClick = () => {
     placeOrder(fillings)
