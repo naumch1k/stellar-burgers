@@ -3,7 +3,7 @@ import { useDrag, useDrop } from 'react-dnd'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
 import store from '../../../store/store'
-import { fillingMoved } from '../../../store/burgerConstructor/operations'
+import { fillingMoved, fillingDeleted } from '../../../store/burgerConstructor/operations'
 import { IIngredient } from '../../../shared/types/ingredient'
 import styles from './filling-element.module.css'
 
@@ -38,6 +38,9 @@ export const FillingElement = ({ index, ingredient }: IFillingElementProps) => {
     },
   })
 
+  const onDelete = () => store.dispatch(fillingDeleted(index))
+
+
   const ref = useRef<HTMLLIElement>(null)
   dragRef(dropRef(ref))
 
@@ -51,6 +54,7 @@ export const FillingElement = ({ index, ingredient }: IFillingElementProps) => {
         text={name}
         thumbnail={image}
         price={price}
+        handleClose={onDelete}
       />
     </li>
   )

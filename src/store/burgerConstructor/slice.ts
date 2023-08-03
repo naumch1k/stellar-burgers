@@ -24,12 +24,15 @@ const burgerConstructorSlice = createSlice({
     },
     fillingMoved(state, action) {
       const { fromIndex, toIndex } = action.payload
-      
+
       const reorderedFillings = [...state.fillings]
       const [movedItem] = reorderedFillings.splice(fromIndex, 1)
       reorderedFillings.splice(toIndex, 0, movedItem)
 
       state.fillings = reorderedFillings
+    },
+    fillingDeleted(state, action) {
+      state.fillings = state.fillings.filter((_, index) => index !== action.payload)
     },
   },
 })
