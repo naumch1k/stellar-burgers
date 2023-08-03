@@ -1,8 +1,8 @@
 .root {
   position: relative;
   display: grid;
-  grid-template-rows: 120px 1fr;
   cursor: grab;
+  grid-template-rows: 120px 1fr;
 }
 
 .root.beingDragged {

@@ -6,15 +6,15 @@
 }
 
 .menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   height: calc(100vh - 244px);
+  padding: 0;
+  margin: 0;
+  list-style: none;
   overflow-y: auto;
 }
 
 .menu::-webkit-scrollbar-track {
-  margin: 40px 0 40px;
+  margin: 40px 0;
 }
 
 .menu::-webkit-scrollbar {

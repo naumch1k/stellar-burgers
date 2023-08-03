@@ -5,15 +5,15 @@
 }
 
 .isHovered {
-  outline: 1px var(--colors-interface-accent) dashed;
   border-radius: 20px;
+  outline: 1px var(--colors-interface-accent) dashed;
 }
 
 .list {
-  list-style: none;
-  margin: 0;
-  padding: 0 8px 0 16px;
   height: calc(100vh - 504px);
+  padding: 0 8px 0 16px;
+  margin: 0;
+  list-style: none;
   overflow-y: auto;
 }
 
@@ -32,6 +32,6 @@
 
 .submitGroup {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
 }
