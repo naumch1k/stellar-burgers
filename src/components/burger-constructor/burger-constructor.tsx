@@ -2,7 +2,8 @@ import { useState, useEffect, useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import { OrderDetailsContext } from '../../contexts/order-details-context'
-import { ConstructorRow } from '../constructor-row'
+import { BunElement } from './bun-element'
+import { FillingElement } from './filling-element'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/button'
 import { Modal } from '../modal'
@@ -62,24 +63,16 @@ const handleModalClose = () => setIsOrderDetailsModalOpen(false)
   return (
     <section className={`${styles.root} pt-25 pb-10`}>
       <div ref={dropRef} className={isHovered ? `${styles.isHovered}` : ''}>
-        <ConstructorRow
-          isLocked
-          type='top'
-          ingredient={bun}
-        />
+        <BunElement type='top'/>
         <ul className={`${styles.list} custom-scroll`}>
           {fillings.map((ingredient: IIngredient, i) => (
-            <ConstructorRow
+            <FillingElement
               key={i}
               ingredient={ingredient}
             />
           ))}
         </ul>
-        <ConstructorRow
-          isLocked
-          type='bottom'
-          ingredient={bun}
-        />
+        <BunElement type='bottom'/>
       </div>
       <div className={`${styles.submitGroup} mt-10 pr-4 pl-4`}>
         <span className='text text_type_digits-medium mr-10'>
