@@ -18,7 +18,7 @@ const selectIngredientById = (state: IRootState, ingredientId: number) => {
 }
 
 const selectIngredientIdsByType = createSelector(
-  [selectIngredients, (state: IRootState, type: string) => type],
+  [selectIngredients, (_, type: string) => type],
   (ingredients, type) =>
     ingredients
       .filter(ingredient => ingredient.type === type)
