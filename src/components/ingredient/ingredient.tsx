@@ -1,12 +1,11 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
-import { OrderDetailsContext } from '../../contexts/order-details-context'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Modal } from '../modal'
 import { NutritionFacts } from '../nutrition-facts'
-import { IIngredient } from '../../shared/types/ingredient'
 import { selectIngredientById } from '../../store/ingredients/selectors'
+import { selectIngredientCount } from '../../store/burgerConstructor/selectors'
 import { IRootState } from '../../store/store'
 import styles from './ingredient.module.css'
 
@@ -17,9 +16,7 @@ interface IngredientProps {
 export const Ingredient = ({ id }: IngredientProps) => {
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
   const { name, image, price } = ingredient
-
-  const { orderDetails } = useContext(OrderDetailsContext)
-  const [count, setCount] = useState(0)
+  const count = useSelector(state => selectIngredientCount(state, id))
   const [isNutritionFactsModalOpen, setIsNutritionFactsModalOpen] = useState(false)
 
   const [{ beingDragged }, dragRef] = useDrag({
@@ -35,20 +32,6 @@ export const Ingredient = ({ id }: IngredientProps) => {
   }
 
   const handleModalClose = () => setIsNutritionFactsModalOpen(false)
-
-  useEffect(() => {
-    let ingredientCount = 0
-
-    if (orderDetails?.ingredients) {
-      orderDetails.ingredients.forEach((ingredient: IIngredient)  => {
-        if (id === ingredient.id){
-          ingredientCount += 1
-        }
-      })
-    }
-
-    setCount(ingredientCount)
-  }, [orderDetails, id])
 
   return (
     <>
