@@ -22,6 +22,15 @@ const burgerConstructorSlice = createSlice({
       const ingredient = action.payload
       state.fillings.push(ingredient)
     },
+    fillingMoved(state, action) {
+      const { fromIndex, toIndex } = action.payload
+      
+      const reorderedFillings = [...state.fillings]
+      const [movedItem] = reorderedFillings.splice(fromIndex, 1)
+      reorderedFillings.splice(toIndex, 0, movedItem)
+
+      state.fillings = reorderedFillings
+    },
   },
 })
 

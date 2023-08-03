@@ -1,21 +1,56 @@
+import { useRef } from 'react'
+import { useDrag, useDrop } from 'react-dnd'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
+import store from '../../../store/store'
+import { fillingMoved } from '../../../store/burgerConstructor/operations'
 import { IIngredient } from '../../../shared/types/ingredient'
 import styles from './filling-element.module.css'
 
 interface IFillingElementProps {
-  ingredient?: IIngredient;
+  index: number;
+  ingredient: IIngredient;
 }
 
-export const FillingElement = ({ ingredient }: IFillingElementProps) => {
+interface IDraggedItem {
+  index: number;
+}
+
+export const FillingElement = ({ index, ingredient }: IFillingElementProps) => {
+  const { name, price, image } = ingredient
+
+  const [, dragRef] = useDrag({
+    type: 'addedIngredient',
+    item: () => {
+      return { index }
+    },
+  })
+
+  const [{ isHovered }, dropRef] = useDrop({
+    accept: 'addedIngredient',
+    collect: monitor => ({
+      isHovered: monitor.isOver(),
+    }),
+    drop: (item: IDraggedItem) => {
+      if (item.index === index) return
+
+      store.dispatch(fillingMoved({ fromIndex: item.index, toIndex: index }))
+    },
+  })
+
+  const ref = useRef<HTMLLIElement>(null)
+  dragRef(dropRef(ref))
 
   return (
-    <li className={`${styles.root} mt-4 mb-4`}>
+    <li
+      ref={ref}
+      className={`${styles.root} ${isHovered ? `${styles.isHovered}` : ''} mt-4 mb-4`}
+    >
       <DragIcon type="primary"/>
       <ConstructorElement
-        text={ingredient!.name}
-        thumbnail={ingredient!.image}
-        price={ingredient!.price}
+        text={name}
+        thumbnail={image}
+        price={price}
       />
     </li>
   )

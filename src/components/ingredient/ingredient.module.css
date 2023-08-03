@@ -2,11 +2,11 @@
   position: relative;
   display: grid;
   grid-template-rows: 120px 1fr;
-  cursor: pointer;
+  cursor: grab;
 }
 
 .root.beingDragged {
-  filter: grayscale(.8);
+  opacity: .5;
 }
 
 .name {

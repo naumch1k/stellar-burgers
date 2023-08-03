@@ -68,6 +68,7 @@ const handleModalClose = () => setIsOrderDetailsModalOpen(false)
           {fillings.map((ingredient: IIngredient, i) => (
             <FillingElement
               key={i}
+              index={i}
               ingredient={ingredient}
             />
           ))}

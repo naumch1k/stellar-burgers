@@ -3,3 +3,7 @@
   align-items: center;
   cursor: grab;
 }
+
+.root.isHovered {
+  opacity: .5;
+}
