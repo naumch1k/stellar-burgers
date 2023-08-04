@@ -1,8 +1,5 @@
 .root {
-  display: grid;
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  gap: 40px;
-  grid-template-columns: repeat(2, 1fr);
 }
