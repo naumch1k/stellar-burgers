@@ -1,0 +1,24 @@
+.root {
+  min-height: calc(100vh - 88px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.authLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 16px;
+}
+
+.link {
+  color: var(--colors-interface-accent);
+  text-decoration: none;
+  transition: opacity .3s ease;
+}
+
+.link:hover {
+  opacity: .7;
+}
