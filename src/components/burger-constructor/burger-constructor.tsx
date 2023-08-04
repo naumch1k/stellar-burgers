@@ -86,6 +86,7 @@ export const BurgerConstructor = () => {
           size='large'
           htmlType='button'
           onClick={handlePlaceOrderClick}
+          disabled={!bun || !fillings.length}
         >
           Place an order
         </Button>
