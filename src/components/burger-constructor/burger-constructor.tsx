@@ -10,7 +10,11 @@ import { Modal } from '../modal'
 import { OrderDetails } from '../order-details'
 import { selectBun, selectFillings } from '../../store/burgerConstructor/selectors'
 import store from '../../store/store'
-import { bunAdded, fillingAdded } from '../../store/burgerConstructor/operations'
+import {
+  bunAdded,
+  fillingAdded,
+  ingredientsCleared,
+} from '../../store/burgerConstructor/operations'
 import { IIngredient } from '../../shared/types/ingredient'
 import { placeOrder } from '../../shared/utils/main-api'
 import styles from './burger-constructor.module.css'
@@ -51,7 +55,10 @@ export const BurgerConstructor = () => {
       })
   }
 
-  const handleModalClose = () => setIsOrderDetailsModalOpen(false)
+  const handleModalClose = () => {
+    store.dispatch(ingredientsCleared())
+    setIsOrderDetailsModalOpen(false)
+  }
 
   return (
     <section className={`${styles.root} pt-25 pb-10`}>

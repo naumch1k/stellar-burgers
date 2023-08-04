@@ -34,6 +34,10 @@ const burgerConstructorSlice = createSlice({
     fillingDeleted(state, action) {
       state.fillings = state.fillings.filter((_, index) => index !== action.payload)
     },
+    ingredientsCleared(state) {
+      state.bun = initialState.bun
+      state.fillings = initialState.fillings
+    }
   },
 })
 

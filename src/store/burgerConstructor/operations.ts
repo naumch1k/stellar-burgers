@@ -5,6 +5,7 @@ const {
   fillingAdded,
   fillingMoved,
   fillingDeleted,
+  ingredientsCleared,
 } = actions
 
 export {
@@ -12,4 +13,5 @@ export {
   fillingAdded,
   fillingMoved,
   fillingDeleted,
+  ingredientsCleared,
 }
