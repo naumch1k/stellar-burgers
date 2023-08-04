@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useMemo, useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import { OrderDetailsContext } from '../../contexts/order-details-context'
@@ -19,8 +19,6 @@ export const BurgerConstructor = () => {
   const bun = useSelector(selectBun)
   const fillings = useSelector(selectFillings)
   const { setOrderDetails } = useContext(OrderDetailsContext)
-
-  const [totalPrice, setTotalPrice] = useState(0)
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false)
 
   const [{ isHovered }, dropRef] = useDrop({
@@ -41,14 +39,9 @@ export const BurgerConstructor = () => {
     }
   }
 
-  useEffect(() => {
-    const bunsPrice = bun ? bun.price * 2 : 0
-    const fillingsPrice = fillings.reduce((prev: number, filling: IIngredient) => {
-      return prev + filling.price
-    }, 0)
-
-    setTotalPrice(bunsPrice + fillingsPrice)
-  }, [bun, fillings])
+  const bunsPrice = useMemo(() => bun ? bun.price * 2 : 0, [bun])
+  const fillingsPrice = useMemo(() => fillings.reduce((prev: number, filling: IIngredient) => prev + filling.price, 0), [fillings])
+  const totalPrice = bunsPrice + fillingsPrice
 
   const handlePlaceOrderClick = () => {
     placeOrder(fillings)
@@ -56,9 +49,9 @@ export const BurgerConstructor = () => {
         setOrderDetails(res)
         setIsOrderDetailsModalOpen(true)
       })
-}
+  }
 
-const handleModalClose = () => setIsOrderDetailsModalOpen(false)
+  const handleModalClose = () => setIsOrderDetailsModalOpen(false)
 
   return (
     <section className={`${styles.root} pt-25 pb-10`}>
