@@ -1,20 +1,21 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
   EmailInput,
   PasswordInput,
   Button,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+} from '@ya.praktikum/react-developer-burger-ui-components'
+import AuthPageLayout from '../../components/auth-page-layout'
+import { AuthPageTitle } from '../../components/auth-page-title'
 import { AuthForm } from '../../components/auth-form'
-import styles from './login.module.css'
+import { AuthLink } from '../../components/auth-link'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   return (
-    <div className={styles.root}>
-      <h2 className='text text_type_main-medium mb-6'>Log in</h2>
+    <AuthPageLayout>
+      <AuthPageTitle title='Log in'/>
       <AuthForm>
         <EmailInput
           value={email}
@@ -35,15 +36,19 @@ const Login = () => {
           Log in
         </Button>
       </AuthForm>
-      <div className={`${styles.authLinks} mt-20`}>
-        <p className={'text text_type_main-default text_color_inactive'}>Not a member yet?
-          {' '}<Link className={styles.link} to='/register'>Sign up here!</Link>
-        </p>
-        <p className={'text text_type_main-default text_color_inactive'}>Forgot your password?
-          {' '}<Link className={styles.link} to='/forgot-password'>Reset your password</Link>
-        </p>
-      </div>
-    </div>
+      <AuthPageLayout.Links>
+        <AuthLink
+          leadInText='Not a member yet?'
+          linkText='Sign up here!'
+          to='/register'
+        />
+        <AuthLink
+          leadInText='Forgot your password?'
+          linkText='Reset your password'
+          to='/forgot-password'
+        />
+      </AuthPageLayout.Links>
+    </AuthPageLayout>
   )
 }
 

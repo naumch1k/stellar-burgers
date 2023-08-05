@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
   Input,
   EmailInput,
   PasswordInput,
   Button,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+} from '@ya.praktikum/react-developer-burger-ui-components'
+import AuthPageLayout from '../../components/auth-page-layout'
+import { AuthPageTitle } from '../../components/auth-page-title'
 import { AuthForm } from '../../components/auth-form'
-import styles from './register.module.css'
+import { AuthLink } from '../../components/auth-link'
 
 const Register = () => {
   const [name, setName] = useState('')
@@ -15,8 +16,8 @@ const Register = () => {
   const [password, setPassword] = useState('')
 
   return (
-    <div className={styles.root}>
-      <h2 className='text text_type_main-medium mb-6'>Create an account</h2>
+    <AuthPageLayout>
+      <AuthPageTitle title='Create an account'/>
       <AuthForm>
         <Input
           type='text'
@@ -44,10 +45,14 @@ const Register = () => {
           Sign up
         </Button>
       </AuthForm>
-      <p className={'text text_type_main-default text_color_inactive mt-20'}>Already have an account?
-        {' '}<Link className={styles.link} to='/login'>Log in here!</Link>
-      </p>
-    </div>
+      <AuthPageLayout.Links>
+        <AuthLink
+          leadInText='Already have an account?'
+          linkText='Log in here!'
+          to='/login'
+        />
+      </AuthPageLayout.Links>
+    </AuthPageLayout>
   )
 }
 
