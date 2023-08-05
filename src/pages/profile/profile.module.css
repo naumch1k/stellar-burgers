@@ -1,0 +1,27 @@
+.root {
+  display: grid;
+  column-gap: 60px;
+  grid-template-columns: 320px 480px;
+}
+
+.navList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navLink {
+  color: var(--text-inactive-color);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--common-transition);
+}
+
+.navLink.isActive {
+  color: var(--text-primary-color);
+  cursor: default;
+}
+
+.navLink:hover {
+  color: var(--text-primary-color);
+}
