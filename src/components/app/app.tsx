@@ -3,6 +3,7 @@ import { Page } from '../../components/page'
 import { Header } from '../../components/header'
 import Main from '../../pages/main/main'
 import Login from '../../pages/login/login'
+import Register from '../../pages/register/register'
 
 export const App = () => {
   return (
@@ -14,6 +15,7 @@ export const App = () => {
         <Routes>
           <Route path='/' element={<Main/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
         </Routes>
       </Page.Content>
     </Page>
