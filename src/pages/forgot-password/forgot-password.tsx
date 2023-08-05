@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
-import { AuthForm } from '../../components/auth-form'
+import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 
 const ForgotPassword = () => {
@@ -11,7 +11,7 @@ const ForgotPassword = () => {
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Forgot Your Password?'/>
-      <AuthForm>
+      <Form>
         <EmailInput
           value={email}
           placeholder='Enter your email'
@@ -25,7 +25,7 @@ const ForgotPassword = () => {
         >
           Email Recovery Link
         </Button>
-      </AuthForm>
+      </Form>
       <AuthPageLayout.Links>
         <AuthLink
           leadInText='Remembered the password?'

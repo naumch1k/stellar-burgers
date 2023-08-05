@@ -6,7 +6,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
-import { AuthForm } from '../../components/auth-form'
+import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 
 const ResetPassword = () => {
@@ -16,7 +16,7 @@ const ResetPassword = () => {
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Create a new passsword'/>
-      <AuthForm>
+      <Form>
         <PasswordInput
           value={password}
           placeholder='Enter new password'
@@ -37,7 +37,7 @@ const ResetPassword = () => {
         >
           Save new password
         </Button>
-      </AuthForm>
+      </Form>
       <AuthPageLayout.Links>
         <AuthLink
           leadInText='Remembered the password?'

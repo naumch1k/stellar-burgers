@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
-import styles from './auth-form.module.css'
+import styles from './form.module.css'
 
-interface IAuthFormProps {
+interface IFormProps {
   children: ReactNode;
 }
 
-export const AuthForm: React.FC<IAuthFormProps> = ({ children }) => {
+export const Form: React.FC<IFormProps> = ({ children }) => {
   return (
     <form className={styles.root}>
       {children}

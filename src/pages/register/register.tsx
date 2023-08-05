@@ -7,7 +7,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
-import { AuthForm } from '../../components/auth-form'
+import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 
 const Register = () => {
@@ -18,7 +18,7 @@ const Register = () => {
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Create an account'/>
-      <AuthForm>
+      <Form>
         <Input
           type='text'
           value={name}
@@ -44,7 +44,7 @@ const Register = () => {
         >
           Sign up
         </Button>
-      </AuthForm>
+      </Form>
       <AuthPageLayout.Links>
         <AuthLink
           leadInText='Already have an account?'

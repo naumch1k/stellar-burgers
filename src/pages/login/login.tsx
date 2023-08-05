@@ -6,7 +6,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
-import { AuthForm } from '../../components/auth-form'
+import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 
 const Login = () => {
@@ -16,7 +16,7 @@ const Login = () => {
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Log in'/>
-      <AuthForm>
+      <Form>
         <EmailInput
           value={email}
           onChange={e => setEmail(e.target.value)}
@@ -35,7 +35,7 @@ const Login = () => {
         >
           Log in
         </Button>
-      </AuthForm>
+      </Form>
       <AuthPageLayout.Links>
         <AuthLink
           leadInText='Not a member yet?'

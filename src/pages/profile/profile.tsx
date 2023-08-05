@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
-import { AuthForm } from '../../components/auth-form'
+import { Form } from '../../components/form'
 import { profileNavigationItems } from '../../shared/constants/profile-navigation-items'
 import styles from './profile.module.css'
 
@@ -26,7 +26,7 @@ const Profile = () => {
           Here, you can update your personal information
         </p>
       </aside>
-      <AuthForm>
+      <Form>
         <Input
           type='text'
           value='Irina Naumchik'
@@ -54,7 +54,7 @@ const Profile = () => {
           onChange={e => console.log(e.target.value)}
           onIconClick={() => console.log('icon click')}
         />
-      </AuthForm>
+      </Form>
     </div>
   )
 }
