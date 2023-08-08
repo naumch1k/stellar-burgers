@@ -15,10 +15,14 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Create an account'/>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           type='text'
           value={name}

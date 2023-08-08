@@ -13,10 +13,14 @@ const ResetPassword = () => {
   const [password, setPassword] = useState('')
   const [code, setCode] = useState('')
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Create a new passsword'/>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <PasswordInput
           value={password}
           placeholder='Enter new password'

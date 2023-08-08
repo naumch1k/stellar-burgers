@@ -8,10 +8,14 @@ import { AuthLink } from '../../components/auth-link'
 const ForgotPassword = () => {
   const [email, setEmail] = useState('')
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Forgot Your Password?'/>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <EmailInput
           value={email}
           placeholder='Enter your email'

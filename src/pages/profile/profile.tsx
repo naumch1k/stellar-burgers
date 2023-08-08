@@ -5,6 +5,10 @@ import { profileNavigationItems } from '../../shared/constants/profile-navigatio
 import styles from './profile.module.css'
 
 const Profile = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
     <div className={`${styles.root} pt-30`}>
       <aside>
@@ -26,7 +30,7 @@ const Profile = () => {
           Here, you can update your personal information
         </p>
       </aside>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           type='text'
           value='Irina Naumchik'
