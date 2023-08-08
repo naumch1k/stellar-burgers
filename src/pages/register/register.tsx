@@ -22,7 +22,7 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { isFetching, isAuthenticated } = useSelector(selectAuthState)
+  const { isFetching, isAuthenticated, error } = useSelector(selectAuthState)
 
   useEffect(() => {
     if (isAuthenticated) navigate('/')
@@ -64,7 +64,9 @@ const Register = () => {
         >
           {isFetching ? 'Signing up...' : 'Sign up'}
         </Button>
-        {/* TODO: notify user of error */}
+        <Form.Error>
+          {error}
+        </Form.Error>
       </Form>
       <AuthPageLayout.Links>
         <AuthLink

@@ -1,0 +1,4 @@
+.root {
+  min-height: 24px;
+  color: var(--colors-interface-error);
+}
