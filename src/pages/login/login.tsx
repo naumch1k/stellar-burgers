@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
   EmailInput,
   PasswordInput,
@@ -8,13 +10,26 @@ import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
 import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
+import { selectAuthState } from '../../store/auth/selectors'
+import { useAppDispatch } from '../../store/store'
+import { loginRequest } from '../../store/auth/operations'
 
 const Login = () => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { isFetching, isAuthenticated } = useSelector(selectAuthState)
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/')
+  }, [isAuthenticated, navigate])
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    dispatch(loginRequest({ email, password }))
   }
 
   return (
@@ -36,9 +51,11 @@ const Login = () => {
           htmlType='submit'
           type='primary'
           size='medium'
+          disabled={isFetching}
         >
-          Log in
+          {isFetching ? 'Logging in...' : 'Log in'}
         </Button>
+        {/* TODO: notify user of error */}
       </Form>
       <AuthPageLayout.Links>
         <AuthLink

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Page } from '../../components/page'
 import { Header } from '../../components/header'
@@ -7,6 +8,7 @@ import Register from '../../pages/register/register'
 import ForgotPassword from '../../pages/forgot-password/forgot-password'
 import ResetPassword from '../../pages/reset-password/reset-password'
 import Profile from '../../pages/profile'
+import Logout from '../../pages/logout/logout'
 
 export const App = () => {
   return (
@@ -23,6 +25,7 @@ export const App = () => {
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/reset-password' element={<ResetPassword/>}/>
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='logout' element={<Logout/>}/>
         </Routes>
       </Page.Content>
     </Page>

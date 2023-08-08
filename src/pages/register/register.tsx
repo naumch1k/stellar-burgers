@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
   Input,
   EmailInput,
@@ -9,14 +11,27 @@ import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
 import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
+import { selectAuthState } from '../../store/auth/selectors'
+import { useAppDispatch } from '../../store/store'
+import { registerRequest } from '../../store/auth/operations'
 
 const Register = () => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { isFetching, isAuthenticated } = useSelector(selectAuthState)
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/')
+  }, [isAuthenticated, navigate])
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    dispatch(registerRequest({ name, email, password }))
   }
 
   return (
@@ -45,9 +60,11 @@ const Register = () => {
           htmlType='submit'
           type='primary'
           size='medium'
+          disabled={isFetching}
         >
-          Sign up
+          {isFetching ? 'Signing up...' : 'Sign up'}
         </Button>
+        {/* TODO: notify user of error */}
       </Form>
       <AuthPageLayout.Links>
         <AuthLink
