@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { ProtectedRoute } from '../protected-route'
 import { Page } from '../../components/page'
 import { Header } from '../../components/header'
 import Main from '../../pages/main/main'
@@ -18,14 +19,34 @@ export const App = () => {
       </Page.Header>
       <Page.Content>
         <Routes>
-          <Route path='/' element={<Main/>}/>
+          <Route
+            path='/'
+            element={
+              <ProtectedRoute>
+                <Main/>
+              </ProtectedRoute>
+            }
+          />
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
-          <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/reset-password' element={<ResetPassword/>}/>
-          <Route path='/profile' element={<Profile/>}/>
-          <Route path='logout' element={<Logout/>}/>
+          <Route
+            path='/profile'
+            element={
+              <ProtectedRoute>
+                <Profile/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/logout'
+            element={
+              <ProtectedRoute>
+                <Logout/>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Page.Content>
     </Page>
