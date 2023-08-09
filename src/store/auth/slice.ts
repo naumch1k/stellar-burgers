@@ -3,6 +3,7 @@ import { IUserData } from '../../shared/types/user-data';
 import {
   registerRequest,
   loginRequest,
+  userInfoRequest,
   logoutRequest,
 } from './operations'
 
@@ -29,10 +30,11 @@ const authSlice = createSlice({
       .addCase(registerRequest.pending, state => {
         state.isFetching = true
       })
-      .addCase(registerRequest.fulfilled, (state) => {
+      .addCase(registerRequest.fulfilled, (state, action) => {
         state.isAuthenticated = true
         state.isFetching = false
         state.error = null
+        state.user = action.payload.user
       })
       .addCase(registerRequest.rejected, (state, action) => {
           state.isFetching = false
@@ -46,12 +48,30 @@ const authSlice = createSlice({
       .addCase(loginRequest.pending, state => {
         state.isFetching = true
       })
-      .addCase(loginRequest.fulfilled, state => {
+      .addCase(loginRequest.fulfilled, (state, action) => {
         state.isAuthenticated = true
         state.isFetching = false
         state.error = null
+        state.user = action.payload.user
       })
       .addCase(loginRequest.rejected, (state, action) => {
+        state.isFetching = false
+
+        if (action.payload) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'An unknown error occurred'
+        }
+      })
+      .addCase(userInfoRequest.pending, state => {
+        state.isFetching = true
+      })
+      .addCase(userInfoRequest.fulfilled, (state, action) => {
+        state.isAuthenticated = true
+        state.isFetching = false
+        state.user = action.payload.user
+      })
+      .addCase(userInfoRequest.rejected, (state, action) => {
         state.isFetching = false
 
         if (action.payload) {

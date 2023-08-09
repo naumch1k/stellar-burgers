@@ -11,6 +11,10 @@ export interface ILoginRequest {
   password: string;
 }
 
+export interface IUserInfoRequest {
+  accessToken: string;
+}
+
 export interface ILogoutRequest {
   refreshToken: string;
 }
@@ -21,5 +25,14 @@ export interface IAuthSuccessResponse {
 }
 
 export interface IAuthFailureResponse {
+  message: string;
+}
+
+export interface IUserInfoSuccessResponse {
+  success: boolean;
+  user: IUserData;
+}
+
+export interface IUserInfoFailureResponse {
   message: string;
 }

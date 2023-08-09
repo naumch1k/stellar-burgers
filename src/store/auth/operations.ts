@@ -4,9 +4,12 @@ import { AUTH_API } from '../../shared/constants/main-api'
 import type {
   IRegisterRequest,
   ILoginRequest,
+  IUserInfoRequest,
+  ILogoutRequest,
   IAuthSuccessResponse,
   IAuthFailureResponse,
-  ILogoutRequest,
+  IUserInfoSuccessResponse,
+  IUserInfoFailureResponse,
 } from '../../services/api'
 
 const handleAxiosError = (error: unknown) => {
@@ -67,6 +70,31 @@ export const loginRequest = createAsyncThunk<
       // TODO: refactor to use cookies
       localStorage.setItem('accessToken', response.data.accessToken)
       localStorage.setItem('refreshToken', response.data.refreshToken)
+
+      return response.data
+    } catch (error) {
+      return rejectWithValue(handleAxiosError(error))
+    }
+  }
+)
+
+export const userInfoRequest = createAsyncThunk<
+  IUserInfoSuccessResponse,
+  IUserInfoRequest,
+  { rejectValue: IUserInfoFailureResponse }
+>(
+  'auth/getUserInfo',
+  async ({ accessToken }: IUserInfoRequest, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${AUTH_API}/auth/user`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${accessToken}`,
+          },
+        }
+      )
 
       return response.data
     } catch (error) {

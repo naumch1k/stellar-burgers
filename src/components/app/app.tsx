@@ -10,8 +10,17 @@ import ForgotPassword from '../../pages/forgot-password/forgot-password'
 import ResetPassword from '../../pages/reset-password/reset-password'
 import Profile from '../../pages/profile'
 import Logout from '../../pages/logout/logout'
+import { useAppDispatch } from '../../store/store'
+import { userInfoRequest } from '../../store/auth/operations'
 
 export const App = () => {
+  const dispatch = useAppDispatch()
+  const accessToken = localStorage.getItem('accessToken')
+
+  useEffect(() => {
+    if (accessToken) dispatch(userInfoRequest({ accessToken }))
+  }, [dispatch, accessToken])
+
   return (
     <Page>
       <Page.Header>
