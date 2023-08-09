@@ -1,13 +1,18 @@
-import { Link, NavLink, useMatch } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 import {
   BurgerIcon,
   ListIcon,
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
+import { useSelector } from 'react-redux'
+import { selectIsAuthenticated, selectUserName } from '../../store/auth/selectors'
 import styles from './header.module.css'
 
 export const Header = () => {
+  const isAuthenticated = useSelector(selectIsAuthenticated)
+  const userName = useSelector(selectUserName)
+
   return (
     <div className={styles.root}>
       <div className={styles.content}>
@@ -50,7 +55,9 @@ export const Header = () => {
                 to='/profile'
               >
                 <ProfileIcon type='primary'/>
-                <span className='ml-2'>My account</span>
+                <span className='ml-2'>
+                  {isAuthenticated ? `${userName}` : 'My account'}
+                </span>
               </NavLink>
             </li>
           </ul>

@@ -1,10 +1,19 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Form } from '../../components/form'
 import { profileNavigationItems } from '../../shared/constants/profile-navigation-items'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../store/auth/selectors'
 import styles from './profile.module.css'
 
 const Profile = () => {
+  const user = useSelector(selectUser)
+  // TODO: refactor forms with useForm hook
+  const [name, setName] = useState(user!.name)
+  const [email, setEmail] = useState(user!.email)
+  const [password, setPassword] = useState('')
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
@@ -33,7 +42,7 @@ const Profile = () => {
       <Form onSubmit={handleSubmit}>
         <Input
           type='text'
-          value='Irina Naumchik'
+          value={name}
           placeholder='Name'
           disabled
           icon='EditIcon'
@@ -42,7 +51,7 @@ const Profile = () => {
         />
         <Input
           type='email'
-          value='naumchikirina@yahoo.com'
+          value={email}
           placeholder='E-mail'
           disabled
           icon='EditIcon'
@@ -51,7 +60,7 @@ const Profile = () => {
         />
         <Input
           type='password'
-          value='1234'
+          value={password}
           placeholder='Password'
           disabled
           icon='EditIcon'
