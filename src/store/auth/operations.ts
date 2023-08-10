@@ -9,7 +9,6 @@ import type {
   IAuthSuccessResponse,
   IAuthFailureResponse,
   IUserInfoSuccessResponse,
-  IUserInfoFailureResponse,
 } from '../../services/api'
 
 const handleAxiosError = (error: unknown) => {
@@ -81,7 +80,7 @@ export const loginRequest = createAsyncThunk<
 export const userInfoRequest = createAsyncThunk<
   IUserInfoSuccessResponse,
   IUserInfoRequest,
-  { rejectValue: IUserInfoFailureResponse }
+  { rejectValue: IAuthFailureResponse }
 >(
   'auth/getUserInfo',
   async ({ accessToken }: IUserInfoRequest, { rejectWithValue }) => {

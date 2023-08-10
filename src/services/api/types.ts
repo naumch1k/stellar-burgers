@@ -1,4 +1,4 @@
-import { IUserData } from '../../shared/types/user-data';
+import { IUserData } from '../../shared/types/user-data'
 
 export interface IRegisterRequest {
   name: string;
@@ -33,6 +33,3 @@ export interface IUserInfoSuccessResponse {
   user: IUserData;
 }
 
-export interface IUserInfoFailureResponse {
-  message: string;
-}
