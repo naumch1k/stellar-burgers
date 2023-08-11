@@ -25,20 +25,12 @@ export interface IAuthSuccessResponse {
   accessToken: string;
 }
 
-export interface IMainApiFailureResponse {
-  message: string;
-}
-
 export interface IUserInfoSuccessResponse {
   success: boolean;
   user: IUserData;
 }
 
 export type IngredientsSuccessResponse = Record<number, IIngredient>
-
-export interface IIngredientsFailureResponse {
-  message: string;
-}
 
 export interface IPlaceOrderRequest {
   ingredients: string[];
@@ -52,3 +44,10 @@ export interface IPlaceOrderSuccessResponse {
   }
 }
 
+export interface IMainApiFailureResponse {
+  message: string;
+}
+
+export interface IIngredientsApiFailureResponse {
+  message: string;
+}

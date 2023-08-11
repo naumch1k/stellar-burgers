@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AUTH_API } from '../../shared/constants/main-api'
+import { MAIN_API } from '../../shared/constants/main-api'
 import type {
   IPlaceOrderRequest,
   IPlaceOrderSuccessResponse,
@@ -30,7 +30,7 @@ export const placeOrderRequest = createAsyncThunk<
   async ({ ingredients }: IPlaceOrderRequest, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${AUTH_API}/orders`,
+        `${MAIN_API}/orders`,
         { ingredients },
         {
           headers: {

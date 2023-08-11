@@ -1,14 +1,14 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AUTH_API } from '../../shared/constants/main-api'
+import { MAIN_API } from '../../shared/constants/main-api'
 import type {
   IRegisterRequest,
   ILoginRequest,
   IUserInfoRequest,
   ILogoutRequest,
   IAuthSuccessResponse,
-  IMainApiFailureResponse,
   IUserInfoSuccessResponse,
+  IMainApiFailureResponse,
 } from '../../services/api'
 
 const handleAxiosError = (error: unknown) => {
@@ -32,7 +32,7 @@ export const registerRequest = createAsyncThunk<
   async ({ name, email, password }: IRegisterRequest, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${AUTH_API}/auth/register`,
+        `${MAIN_API}/auth/register`,
         { name, email, password },
         {
           headers: {
@@ -57,7 +57,7 @@ export const loginRequest = createAsyncThunk<
   async ({ email, password }: ILoginRequest, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${AUTH_API}/auth/login`,
+        `${MAIN_API}/auth/login`,
         { email, password },
         {
           headers: {
@@ -86,7 +86,7 @@ export const userInfoRequest = createAsyncThunk<
   async ({ accessToken }: IUserInfoRequest, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${AUTH_API}/auth/user`,
+        `${MAIN_API}/auth/user`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ ILogoutRequest,
   async ({ refreshToken }: ILogoutRequest, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${AUTH_API}/auth/logout`,
+        `${MAIN_API}/auth/logout`,
         { token: refreshToken },
         {
           headers: {
