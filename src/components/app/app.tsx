@@ -11,6 +11,7 @@ import ResetPassword from '../../pages/reset-password/reset-password'
 import Profile from '../../pages/profile'
 import Logout from '../../pages/logout/logout'
 import { useAppDispatch } from '../../store/store'
+import { ingredientsRequest } from '../../store/ingredients/operations'
 import { userInfoRequest } from '../../store/auth/operations'
 
 export const App = () => {
@@ -18,7 +19,11 @@ export const App = () => {
   const accessToken = localStorage.getItem('accessToken')
 
   useEffect(() => {
-    if (accessToken) dispatch(userInfoRequest({ accessToken }))
+
+    if (accessToken) {
+      dispatch(ingredientsRequest())
+      dispatch(userInfoRequest({ accessToken }))
+    }
   }, [dispatch, accessToken])
 
   return (

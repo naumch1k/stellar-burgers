@@ -1,8 +1,9 @@
 import { forwardRef } from 'react'
 import { useSelector } from 'react-redux'
 import { IngredientList } from '../ingredient-list'
+import { Loader } from '../../components/loader'
 import { capitalizeFirstLetter } from '../../shared/helpers/capitalize-first-letter'
-import { selectIngredientIdsByType } from '../../store/ingredients/selectors'
+import { selectIsFetching, selectIngredientIdsByType } from '../../store/ingredients/selectors'
 import { IRootState } from '../../store/store'
 
 interface IngredientGroupProps {
@@ -12,7 +13,10 @@ interface IngredientGroupProps {
 export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupProps>(
   ({ type }, ref) => {
 
+  const isFetching = useSelector(selectIsFetching)
   const ingredientIds = useSelector((state: IRootState) => selectIngredientIdsByType(state, type))
+
+  if (isFetching) return <Loader/>
 
   return (
     <li>

@@ -1,13 +1,16 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { IIngredient } from '../../shared/types/ingredient'
+import { ingredientsRequest } from './operations'
 
 export interface IIngredientsSliceState {
-  status: 'idle' | 'loading';
+  isFetching: boolean;
+  error: string | null;
   entities: Record<number, IIngredient>;
 }
 
-const initialState = {
-  status: 'idle',
+const initialState: IIngredientsSliceState = {
+  isFetching: false,
+  error: null,
   entities: {},
 }
 
@@ -15,17 +18,26 @@ const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
-    ingredientsLoading(state) {
-      state.status = 'loading'
-    },
-    ingredientsLoaded(state, { payload: ingredients }: PayloadAction<IIngredient[]>) {
-      const newEntities: Record<number, IIngredient> = {}
-      ingredients.forEach((ingredient: IIngredient) => {
-        newEntities[ingredient.id] = ingredient
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(ingredientsRequest.pending, state => {
+        state.isFetching = true
       })
-      state.status = 'idle'
-      state.entities = newEntities
-    },
+      .addCase(ingredientsRequest.fulfilled, (state, action) => {
+        state.isFetching = false
+        state.error = null
+        state.entities = action.payload
+      })
+      .addCase(ingredientsRequest.rejected, (state, action) => {
+        state.isFetching = false
+
+        if (action.payload) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'An unknown error occurred'
+        }
+      })
   },
 })
 

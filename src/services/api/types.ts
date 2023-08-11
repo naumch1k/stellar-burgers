@@ -1,3 +1,4 @@
+import { IIngredient } from '../../shared/types/ingredient'
 import { IUserData } from '../../shared/types/user-data'
 
 export interface IRegisterRequest {
@@ -31,5 +32,11 @@ export interface IAuthFailureResponse {
 export interface IUserInfoSuccessResponse {
   success: boolean;
   user: IUserData;
+}
+
+export type IngredientsSuccessResponse = Record<number, IIngredient>
+
+export interface IIngredientsFailureResponse {
+  message: string;
 }
 
