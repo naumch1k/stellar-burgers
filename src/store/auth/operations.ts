@@ -7,13 +7,13 @@ import type {
   IUserInfoRequest,
   ILogoutRequest,
   IAuthSuccessResponse,
-  IAuthFailureResponse,
+  IMainApiFailureResponse,
   IUserInfoSuccessResponse,
 } from '../../services/api'
 
 const handleAxiosError = (error: unknown) => {
   if (axios.isAxiosError(error)) {
-    const axiosError = error as AxiosError<IAuthFailureResponse>;
+    const axiosError = error as AxiosError<IMainApiFailureResponse>;
 
     if (axiosError.response && axiosError.response.data && axiosError.response.data.message) {
       return { message: axiosError.response.data.message }
@@ -26,7 +26,7 @@ const handleAxiosError = (error: unknown) => {
 export const registerRequest = createAsyncThunk<
   IAuthSuccessResponse,
   IRegisterRequest,
-  { rejectValue: IAuthFailureResponse }
+  { rejectValue: IMainApiFailureResponse }
 >(
   'auth/registerRequest',
   async ({ name, email, password }: IRegisterRequest, { rejectWithValue }) => {
@@ -51,7 +51,7 @@ export const registerRequest = createAsyncThunk<
 export const loginRequest = createAsyncThunk<
   IAuthSuccessResponse,
   ILoginRequest,
-  { rejectValue: IAuthFailureResponse }
+  { rejectValue: IMainApiFailureResponse }
 >(
   'auth/loginRequest',
   async ({ email, password }: ILoginRequest, { rejectWithValue }) => {
@@ -80,7 +80,7 @@ export const loginRequest = createAsyncThunk<
 export const userInfoRequest = createAsyncThunk<
   IUserInfoSuccessResponse,
   IUserInfoRequest,
-  { rejectValue: IAuthFailureResponse }
+  { rejectValue: IMainApiFailureResponse }
 >(
   'auth/getUserInfo',
   async ({ accessToken }: IUserInfoRequest, { rejectWithValue }) => {
@@ -105,7 +105,7 @@ export const userInfoRequest = createAsyncThunk<
 export const logoutRequest = createAsyncThunk<
 IAuthSuccessResponse,
 ILogoutRequest,
-{ rejectValue: IAuthFailureResponse }
+{ rejectValue: IMainApiFailureResponse }
 >(
   'auth/logoutRequest',
   async ({ refreshToken }: ILogoutRequest, { rejectWithValue }) => {

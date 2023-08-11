@@ -25,7 +25,7 @@ export interface IAuthSuccessResponse {
   accessToken: string;
 }
 
-export interface IAuthFailureResponse {
+export interface IMainApiFailureResponse {
   message: string;
 }
 
@@ -38,5 +38,17 @@ export type IngredientsSuccessResponse = Record<number, IIngredient>
 
 export interface IIngredientsFailureResponse {
   message: string;
+}
+
+export interface IPlaceOrderRequest {
+  ingredients: string[];
+}
+
+export interface IPlaceOrderSuccessResponse {
+  success: boolean;
+  name: string;
+  order: {
+      number: number;
+  }
 }
 

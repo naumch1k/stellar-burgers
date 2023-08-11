@@ -1,7 +1,6 @@
-import { useState, useMemo, useContext } from 'react'
+import { useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useDrop } from 'react-dnd'
-import { OrderDetailsContext } from '../../contexts/order-details-context'
 import { BunElement } from './bun-element'
 import { FillingElement } from './filling-element'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -9,20 +8,20 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/
 import { Modal } from '../modal'
 import { OrderDetails } from '../order-details'
 import { selectBun, selectFillings } from '../../store/burgerConstructor/selectors'
-import store from '../../store/store'
 import {
   bunAdded,
   fillingAdded,
   ingredientsCleared,
 } from '../../store/burgerConstructor/operations'
 import { IIngredient } from '../../shared/types/ingredient'
-import { placeOrder } from '../../shared/utils/main-api'
+import { useAppDispatch } from '../../store/store'
+import { placeOrderRequest } from '../../store/order/operations'
 import styles from './burger-constructor.module.css'
 
 export const BurgerConstructor = () => {
+  const dispatch = useAppDispatch()
   const bun = useSelector(selectBun)
   const fillings = useSelector(selectFillings)
-  const { setOrderDetails } = useContext(OrderDetailsContext)
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false)
 
   const [{ isHovered }, dropRef] = useDrop({
@@ -37,9 +36,9 @@ export const BurgerConstructor = () => {
 
   const handleDrop = (ingredient: IIngredient) => {
     if (ingredient.type === 'bun') {
-      store.dispatch(bunAdded(ingredient))
+      dispatch(bunAdded(ingredient))
     } else {
-      store.dispatch(fillingAdded(ingredient))
+      dispatch(fillingAdded(ingredient))
     }
   }
 
@@ -48,15 +47,18 @@ export const BurgerConstructor = () => {
   const totalPrice = bunsPrice + fillingsPrice
 
   const handlePlaceOrderClick = () => {
-    placeOrder(fillings)
-      .then(res => {
-        setOrderDetails(res)
-        setIsOrderDetailsModalOpen(true)
-      })
+    if (bun && fillings.length >= 1) {
+
+      const ingredients = [bun, ...fillings]
+        .map((ingredient: IIngredient) => ingredient._id)
+
+      dispatch(placeOrderRequest({ ingredients }))
+      setIsOrderDetailsModalOpen(true)
+    }
   }
 
   const handleModalClose = () => {
-    store.dispatch(ingredientsCleared())
+    dispatch(ingredientsCleared())
     setIsOrderDetailsModalOpen(false)
   }
 
