@@ -17,7 +17,9 @@ const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    // TODO: Clear order number when close modal
+    orderNumberCleared(state) {
+      state.number = initialState.number
+    },
   },
   extraReducers: builder => {
     builder
@@ -26,6 +28,7 @@ const orderSlice = createSlice({
       })
       .addCase(placeOrderRequest.fulfilled, (state, action) => {
         state.isFetching = false
+        state.error = null
         state.number = action.payload.order.number
       })
       .addCase(placeOrderRequest.rejected, (state, action) => {

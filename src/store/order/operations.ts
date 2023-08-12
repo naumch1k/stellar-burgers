@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { actions } from './slice'
 import { mainApi } from '../../services/api'
 import type {
   IPlaceOrderRequest,
@@ -37,4 +38,7 @@ export const placeOrderRequest = createAsyncThunk<
     }
   }
 )
+
+const { orderNumberCleared } = actions
+export { orderNumberCleared }
 

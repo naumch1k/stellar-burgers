@@ -13,9 +13,10 @@ import {
   fillingAdded,
   ingredientsCleared,
 } from '../../store/burgerConstructor/operations'
+import { placeOrderRequest } from '../../store/order/operations'
+import { orderNumberCleared } from '../../store/order/operations'
 import { IIngredient } from '../../shared/types/ingredient'
 import { useAppDispatch } from '../../store/store'
-import { placeOrderRequest } from '../../store/order/operations'
 import styles from './burger-constructor.module.css'
 
 export const BurgerConstructor = () => {
@@ -53,11 +54,13 @@ export const BurgerConstructor = () => {
         .map((ingredient: IIngredient) => ingredient._id)
 
       dispatch(placeOrderRequest({ ingredients }))
-      setIsOrderDetailsModalOpen(true)
+        .then(() => setIsOrderDetailsModalOpen(true))
+
     }
   }
 
   const handleModalClose = () => {
+    dispatch(orderNumberCleared())
     dispatch(ingredientsCleared())
     setIsOrderDetailsModalOpen(false)
   }
@@ -90,6 +93,7 @@ export const BurgerConstructor = () => {
           onClick={handlePlaceOrderClick}
           disabled={!bun || !fillings.length}
         >
+          {/* TODO: show loader, disable button until request fulfilled */}
           Place an order
         </Button>
       </div>
