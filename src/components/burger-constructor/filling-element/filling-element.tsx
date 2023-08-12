@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
-import store from '../../../store/store'
+import { useAppDispatch } from '../../../store/store'
 import { fillingMoved, fillingDeleted } from '../../../store/burgerConstructor/operations'
 import { IIngredient } from '../../../shared/types/ingredient'
 import styles from './filling-element.module.css'
@@ -17,6 +17,7 @@ interface IDraggedItem {
 }
 
 export const FillingElement = ({ index, ingredient }: IFillingElementProps) => {
+  const dispatch = useAppDispatch()
   const { name, price, image } = ingredient
 
   const [, dragRef] = useDrag({
@@ -34,11 +35,11 @@ export const FillingElement = ({ index, ingredient }: IFillingElementProps) => {
     drop: (item: IDraggedItem) => {
       if (item.index === index) return
 
-      store.dispatch(fillingMoved({ fromIndex: item.index, toIndex: index }))
+      dispatch(fillingMoved({ fromIndex: item.index, toIndex: index }))
     },
   })
 
-  const onDelete = () => store.dispatch(fillingDeleted(index))
+  const onDelete = () => dispatch(fillingDeleted(index))
 
 
   const ref = useRef<HTMLLIElement>(null)
