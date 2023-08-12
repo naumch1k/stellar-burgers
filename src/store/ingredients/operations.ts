@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { INGREDIENTS_API } from '../../shared/constants/ingredients-api'
+import { ingredientsApi } from '../../services/api/ingredients-api'
 import type {
   IngredientsSuccessResponse,
   IIngredientsApiFailureResponse,
@@ -28,14 +28,7 @@ export const ingredientsRequest = createAsyncThunk<
   'ingredients/ingredientsRequest',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${INGREDIENTS_API}/ingredients`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
+      const response = await ingredientsApi.getIngredients()
 
       return response.data
     } catch (error) {
