@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { MAIN_API } from '../../shared/constants/main-api'
+import { mainApi } from '../../services/api'
 import type {
   IPlaceOrderRequest,
   IPlaceOrderSuccessResponse,
@@ -27,17 +27,9 @@ export const placeOrderRequest = createAsyncThunk<
   { rejectValue: IMainApiFailureResponse }
 >(
   'burgerConstructor/placeOrderRequest',
-  async ({ ingredients }: IPlaceOrderRequest, { rejectWithValue }) => {
+  async (data: IPlaceOrderRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${MAIN_API}/orders`,
-        { ingredients },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-      )
+      const response = await mainApi.placeOrder(data)
 
       return response.data
     } catch (error) {

@@ -22,7 +22,7 @@ export const App = () => {
 
     if (accessToken) {
       dispatch(ingredientsRequest())
-      dispatch(userInfoRequest({ accessToken }))
+      dispatch(userInfoRequest())
     }
   }, [dispatch, accessToken])
 

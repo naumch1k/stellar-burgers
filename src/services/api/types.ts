@@ -12,10 +12,6 @@ export interface ILoginRequest {
   password: string;
 }
 
-export interface IUserInfoRequest {
-  accessToken: string;
-}
-
 export interface ILogoutRequest {
   refreshToken: string;
 }

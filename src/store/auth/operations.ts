@@ -1,10 +1,9 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { MAIN_API } from '../../shared/constants/main-api'
+import { mainApi } from '../../services/api'
 import type {
   IRegisterRequest,
   ILoginRequest,
-  IUserInfoRequest,
   ILogoutRequest,
   IAuthSuccessResponse,
   IUserInfoSuccessResponse,
@@ -29,17 +28,9 @@ export const registerRequest = createAsyncThunk<
   { rejectValue: IMainApiFailureResponse }
 >(
   'auth/registerRequest',
-  async ({ name, email, password }: IRegisterRequest, { rejectWithValue }) => {
+  async (data: IRegisterRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${MAIN_API}/auth/register`,
-        { name, email, password },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+      const response = await mainApi.register(data)
 
       return response.data
     } catch (error) {
@@ -54,17 +45,9 @@ export const loginRequest = createAsyncThunk<
   { rejectValue: IMainApiFailureResponse }
 >(
   'auth/loginRequest',
-  async ({ email, password }: ILoginRequest, { rejectWithValue }) => {
+  async (data: ILoginRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${MAIN_API}/auth/login`,
-        { email, password },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
+      const response = await mainApi.login(data)
 
       // TODO: refactor to use cookies
       localStorage.setItem('accessToken', response.data.accessToken)
@@ -79,21 +62,13 @@ export const loginRequest = createAsyncThunk<
 
 export const userInfoRequest = createAsyncThunk<
   IUserInfoSuccessResponse,
-  IUserInfoRequest,
+  void,
   { rejectValue: IMainApiFailureResponse }
 >(
   'auth/getUserInfo',
-  async ({ accessToken }: IUserInfoRequest, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${MAIN_API}/auth/user`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${accessToken}`,
-          },
-        }
-      )
+      const response = await mainApi.getUserInfo()
 
       return response.data
     } catch (error) {
@@ -108,17 +83,9 @@ ILogoutRequest,
 { rejectValue: IMainApiFailureResponse }
 >(
   'auth/logoutRequest',
-  async ({ refreshToken }: ILogoutRequest, { rejectWithValue }) => {
+  async (data: ILogoutRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${MAIN_API}/auth/logout`,
-        { token: refreshToken },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
+      const response = await mainApi.logout(data)
 
       // TODO: refactor to use cookies
       localStorage.clear()
