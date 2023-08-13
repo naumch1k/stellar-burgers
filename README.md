@@ -8,10 +8,10 @@ Head over to [demo](https://naumch1k.github.io/stellar-burgers/) now and unleash
 ## Coming soon!
 - [x] User registration and login
 - [x] Live form validation
+- [x] Password recovery
 - [ ] Order status feed
 - [ ] Order history
 - [ ] User profile
-- [ ] Password recovery
 
 
 ## Tech

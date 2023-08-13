@@ -5,8 +5,11 @@ import type {
   IRegisterRequest,
   ILoginRequest,
   ILogoutRequest,
+  IVerificationCodeRequest,
+  IPasswordResetRequest,
   IAuthSuccessResponse,
   IUserInfoSuccessResponse,
+  IPasswordRecoverySuccessResponse,
   IMainApiFailureResponse,
 } from '../../services/api'
 
@@ -89,6 +92,40 @@ ILogoutRequest,
 
       // TODO: refactor to use cookies
       localStorage.clear()
+
+      return response.data
+    } catch (error) {
+      return rejectWithValue(handleAxiosError(error))
+    }
+  }
+)
+
+export const verificationCodeRequest = createAsyncThunk<
+  IPasswordRecoverySuccessResponse,
+  IVerificationCodeRequest,
+  { rejectValue: IMainApiFailureResponse }
+>(
+  'auth/verificationCodeRequest',
+  async (data: IVerificationCodeRequest, { rejectWithValue }) => {
+    try {
+      const response = await mainApi.requestVerificationCode(data)
+
+      return response.data
+    } catch (error) {
+      return rejectWithValue(handleAxiosError(error))
+    }
+  }
+)
+
+export const passwordResetRequest = createAsyncThunk<
+  IPasswordRecoverySuccessResponse,
+  IPasswordResetRequest,
+  { rejectValue: IMainApiFailureResponse }
+>(
+  'auth/resetPasswordRequest',
+  async (data: IPasswordResetRequest, { rejectWithValue }) => {
+    try {
+      const response = await mainApi.resetPassword(data)
 
       return response.data
     } catch (error) {

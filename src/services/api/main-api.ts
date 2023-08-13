@@ -4,6 +4,8 @@ import type {
   ILoginRequest,
   ILogoutRequest,
   IPlaceOrderRequest,
+  IVerificationCodeRequest,
+  IPasswordResetRequest,
 } from './types'
 
 const register = (data: IRegisterRequest ) => axios.post('/auth/register', data)
@@ -16,10 +18,16 @@ const logout = ({ refreshToken }: ILogoutRequest) => axios.post('/auth/logout', 
 
 const placeOrder = (data: IPlaceOrderRequest) => axios.post('/orders', data)
 
+const requestVerificationCode = (data: IVerificationCodeRequest) => axios.post('/password-reset', data)
+
+const resetPassword = (data: IPasswordResetRequest) => axios.post('/password-reset/reset', data)
+
 export const mainApi = {
   register,
   login,
   getUserInfo,
   logout,
   placeOrder,
+  requestVerificationCode,
+  resetPassword,
 }

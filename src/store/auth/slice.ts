@@ -5,6 +5,8 @@ import {
   loginRequest,
   userInfoRequest,
   logoutRequest,
+  verificationCodeRequest,
+  passwordResetRequest,
 } from './operations'
 
 export interface IAuthSliceState {
@@ -12,6 +14,7 @@ export interface IAuthSliceState {
   isFetching: boolean;
   error: string | null;
   user: IUserData | null;
+  isResettingPassword: boolean;
 }
 
 const initialState: IAuthSliceState = {
@@ -19,6 +22,7 @@ const initialState: IAuthSliceState = {
   isFetching: false,
   error: null,
   user: null,
+  isResettingPassword: false,
 }
 
 const authSlice = createSlice({
@@ -69,6 +73,7 @@ const authSlice = createSlice({
       .addCase(userInfoRequest.fulfilled, (state, action) => {
         state.isAuthenticated = true
         state.isFetching = false
+        state.error = null
         state.user = action.payload.user
       })
       .addCase(userInfoRequest.rejected, (state, action) => {
@@ -89,6 +94,40 @@ const authSlice = createSlice({
         state.user = null
       })
       .addCase(logoutRequest.rejected, (state, action) => {
+        state.isFetching = false
+
+        if (action.payload) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'An unknown error occurred'
+        }
+      })
+      .addCase(verificationCodeRequest.pending, state => {
+        state.isFetching = true
+      })
+      .addCase(verificationCodeRequest.fulfilled, state => {
+        state.isFetching = false
+        state.error = null
+        state.isResettingPassword = true
+      })
+      .addCase(verificationCodeRequest.rejected, (state, action) => {
+        state.isFetching = false
+
+        if (action.payload) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'An unknown error occurred'
+        }
+      })
+      .addCase(passwordResetRequest.pending, state => {
+        state.isFetching = true
+      })
+      .addCase(passwordResetRequest.fulfilled, state => {
+        state.isFetching = false
+        state.error = null
+        state.isResettingPassword = false
+      })
+      .addCase(passwordResetRequest.rejected, (state, action) => {
         state.isFetching = false
 
         if (action.payload) {

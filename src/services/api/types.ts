@@ -16,7 +16,17 @@ export interface ILogoutRequest {
   refreshToken: string;
 }
 
+export interface IVerificationCodeRequest {
+  email: string;
+}
+
+export interface IPasswordResetRequest {
+  password: string;
+  token: string;
+}
+
 export interface IAuthSuccessResponse {
+  success: boolean;
   user: IUserData;
   accessToken: string;
 }
@@ -24,6 +34,11 @@ export interface IAuthSuccessResponse {
 export interface IUserInfoSuccessResponse {
   success: boolean;
   user: IUserData;
+}
+
+export interface IPasswordRecoverySuccessResponse {
+  success: boolean;
+  message: string;
 }
 
 export type IngredientsSuccessResponse = Record<number, IIngredient>
