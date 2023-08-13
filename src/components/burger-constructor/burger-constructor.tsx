@@ -5,9 +5,11 @@ import { BunElement } from './bun-element'
 import { FillingElement } from './filling-element'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/button'
+import { Loader } from '../loader'
 import { Modal } from '../modal'
 import { OrderDetails } from '../order-details'
 import { selectBun, selectFillings } from '../../store/burgerConstructor/selectors'
+import { selectOrderState } from '../../store/order/selectors'
 import {
   bunAdded,
   fillingAdded,
@@ -23,6 +25,7 @@ export const BurgerConstructor = () => {
   const dispatch = useAppDispatch()
   const bun = useSelector(selectBun)
   const fillings = useSelector(selectFillings)
+  const { isFetching } = useSelector(selectOrderState)
   const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false)
 
   const [{ isHovered }, dropRef] = useDrop({
@@ -86,16 +89,18 @@ export const BurgerConstructor = () => {
           {' '}
           <CurrencyIcon type='primary' />
         </span>
-        <Button
-          type='primary'
-          size='large'
-          htmlType='button'
-          onClick={handlePlaceOrderClick}
-          disabled={!bun || !fillings.length}
-        >
-          {/* TODO: show loader, disable button until request fulfilled */}
-          Place an order
-        </Button>
+        <div className={styles.submitButton}>
+          <Button
+            type='primary'
+            size='large'
+            htmlType='button'
+            onClick={handlePlaceOrderClick}
+            disabled={!bun || !fillings.length}
+          >
+            Place an order
+          </Button>
+          {isFetching && <Loader/>}
+        </div>
       </div>
       {isOrderDetailsModalOpen &&
         <Modal
@@ -105,6 +110,7 @@ export const BurgerConstructor = () => {
           <OrderDetails/>
         </Modal>
       }
+      {/* TODO: notify user if there is an error sending order */}
     </section>
   )
 }
