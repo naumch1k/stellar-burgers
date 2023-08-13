@@ -71,14 +71,16 @@ const Login = () => {
           minLength={8}
           required
         />
-        <Button
-          htmlType='submit'
-          type='primary'
-          size='medium'
-          disabled={isFetching || !isValid}
-        >
-          {isFetching ? 'Logging in...' : 'Log in'}
-        </Button>
+        <Form.SubmitButton isFetching={isFetching}>
+          <Button
+            htmlType='submit'
+            type='primary'
+            size='medium'
+            disabled={isFetching || !isValid}
+          >
+            Log in
+          </Button>
+        </Form.SubmitButton>
         <Form.Error>
           {error}
         </Form.Error>

@@ -83,14 +83,16 @@ const Register = () => {
           minLength={8}
           required
         />
-        <Button
-          htmlType='submit'
-          type='primary'
-          size='medium'
-          disabled={isFetching || !isValid}
-        >
-          {isFetching ? 'Signing up...' : 'Sign up'}
-        </Button>
+        <Form.SubmitButton isFetching={isFetching}>
+          <Button
+            htmlType='submit'
+            type='primary'
+            size='medium'
+            disabled={isFetching || !isValid}
+          >
+            Sign up
+          </Button>
+        </Form.SubmitButton>
         <Form.Error>
           {error}
         </Form.Error>
