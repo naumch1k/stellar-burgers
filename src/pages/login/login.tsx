@@ -1,24 +1,32 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import {
-  EmailInput,
-  PasswordInput,
-  Button,
-} from '@ya.praktikum/react-developer-burger-ui-components'
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
 import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 import { selectAuthState } from '../../store/auth/selectors'
+import useFormWithValidation from '../../hooks/useFormWithValidation'
 import { useAppDispatch } from '../../store/store'
 import { loginRequest } from '../../store/auth/operations'
+
+const initialFormValues = {
+  email: '',
+  password: '',
+}
 
 const Login = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+    const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+  } = useFormWithValidation(initialFormValues)
+
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true)
 
   const { isFetching, isAuthenticated, error } = useSelector(selectAuthState)
 
@@ -29,29 +37,43 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    dispatch(loginRequest({ email, password }))
+    dispatch(loginRequest({
+      email: values.email,
+      password: values.password,
+    }))
   }
 
   return (
     <AuthPageLayout>
       <AuthPageTitle title='Log in'/>
       <Form onSubmit={handleSubmit}>
-        <EmailInput
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+        <Input
+          value={values.email}
+          name='email'
+          type='email'
+          placeholder='E-mail'
+          error={!!errors.email}
+          errorText={errors.email}
+          onChange={handleChange}
           required
         />
-        <PasswordInput
-          value={password}
+        <Input
+          value={values.password}
+          name='password'
+          type={isPasswordHidden ? 'password' : 'text'}
           placeholder='Password'
-          onChange={e => setPassword(e.target.value)}
+          error={!!errors.password}
+          errorText={errors.password}
+          icon={isPasswordHidden ? 'ShowIcon' : 'HideIcon'}
+          onIconClick={() => setIsPasswordHidden(!isPasswordHidden)}
+          onChange={handleChange}
           required
         />
         <Button
           htmlType='submit'
           type='primary'
           size='medium'
-          disabled={isFetching}
+          disabled={isFetching || !isValid}
         >
           {isFetching ? 'Logging in...' : 'Log in'}
         </Button>

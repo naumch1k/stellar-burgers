@@ -1,18 +1,24 @@
-import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Form } from '../../components/form'
 import { profileNavigationItems } from '../../shared/constants/profile-navigation-items'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../store/auth/selectors'
+import useFormWithValidation from '../../hooks/useFormWithValidation'
 import styles from './profile.module.css'
 
 const Profile = () => {
   const user = useSelector(selectUser)
-  // TODO: refactor forms with useForm hook
-  const [name, setName] = useState(user!.name)
-  const [email, setEmail] = useState(user!.email)
-  const [password, setPassword] = useState('')
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+  } = useFormWithValidation({
+    name: user!.name,
+    email: user!.email,
+    password: '',
+  })
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -40,32 +46,41 @@ const Profile = () => {
         </p>
       </aside>
       <Form onSubmit={handleSubmit}>
-        <Input
+      <Input
+          value={values.name}
+          name='name'
           type='text'
-          value={name}
           placeholder='Name'
-          disabled
+          error={!!errors.name}
+          errorText={errors.name}
           icon='EditIcon'
-          onChange={e => console.log(e.target.value)}
           onIconClick={() => console.log('icon click')}
+          onChange={handleChange}
+          disabled
         />
         <Input
+          value={values.email}
+          name='email'
           type='email'
-          value={email}
           placeholder='E-mail'
-          disabled
+          error={!!errors.email}
+          errorText={errors.email}
           icon='EditIcon'
-          onChange={e => console.log(e.target.value)}
           onIconClick={() => console.log('icon click')}
+          onChange={handleChange}
+          disabled
         />
         <Input
+          value={values.password}
+          name='password'
           type='password'
-          value={password}
           placeholder='Password'
-          disabled
+          error={!!errors.password}
+          errorText={errors.password}
           icon='EditIcon'
-          onChange={e => console.log(e.target.value)}
           onIconClick={() => console.log('icon click')}
+          onChange={handleChange}
+          disabled
         />
       </Form>
     </div>

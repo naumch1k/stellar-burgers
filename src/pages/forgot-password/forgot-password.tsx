@@ -1,12 +1,21 @@
-import { useState } from 'react'
-import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import AuthPageLayout from '../../components/auth-page-layout'
 import { AuthPageTitle } from '../../components/auth-page-title'
 import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
+import useFormWithValidation from '../../hooks/useFormWithValidation'
+
+const initialFormValues = {
+  email: '',
+}
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState('')
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+  } = useFormWithValidation(initialFormValues)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -16,16 +25,21 @@ const ForgotPassword = () => {
     <AuthPageLayout>
       <AuthPageTitle title='Forgot Your Password?'/>
       <Form onSubmit={handleSubmit}>
-        <EmailInput
-          value={email}
-          placeholder='Enter your email'
-          onChange={e => setEmail(e.target.value)}
+        <Input
+          value={values.email}
+          name='email'
+          type='email'
+          placeholder='E-mail'
+          error={!!errors.email}
+          errorText={errors.email}
+          onChange={handleChange}
           required
         />
         <Button
           htmlType='submit'
           type='primary'
           size='medium'
+          disabled={!isValid}
         >
           Email Recovery Link
         </Button>
