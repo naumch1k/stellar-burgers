@@ -51,9 +51,9 @@ export const BurgerConstructor = () => {
   const totalPrice = bunsPrice + fillingsPrice
 
   const handlePlaceOrderClick = () => {
-    if (bun && fillings.length >= 1) {
+    if (bun && fillings.length) {
 
-      const ingredients = [bun, ...fillings]
+      const ingredients = [bun, ...fillings, bun]
         .map((ingredient: IIngredient) => ingredient._id)
 
       dispatch(placeOrderRequest({ ingredients }))
