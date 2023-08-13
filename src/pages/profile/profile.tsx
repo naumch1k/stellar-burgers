@@ -5,6 +5,7 @@ import { profileNavigationItems } from '../../shared/constants/profile-navigatio
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../store/auth/selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
+import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 import styles from './profile.module.css'
 
 const Profile = () => {
@@ -52,7 +53,7 @@ const Profile = () => {
           type='text'
           placeholder='Name'
           error={!!errors.name}
-          errorText={errors.name}
+          errorText={CustomValidationMessages.NAME_ERROR}
           icon='EditIcon'
           onIconClick={() => console.log('icon click')}
           onChange={handleChange}
@@ -64,7 +65,7 @@ const Profile = () => {
           type='email'
           placeholder='E-mail'
           error={!!errors.email}
-          errorText={errors.email}
+          errorText={CustomValidationMessages.EMAIL_ERROR}
           icon='EditIcon'
           onIconClick={() => console.log('icon click')}
           onChange={handleChange}
@@ -76,10 +77,11 @@ const Profile = () => {
           type='password'
           placeholder='Password'
           error={!!errors.password}
-          errorText={errors.password}
+          errorText={CustomValidationMessages.PASSWORD_ERROR}
           icon='EditIcon'
           onIconClick={() => console.log('icon click')}
           onChange={handleChange}
+          minLength={8}
           disabled
         />
       </Form>

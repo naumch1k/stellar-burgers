@@ -5,6 +5,7 @@ import { AuthPageTitle } from '../../components/auth-page-title'
 import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
+import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 
 const initialFormValues = {
   password: '',
@@ -35,10 +36,11 @@ const ResetPassword = () => {
           type={isPasswordHidden ? 'password' : 'text'}
           placeholder='Password'
           error={!!errors.password}
-          errorText={errors.password}
+          errorText={CustomValidationMessages.PASSWORD_ERROR}
           icon={isPasswordHidden ? 'ShowIcon' : 'HideIcon'}
           onIconClick={() => setIsPasswordHidden(!isPasswordHidden)}
           onChange={handleChange}
+          minLength={8}
           required
         />
         <Input
@@ -47,7 +49,7 @@ const ResetPassword = () => {
           type='text'
           placeholder='Enter verification code'
           error={!!errors.code}
-          errorText={errors.code}
+          errorText={CustomValidationMessages.CODE_ERROR}
           onChange={handleChange}
           required
         />

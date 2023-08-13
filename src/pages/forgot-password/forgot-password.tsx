@@ -4,6 +4,7 @@ import { AuthPageTitle } from '../../components/auth-page-title'
 import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
+import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 
 const initialFormValues = {
   email: '',
@@ -31,7 +32,7 @@ const ForgotPassword = () => {
           type='email'
           placeholder='E-mail'
           error={!!errors.email}
-          errorText={errors.email}
+          errorText={CustomValidationMessages.EMAIL_ERROR}
           onChange={handleChange}
           required
         />

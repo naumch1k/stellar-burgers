@@ -8,6 +8,7 @@ import { Form } from '../../components/form'
 import { AuthLink } from '../../components/auth-link'
 import { selectAuthState } from '../../store/auth/selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
+import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 import { useAppDispatch } from '../../store/store'
 import { registerRequest } from '../../store/auth/operations'
 
@@ -55,7 +56,7 @@ const Register = () => {
           type='text'
           placeholder='Name'
           error={!!errors.name}
-          errorText={errors.name}
+          errorText={CustomValidationMessages.NAME_ERROR}
           onChange={handleChange}
           required
         />
@@ -65,7 +66,7 @@ const Register = () => {
           type='email'
           placeholder='E-mail'
           error={!!errors.email}
-          errorText={errors.email}
+          errorText={CustomValidationMessages.EMAIL_ERROR}
           onChange={handleChange}
           required
         />
@@ -75,10 +76,11 @@ const Register = () => {
           type={isPasswordHidden ? 'password' : 'text'}
           placeholder='Password'
           error={!!errors.password}
-          errorText={errors.password}
+          errorText={CustomValidationMessages.PASSWORD_ERROR}
           icon={isPasswordHidden ? 'ShowIcon' : 'HideIcon'}
           onIconClick={() => setIsPasswordHidden(!isPasswordHidden)}
           onChange={handleChange}
+          minLength={8}
           required
         />
         <Button

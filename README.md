@@ -6,9 +6,10 @@ Create your dream burger by simply dragging and dropping your favorite ingredien
 Head over to [demo](https://naumch1k.github.io/stellar-burgers/) now and unleash your creativity 🌌🍔 Happy burger crafting!
 
 ## Coming soon!
+- [x] User registration and login
+- [x] Live form validation
 - [ ] Order status feed
 - [ ] Order history
-- [ ] User registration and login
 - [ ] User profile
 - [ ] Password recovery
 

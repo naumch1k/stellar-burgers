@@ -10,6 +10,7 @@ import { selectAuthState } from '../../store/auth/selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
 import { useAppDispatch } from '../../store/store'
 import { loginRequest } from '../../store/auth/operations'
+import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 
 const initialFormValues = {
   email: '',
@@ -53,7 +54,7 @@ const Login = () => {
           type='email'
           placeholder='E-mail'
           error={!!errors.email}
-          errorText={errors.email}
+          errorText={CustomValidationMessages.EMAIL_ERROR}
           onChange={handleChange}
           required
         />
@@ -63,10 +64,11 @@ const Login = () => {
           type={isPasswordHidden ? 'password' : 'text'}
           placeholder='Password'
           error={!!errors.password}
-          errorText={errors.password}
+          errorText={CustomValidationMessages.PASSWORD_ERROR}
           icon={isPasswordHidden ? 'ShowIcon' : 'HideIcon'}
           onIconClick={() => setIsPasswordHidden(!isPasswordHidden)}
           onChange={handleChange}
+          minLength={8}
           required
         />
         <Button

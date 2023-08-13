@@ -2,5 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 480px;
   row-gap: 24px;
+}
+
+.root [class~=input__error] {
+  height: 0;
+  margin-bottom: 0;
+  font-size: 14px;
 }
