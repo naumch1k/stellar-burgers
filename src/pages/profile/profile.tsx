@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Form } from '../../components/form'
 import { profileNavigationItems } from '../../shared/constants/profile-navigation-items'
 import { useSelector } from 'react-redux'
@@ -9,17 +10,49 @@ import { CustomValidationMessages } from '../../shared/constants/custom-validati
 import styles from './profile.module.css'
 
 const Profile = () => {
+  const isFetching = false
   const user = useSelector(selectUser)
+
+  const initialFormValues = {
+    name: user!.name,
+    email: user!.email,
+    password: 'some-fake-password',
+  }
+
   const {
     values,
     errors,
     isValid,
     handleChange,
-  } = useFormWithValidation({
-    name: user!.name,
-    email: user!.email,
-    password: '',
+    resetForm,
+  } = useFormWithValidation(initialFormValues)
+
+  const [inputsDisabledState, setInputsDisabledState] = useState({
+    name: true,
+    email: true,
+    password: true,
   })
+
+  const isBeingEdited = Object.values(inputsDisabledState).some(state => !state)
+
+  const hasBeenEdited = JSON.stringify(values) !== JSON.stringify(initialFormValues)
+
+  const handleIconToggle = (inputName: string) => {
+    setInputsDisabledState(prevState => ({
+      ...prevState,
+      [inputName]: !prevState[inputName as keyof typeof inputsDisabledState],
+    }))
+  }
+
+  const handleCancelEditing = () => {
+    setInputsDisabledState(prevState => ({
+      ...prevState,
+      name: true,
+      email: true,
+      password: true,
+    }))
+    resetForm()
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -47,17 +80,18 @@ const Profile = () => {
         </p>
       </aside>
       <Form onSubmit={handleSubmit}>
-      <Input
+        <Input
           value={values.name}
           name='name'
           type='text'
           placeholder='Name'
           error={!!errors.name}
           errorText={CustomValidationMessages.NAME_ERROR}
-          icon='EditIcon'
-          onIconClick={() => console.log('icon click')}
+          icon={inputsDisabledState.name ? 'EditIcon' : 'CloseIcon'}
+          onIconClick={() => handleIconToggle('name')}
           onChange={handleChange}
-          disabled
+          required
+          disabled={inputsDisabledState.name}
         />
         <Input
           value={values.email}
@@ -66,10 +100,11 @@ const Profile = () => {
           placeholder='E-mail'
           error={!!errors.email}
           errorText={CustomValidationMessages.EMAIL_ERROR}
-          icon='EditIcon'
-          onIconClick={() => console.log('icon click')}
+          icon={inputsDisabledState.email ? 'EditIcon' : 'CloseIcon'}
+          onIconClick={() => handleIconToggle('email')}
           onChange={handleChange}
-          disabled
+          required
+          disabled={inputsDisabledState.email}
         />
         <Input
           value={values.password}
@@ -78,12 +113,34 @@ const Profile = () => {
           placeholder='Password'
           error={!!errors.password}
           errorText={CustomValidationMessages.PASSWORD_ERROR}
-          icon='EditIcon'
-          onIconClick={() => console.log('icon click')}
+          icon={inputsDisabledState.password ? 'EditIcon' : 'CloseIcon'}
+          onIconClick={() => handleIconToggle('password')}
           onChange={handleChange}
           minLength={8}
-          disabled
+          required
+          disabled={inputsDisabledState.password}
         />
+        {isBeingEdited &&
+          <div className={styles.submitGroup}>
+            <Button
+              htmlType='button'
+              type='secondary'
+              onClick={handleCancelEditing}
+              disabled={isFetching}
+            >
+              Cancel
+            </Button>
+            <Form.SubmitButton isFetching={isFetching}>
+              <Button
+                htmlType='submit'
+                type='primary'
+                disabled={isFetching || !isValid || !hasBeenEdited}
+              >
+                Save
+              </Button>
+            </Form.SubmitButton>
+          </div>
+        }
       </Form>
     </div>
   )

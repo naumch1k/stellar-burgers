@@ -25,3 +25,8 @@
 .navLink:hover {
   color: var(--text-primary-color);
 }
+
+.submitGroup {
+  margin-left: auto;
+  display: flex;
+}

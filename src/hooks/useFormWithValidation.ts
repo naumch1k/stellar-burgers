@@ -24,12 +24,12 @@ function useFormWithValidation(initialValues: IFormValues) {
   }
 
   const resetForm = useCallback(
-    (newValues = {}, newErrors = {}, newIsValid = false) => {
+    (newValues = initialValues, newErrors = {}, newIsValid = false) => {
       setValues(newValues)
       setErrors(newErrors)
       setIsValid(newIsValid)
     },
-    [setValues, setErrors, setIsValid]
+    [setValues, setErrors, setIsValid, initialValues]
   )
 
   return {
