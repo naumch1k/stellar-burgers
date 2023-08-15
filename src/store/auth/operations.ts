@@ -1,8 +1,9 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { actions } from './slice'
 import { mainApi } from '../../services/api'
 import type {
-  IRegisterRequest,
+  ISetUserInfoRequest,
   ILoginRequest,
   ILogoutRequest,
   IVerificationCodeRequest,
@@ -27,11 +28,11 @@ const handleAxiosError = (error: unknown) => {
 
 export const registerRequest = createAsyncThunk<
   IAuthSuccessResponse,
-  IRegisterRequest,
+  ISetUserInfoRequest,
   { rejectValue: IMainApiFailureResponse }
 >(
   'auth/registerRequest',
-  async (data: IRegisterRequest, { rejectWithValue }) => {
+  async (data: ISetUserInfoRequest, { rejectWithValue }) => {
     try {
       const response = await mainApi.register(data)
 
@@ -72,6 +73,23 @@ export const userInfoRequest = createAsyncThunk<
   async (_, { rejectWithValue }) => {
     try {
       const response = await mainApi.getUserInfo()
+
+      return response.data
+    } catch (error) {
+      return rejectWithValue(handleAxiosError(error))
+    }
+  }
+)
+
+export const userInfoUpdateRequest = createAsyncThunk<
+  IUserInfoSuccessResponse,
+  ISetUserInfoRequest,
+  { rejectValue: IMainApiFailureResponse }
+>(
+  'auth/userInfoUpdateRequest',
+  async (data: ISetUserInfoRequest, { rejectWithValue }) => {
+    try {
+      const response = await mainApi.updateUserInfo(data)
 
       return response.data
     } catch (error) {
@@ -133,3 +151,6 @@ export const passwordResetRequest = createAsyncThunk<
     }
   }
 )
+
+const { errorCleared } = actions
+export { errorCleared }

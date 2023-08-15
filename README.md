@@ -9,9 +9,9 @@ Head over to [demo](https://naumch1k.github.io/stellar-burgers/) now and unleash
 - [x] User registration and login
 - [x] Live form validation
 - [x] Password recovery
+- [x] User profile updates
 - [ ] Order status feed
 - [ ] Order history
-- [ ] User profile
 
 
 ## Tech

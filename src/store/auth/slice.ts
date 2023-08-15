@@ -4,6 +4,7 @@ import {
   registerRequest,
   loginRequest,
   userInfoRequest,
+  userInfoUpdateRequest,
   logoutRequest,
   verificationCodeRequest,
   passwordResetRequest,
@@ -28,7 +29,11 @@ const initialState: IAuthSliceState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    errorCleared(state) {
+      state.error = null
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(registerRequest.pending, state => {
@@ -77,6 +82,23 @@ const authSlice = createSlice({
         state.user = action.payload.user
       })
       .addCase(userInfoRequest.rejected, (state, action) => {
+        state.isFetching = false
+
+        if (action.payload) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'An unknown error occurred'
+        }
+      })
+      .addCase(userInfoUpdateRequest.pending, state => {
+        state.isFetching = true
+      })
+      .addCase(userInfoUpdateRequest.fulfilled, (state, action) => {
+        state.isFetching = false
+        state.error = null
+        state.user = action.payload.user
+      })
+      .addCase(userInfoUpdateRequest.rejected, (state, action) => {
         state.isFetching = false
 
         if (action.payload) {

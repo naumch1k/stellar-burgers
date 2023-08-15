@@ -1,7 +1,7 @@
 import { IIngredient } from '../../shared/types/ingredient'
 import { IUserData } from '../../shared/types/user-data'
 
-export interface IRegisterRequest {
+export interface ISetUserInfoRequest {
   name: string;
   email: string;
   password: string;

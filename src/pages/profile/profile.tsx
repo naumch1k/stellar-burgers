@@ -1,22 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Form } from '../../components/form'
 import { profileNavigationItems } from '../../shared/constants/profile-navigation-items'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../../store/auth/selectors'
+import { selectAuthState } from '../../store/auth/selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
 import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
+import { useAppDispatch } from '../../store/store'
+import { userInfoUpdateRequest } from '../../store/auth/operations'
+import { errorCleared } from '../../store/auth/operations'
 import styles from './profile.module.css'
 
 const Profile = () => {
-  const isFetching = false
-  const user = useSelector(selectUser)
+  const dispatch = useAppDispatch()
+  const { isFetching, error, user } = useSelector(selectAuthState)
 
   const initialFormValues = {
     name: user!.name,
     email: user!.email,
-    password: 'some-fake-password',
+    password: ''
   }
 
   const {
@@ -52,11 +55,29 @@ const Profile = () => {
       password: true,
     }))
     resetForm()
+    dispatch(errorCleared())
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    dispatch(userInfoUpdateRequest({
+      name: values.name,
+      email: values.email,
+      password: values.password
+    }))
   }
+
+  useEffect(() => {
+    if (!isFetching && !error) {
+      setInputsDisabledState(prevState => ({
+        ...prevState,
+        name: true,
+        email: true,
+        password: true,
+      }))
+    }
+  }, [isFetching, error])
 
   return (
     <div className={`${styles.root} pt-30`}>
@@ -120,6 +141,9 @@ const Profile = () => {
           required
           disabled={inputsDisabledState.password}
         />
+        <Form.Error>
+          {error}
+        </Form.Error>
         {isBeingEdited &&
           <div className={styles.submitGroup}>
             <Button
