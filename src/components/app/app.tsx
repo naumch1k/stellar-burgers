@@ -1,14 +1,16 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ProtectedRoute } from '../protected-route'
-import { Page } from '../../components/page'
-import { Header } from '../../components/header'
 import Main from '../../pages/main/main'
 import Login from '../../pages/login/login'
 import Register from '../../pages/register/register'
 import ForgotPassword from '../../pages/forgot-password/forgot-password'
 import ResetPassword from '../../pages/reset-password/reset-password'
 import Profile from '../../pages/profile'
+import { Page } from '../../components/page'
+import { Header } from '../../components/header'
+import { ProfilePageForm } from '../profile-page-form/profile-page-form'
+import { OrdersList } from '../orders-list'
 import Logout from '../../pages/logout/logout'
 import { useAppDispatch } from '../../store/store'
 import { ingredientsRequest } from '../../store/ingredients/operations'
@@ -19,9 +21,9 @@ export const App = () => {
   const accessToken = localStorage.getItem('accessToken')
 
   useEffect(() => {
+    dispatch(ingredientsRequest())
 
     if (accessToken) {
-      dispatch(ingredientsRequest())
       dispatch(userInfoRequest())
     }
   }, [dispatch, accessToken])
@@ -41,20 +43,23 @@ export const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/forgot-password' element={<ForgotPassword/>}/>
-          <Route path='/reset-password' element={<ResetPassword/>}/>
+          <Route path='login' element={<Login/>}/>
+          <Route path='register' element={<Register/>}/>
+          <Route path='forgot-password' element={<ForgotPassword/>}/>
+          <Route path='reset-password' element={<ResetPassword/>}/>
           <Route
-            path='/profile'
+            path='profile'
             element={
               <ProtectedRoute>
                 <Profile/>
               </ProtectedRoute>
             }
-          />
+          >
+            <Route index element={<ProfilePageForm/>}/>
+            <Route path='orders' element={<OrdersList/>}/>
+          </Route>
           <Route
-            path='/logout'
+            path='logout'
             element={
               <ProtectedRoute>
                 <Logout/>

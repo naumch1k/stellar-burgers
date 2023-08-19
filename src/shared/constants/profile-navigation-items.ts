@@ -5,7 +5,7 @@ export const profileNavigationItems = [
   },
   {
     text: 'Order History',
-    href: '/orders',
+    href: '/profile/orders',
   },
   {
     text: 'Log Out',
