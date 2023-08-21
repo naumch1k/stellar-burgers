@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export interface IWebSocketSliceState {
+  isConnecting: boolean;
   connected: boolean;
-  connecting: boolean;
 }
 
 const initialState: IWebSocketSliceState = {
+  isConnecting: false,
   connected: false,
-  connecting: false,
 }
 
 const webSocketSlice = createSlice({
@@ -15,11 +15,11 @@ const webSocketSlice = createSlice({
   initialState,
   reducers: {
     connect(state, _) {
-      state.connecting = true
+      state.isConnecting = true
     },
     connected(state) {
+      state.isConnecting = false
       state.connected = true
-      state.connecting = false
     },
     disconnect(state) {
       state.connected = false
