@@ -3,6 +3,8 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { FormattedDate } from '../ui/formatted-date'
 import { selectOrderById } from '../../store/orders/selectors'
 import { IRootState } from '../../store/store'
+import { translateOrderName } from '../../shared/helpers/translate-order-name'
+import { IngredientsDictionary } from '../../shared/constants/ingredients-dictionary'
 import styles from './order-card.module.css'
 
 interface IOrderCardProps {
@@ -24,7 +26,9 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
         />
       </header>
       <div>
-        <h3 className='text text_type_main-medium'>{name}</h3>
+        <h3 className='text text_type_main-medium'>
+          {translateOrderName(name, IngredientsDictionary)}
+        </h3>
         <p className={`${styles.status} ${status === 'done' ? 'text_color_success' : ''} text text_type_main-default mt-2`}>{status}</p>
       </div>
       <footer className={styles.footer}>

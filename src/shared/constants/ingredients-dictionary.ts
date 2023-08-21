@@ -1,0 +1,16 @@
+export const IngredientsDictionary = {
+  'альфа-сахаридный': 'alpha-saccharide',
+  'антарианский': 'antarian',
+  'астероидный': 'asteroid',
+  'бессмертный': 'immortal',
+  'био-марсианский': 'bio-martian',
+  'бургер': 'burger',
+  'краторный': 'crater',
+  'люминесцентный': 'luminescent',
+  'метеоритный': 'meteorite',
+  'минеральный': 'mineral',
+  'традиционный-галактический': 'galactic',
+  'фалленианский': 'fallenian',
+  'флюоресцентный': 'fluorescent',
+  'экзо-плантаго': 'exo-plantago',
+}
