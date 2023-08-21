@@ -1,0 +1,23 @@
+.root {
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  border-radius: 40px;
+  background-color: var(--background);
+  gap: 24px;
+}
+
+.header,
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status {
+  text-transform: capitalize;
+}
+
+.price {
+  display: inline-flex;
+  gap: 9px;
+}

@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IOrder } from '../../shared/types/order';
 
 export interface IOrdersSliceState {
-  orders: [];
+  entities: IOrder[];
   total: number | null;
   totalToday: number | null;
 }
 
 const initialState: IOrdersSliceState = {
-  orders: [],
+  entities: [],
   total: null,
   totalToday: null,
 }
@@ -18,7 +19,7 @@ const ordersSlice = createSlice({
   reducers: {
     setOrders(state, action) {
       const { orders, total, totalToday } = action.payload
-      state.orders = orders
+      state.entities = orders
       state.total = total
       state.totalToday = totalToday
     },
