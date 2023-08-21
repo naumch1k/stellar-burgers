@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { FormattedDate } from '../ui/formatted-date'
 import { selectOrderById } from '../../store/orders/selectors'
 import { IRootState } from '../../store/store'
 import styles from './order-card.module.css'
@@ -17,7 +18,10 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
     <li className={`${styles.root} pt-6 pr-6 pb-6 pl-6`}>
       <header className={styles.header}>
         <p className='text text_type_digits-default'>#{number}</p>
-        <p className='text text_type_main-default text_color_inactive'>Сегодня, 16:20 i-GMT+3</p>
+        <FormattedDate
+          date={new Date(createdAt)}
+          className='text text_type_main-default text_color_inactive'
+        />
       </header>
       <div>
         <h3 className='text text_type_main-medium'>{name}</h3>
