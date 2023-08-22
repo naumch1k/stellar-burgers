@@ -1,7 +1,6 @@
 .root {
   display: flex;
-  width: 868px;
-  height: calc(100vh - 272px);
+  height: calc(100vh - 192px);
   flex-direction: column;
   padding: 0 8px 0 0;
   margin: 0;

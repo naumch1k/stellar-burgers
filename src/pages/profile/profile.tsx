@@ -6,7 +6,9 @@ const Profile = () => {
   return (
     <ProfilePageLayout>
       <ProfilePageLayout.SideMenu/>
-      <Outlet />
+      <ProfilePageLayout.Content>
+        <Outlet />
+      </ProfilePageLayout.Content>
     </ProfilePageLayout>
   )
 }

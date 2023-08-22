@@ -9,7 +9,7 @@ export const ProfilePageLayout = (props: IProfilePageLayoutProps) => {
   const { children } = props
 
   return (
-    <div className={`${styles.root} pt-30`}>
+    <div className={styles.root}>
       {children}
     </div>
   )

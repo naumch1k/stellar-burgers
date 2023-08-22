@@ -1,12 +1,12 @@
-import styles from './profile-page-layout-side-menu.module.css'
 import { useMatch, NavLink } from 'react-router-dom'
 import { profileNavigationItems } from '../../../shared/constants/profile-navigation-items'
+import styles from './profile-page-layout-side-menu.module.css'
 
 export const ProfilePageLayoutSideMenu = () => {
   const isIndex = useMatch('/profile')
 
   return (
-    <aside>
+    <aside className='pt-30'>
       <ul className={styles.navList}>
         {profileNavigationItems.map(item => (
           <li key={item.href} className='pt-4 pb-4'>
