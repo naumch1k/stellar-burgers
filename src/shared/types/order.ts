@@ -1,8 +1,6 @@
-import { IIngredient } from "./ingredient";
-
 export interface IOrder {
   createdAt: string;
-  ingredients: IIngredient[];
+  ingredients: string[];
   name: string;
   number: number;
   status: string;

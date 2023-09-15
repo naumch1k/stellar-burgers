@@ -1,10 +1,8 @@
-import { useSelector } from 'react-redux'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { FormattedDate } from '../ui/formatted-date'
-import { selectOrderById } from '../../store/orders/selectors'
-import { IRootState } from '../../store/store'
 import { translateOrderName } from '../../shared/helpers/translate-order-name'
 import { IngredientsDictionary } from '../../shared/constants/ingredients-dictionary'
+import useOrderDetails from '../../hooks/use-order-details'
 import styles from './order-card.module.css'
 
 interface IOrderCardProps {
@@ -12,9 +10,13 @@ interface IOrderCardProps {
 }
 
 export const OrderCard = ({ id }: IOrderCardProps) => {
-  const order = useSelector((state: IRootState) => selectOrderById(state, id))
-
-  const { number, createdAt, name, status } = order!
+  const {
+    number,
+    createdAt,
+    name,
+    status,
+    price,
+  } = useOrderDetails(id)
 
   return (
     <li className={`${styles.root} pt-6 pr-6 pb-6 pl-6`}>
@@ -34,7 +36,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
       <footer className={styles.footer}>
         <div></div>
         <p className={`${styles.price} text text_type_digits-default`}>
-          480
+          {price}
           {' '}
           <CurrencyIcon type='primary' />
         </p>
