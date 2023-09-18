@@ -21,6 +21,6 @@
 }
 
 .submitGroup {
-  margin-left: auto;
   display: flex;
+  margin-left: auto;
 }
