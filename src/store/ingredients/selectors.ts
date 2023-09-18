@@ -12,19 +12,23 @@ const selectIngredients = createSelector(
 
 const selectIngredientIds = createSelector(
   selectIngredients,
-  ingredients => ingredients.map(ingredient => ingredient.id)
+  ingredients => ingredients.map(ingredient => ingredient._id)
 )
 
-const selectIngredientById = (state: IRootState, ingredientId: number) => {
-  return selectIngredientEntities(state)[ingredientId]
-}
+const selectIngredientById = createSelector(
+  [selectIngredients, (_, id: string) => id],
+  (ingredients, id) =>
+    ingredients
+      .find(ingredient => ingredient._id === id)
+)
+
 
 const selectIngredientIdsByType = createSelector(
   [selectIngredients, (_, type: string) => type],
   (ingredients, type) =>
     ingredients
       .filter(ingredient => ingredient.type === type)
-      .map(ingredient => ingredient.id)
+      .map(ingredient => ingredient._id)
 )
 
 export {

@@ -10,12 +10,12 @@ import { IRootState } from '../../store/store'
 import styles from './ingredient.module.css'
 
 interface IngredientProps {
-  id: number;
+  id: string;
 }
 
 export const Ingredient = ({ id }: IngredientProps) => {
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
-  const { name, image, price } = ingredient
+  const { name, image, price } = ingredient!
   const count = useSelector(state => selectIngredientCount(state, id))
   const [isNutritionFactsModalOpen, setIsNutritionFactsModalOpen] = useState(false)
 
@@ -56,7 +56,7 @@ export const Ingredient = ({ id }: IngredientProps) => {
           onClose={handleModalClose}
         >
           <NutritionFacts
-            {...ingredient}
+            {...ingredient!}
           />
         </Modal>
       }
