@@ -7,7 +7,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/button'
 import { Loader } from '../loader'
 import { Modal } from '../modal'
-import { OrderDetails } from '../order-details'
+import { OrderConfirmation } from '../order-confirmation'
 import { selectBun, selectFillings } from '../../store/burgerConstructor/selectors'
 import { selectOrderState } from '../../store/order/selectors'
 import {
@@ -107,7 +107,7 @@ export const BurgerConstructor = () => {
           isOpen={isOrderDetailsModalOpen}
           onClose={handleModalClose}
         >
-          <OrderDetails/>
+          <OrderConfirmation/>
         </Modal>
       }
       {/* TODO: notify user if there is an error sending order */}

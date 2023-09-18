@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
 import { selectOrderNumber } from '../../store/order/selectors'
 import successImage from '../../images/success.png'
-import styles from './order-details.module.css'
+import styles from './order-confirmation.module.css'
 
-export const OrderDetails = () => {
+export const OrderConfirmation = () => {
   const orderNumber = useSelector(selectOrderNumber)
 
   return (
