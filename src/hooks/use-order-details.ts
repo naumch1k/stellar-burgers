@@ -34,6 +34,7 @@ function useOrderDetails(orderId: string) {
     name,
     status,
     price,
+    orderIngredients,
   }
 }
 

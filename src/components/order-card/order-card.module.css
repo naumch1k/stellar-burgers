@@ -10,11 +10,19 @@
 .header,
 .footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
 .status {
   text-transform: capitalize;
+}
+
+.ingredients {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .price {

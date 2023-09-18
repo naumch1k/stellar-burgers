@@ -1,9 +1,12 @@
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { OrderCardIngredient } from '../order-card-ingredient'
 import { FormattedDate } from '../ui/formatted-date'
 import { translateOrderName } from '../../shared/helpers/translate-order-name'
 import { IngredientsDictionary } from '../../shared/constants/ingredients-dictionary'
 import useOrderDetails from '../../hooks/use-order-details'
 import styles from './order-card.module.css'
+
+const ingredientsToRender = 5;
 
 interface IOrderCardProps {
   id: string;
@@ -16,6 +19,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
     name,
     status,
     price,
+    orderIngredients,
   } = useOrderDetails(id)
 
   return (
@@ -34,7 +38,30 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
         <p className={`${styles.status} ${status === 'done' ? 'text_color_success' : ''} text text_type_main-default mt-2`}>{status}</p>
       </div>
       <footer className={styles.footer}>
-        <div></div>
+        <ul className={styles.ingredients}>
+          {orderIngredients.map((ingredient, i) => {
+            if (i < ingredientsToRender) {
+              return (
+                <OrderCardIngredient
+                  key={i}
+                  id={ingredient._id}
+                  index={i}
+                />
+              )
+            } else if (i === ingredientsToRender) {
+              return (
+                <OrderCardIngredient
+                  key={i}
+                  id={ingredient._id}
+                  index={i}
+                  closingIngredient
+                  restIngredientsCount={`+${orderIngredients.length - ingredientsToRender}`}
+                />
+              )
+            }
+            return null
+          })}
+        </ul>
         <p className={`${styles.price} text text_type_digits-default`}>
           {price}
           {' '}
