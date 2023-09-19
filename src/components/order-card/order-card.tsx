@@ -18,7 +18,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
     name,
     status,
     price,
-    ingredients,
+    uniqueIngredients,
   } = useOrderDetails(id)
 
   return (
@@ -40,7 +40,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
         </div>
         <footer className={styles.footer}>
           <ul className={styles.ingredients}>
-            {ingredients.map((ingredient, i) => {
+            {uniqueIngredients.map((ingredient, i) => {
               if (i < ingredientsToRender) {
                 return (
                   <li
@@ -61,7 +61,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
                     <IngredientThumbnail
                       id={ingredient._id}
                       closingIngredient
-                      restIngredientsCount={ingredients.length - i}
+                      restIngredientsCount={uniqueIngredients.length - i}
                     />
                   </li>
                 )
