@@ -10,9 +10,8 @@ Head over to [demo](https://naumch1k.github.io/stellar-burgers/) now and unleash
 - [x] Live form validation
 - [x] Password recovery
 - [x] User profile updates
+- [x] Order history
 - [ ] Order status feed
-- [ ] Order history
-
 
 ## Tech
 React JS | TypeScript | Redux | CSS-modules | react-dnd
