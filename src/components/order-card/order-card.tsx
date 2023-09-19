@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { OrderCardIngredient } from '../order-card-ingredient'
+import { IngredientThumbnail } from '../ui/ingredient-thumbnail'
 import { FormattedDate } from '../ui/formatted-date'
 import useOrderDetails from '../../hooks/use-order-details'
 import styles from './order-card.module.css'
@@ -43,21 +43,27 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
             {ingredients.map((ingredient, i) => {
               if (i < ingredientsToRender) {
                 return (
-                  <OrderCardIngredient
+                  <li
                     key={i}
-                    id={ingredient._id}
-                    index={i}
-                  />
+                    className={styles.ingredient}
+                    style={{zIndex: `calc(${ingredientsToRender} - ${i})`}}
+                  >
+                    <IngredientThumbnail id={ingredient._id}/>
+                  </li>
                 )
               } else if (i === ingredientsToRender) {
                 return (
-                  <OrderCardIngredient
+                  <li
                     key={i}
-                    id={ingredient._id}
-                    index={i}
-                    closingIngredient
-                    restIngredientsCount={`+${ingredients.length - ingredientsToRender}`}
-                  />
+                    className={styles.ingredient}
+                    style={{zIndex: `calc(${ingredientsToRender} - ${i})`}}
+                  >
+                    <IngredientThumbnail
+                      id={ingredient._id}
+                      closingIngredient
+                      restIngredientsCount={ingredients.length - i}
+                    />
+                  </li>
                 )
               }
               return null

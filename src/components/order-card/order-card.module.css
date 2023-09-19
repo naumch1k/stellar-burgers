@@ -30,6 +30,10 @@
   list-style: none;
 }
 
+.ingredient {
+  margin-right: -16px;
+}
+
 .price {
   display: inline-flex;
   gap: 9px;
