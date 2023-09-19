@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  max-width: 320px;
+}
+
+.price {
+  display: inline-flex;
+  margin-left: auto;
+  gap: 9px;
+}
