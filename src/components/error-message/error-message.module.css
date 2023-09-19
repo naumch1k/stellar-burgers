@@ -1,0 +1,5 @@
+.root {
+  max-width: 640px;
+  text-align: center;
+  transform: translateY(-50%);
+}
