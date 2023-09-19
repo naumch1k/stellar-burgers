@@ -3,12 +3,13 @@ import { selectIngredients } from '../store/ingredients/selectors'
 import { selectOrderById } from '../store/orders/selectors'
 import { IRootState } from '../store/store'
 import { IIngredient } from '../shared/types/ingredient'
+import { translateOrderName } from '../shared/helpers/translate-order-name'
+import { IngredientsDictionary } from '../shared/constants/ingredients-dictionary'
 
 function useOrderDetails(orderId: string) {
   const ingredients = useSelector(selectIngredients)
   const order = useSelector((state: IRootState) => selectOrderById(state, orderId))
-
-  const { number, createdAt, name, status } = order!
+  const { number, createdAt: date, name, status } = order!
 
   const getOrderIngredients = () => {
     const orderIngredients: IIngredient[] = []
@@ -23,6 +24,7 @@ function useOrderDetails(orderId: string) {
   }
 
   const orderIngredients = getOrderIngredients()
+  const uniqueIngredients  = Array.from(new Set(orderIngredients))
 
   const price = orderIngredients.reduce((price, currIngredient) => {
     return price + currIngredient.price
@@ -30,11 +32,12 @@ function useOrderDetails(orderId: string) {
 
   return {
     number,
-    createdAt,
-    name,
+    createdAt: new Date(date),
+    name: translateOrderName(name, IngredientsDictionary),
     status,
     price,
-    orderIngredients,
+    ingredients: orderIngredients,
+    uniqueIngredients,
   }
 }
 

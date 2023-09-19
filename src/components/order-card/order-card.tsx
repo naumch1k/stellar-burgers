@@ -1,8 +1,7 @@
+import { Link } from 'react-router-dom'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { OrderCardIngredient } from '../order-card-ingredient'
 import { FormattedDate } from '../ui/formatted-date'
-import { translateOrderName } from '../../shared/helpers/translate-order-name'
-import { IngredientsDictionary } from '../../shared/constants/ingredients-dictionary'
 import useOrderDetails from '../../hooks/use-order-details'
 import styles from './order-card.module.css'
 
@@ -19,55 +18,58 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
     name,
     status,
     price,
-    orderIngredients,
+    ingredients,
   } = useOrderDetails(id)
 
   return (
-    <li className={`${styles.root} pt-6 pr-6 pb-6 pl-6`}>
-      <header className={styles.header}>
-        <p className='text text_type_digits-default'>#{number}</p>
-        <FormattedDate
-          date={new Date(createdAt)}
-          className='text text_type_main-default text_color_inactive'
-        />
-      </header>
-      <div>
-        <h3 className='text text_type_main-medium'>
-          {translateOrderName(name, IngredientsDictionary)}
-        </h3>
-        <p className={`${styles.status} ${status === 'done' ? 'text_color_success' : ''} text text_type_main-default mt-2`}>{status}</p>
-      </div>
-      <footer className={styles.footer}>
-        <ul className={styles.ingredients}>
-          {orderIngredients.map((ingredient, i) => {
-            if (i < ingredientsToRender) {
-              return (
-                <OrderCardIngredient
-                  key={i}
-                  id={ingredient._id}
-                  index={i}
-                />
-              )
-            } else if (i === ingredientsToRender) {
-              return (
-                <OrderCardIngredient
-                  key={i}
-                  id={ingredient._id}
-                  index={i}
-                  closingIngredient
-                  restIngredientsCount={`+${orderIngredients.length - ingredientsToRender}`}
-                />
-              )
-            }
-            return null
-          })}
-        </ul>
-        <p className={`${styles.price} text text_type_digits-default`}>
-          {price}
-          {' '}
-          <CurrencyIcon type='primary' />
-        </p>
-      </footer>
-    </li>
+    <Link
+      className={`${styles.link}`}
+      to={`/profile/orders/${id}`}
+    >
+      <li className={`${styles.root} pt-6 pr-6 pb-6 pl-6`}>
+        <header className={styles.header}>
+          <p className='text text_type_digits-default'>#{number}</p>
+          <FormattedDate
+            date={createdAt}
+            className='text text_type_main-default text_color_inactive'
+          />
+        </header>
+        <div>
+          <h3 className='text text_type_main-medium'>{name}</h3>
+          <p className={`${styles.status} ${status === 'done' ? 'text_color_success' : ''} text text_type_main-default mt-2`}>{status}</p>
+        </div>
+        <footer className={styles.footer}>
+          <ul className={styles.ingredients}>
+            {ingredients.map((ingredient, i) => {
+              if (i < ingredientsToRender) {
+                return (
+                  <OrderCardIngredient
+                    key={i}
+                    id={ingredient._id}
+                    index={i}
+                  />
+                )
+              } else if (i === ingredientsToRender) {
+                return (
+                  <OrderCardIngredient
+                    key={i}
+                    id={ingredient._id}
+                    index={i}
+                    closingIngredient
+                    restIngredientsCount={`+${ingredients.length - ingredientsToRender}`}
+                  />
+                )
+              }
+              return null
+            })}
+          </ul>
+          <p className={`${styles.price} text text_type_digits-default`}>
+            {price}
+            {' '}
+            <CurrencyIcon type='primary' />
+          </p>
+        </footer>
+      </li>
+    </Link>
   )
 }
