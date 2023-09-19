@@ -6,7 +6,9 @@ import Login from '../../pages/login/login'
 import Register from '../../pages/register/register'
 import ForgotPassword from '../../pages/forgot-password/forgot-password'
 import ResetPassword from '../../pages/reset-password/reset-password'
+import Feed from '../../pages/feed'
 import Profile from '../../pages/profile'
+import Order from '../../pages/order'
 import { Page } from '../../components/page'
 import { Header } from '../../components/header'
 import { ProfilePageForm } from '../profile-page-form/profile-page-form'
@@ -47,6 +49,7 @@ export const App = () => {
           <Route path='register' element={<Register/>}/>
           <Route path='forgot-password' element={<ForgotPassword/>}/>
           <Route path='reset-password' element={<ResetPassword/>}/>
+          <Route path='feed' element={<Feed/>}/>
           <Route
             path='profile'
             element={
@@ -58,6 +61,14 @@ export const App = () => {
             <Route index element={<ProfilePageForm/>}/>
             <Route path='orders' element={<OrdersList/>}/>
           </Route>
+          <Route
+            path='profile/orders/:id'
+            element={
+              <ProtectedRoute>
+                <Order/>
+              </ProtectedRoute>
+            }
+          />
           <Route
             path='logout'
             element={
