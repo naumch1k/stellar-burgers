@@ -14,10 +14,10 @@ const selectAllIngredients = (state: IRootState) =>
   [state.burgerConstructor.bun, ...state.burgerConstructor.fillings]
 
 const selectIngredientCount = createSelector(
-  [selectAllIngredients, (_, id: number) => id],
+  [selectAllIngredients, (_, id: string) => id],
   (ingredients, id) => {
     const count = ingredients.reduce((count, ingredient) => {
-      if (ingredient?.id === id) {
+      if (ingredient?._id === id) {
         return count + (ingredient.type === 'bun' ? 2 : 1)
       }
       return count
