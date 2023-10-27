@@ -7,9 +7,9 @@ import { useAppDispatch } from '../../store/store'
 import { connect, disconnect } from '../../store/web-socket/operations'
 import { WS_BASE_URL } from '../../shared/constants/ws-base-url'
 import { IRootState } from '../../store/store'
-import { OrderDetails } from '../../components/order-details'
-import { ErrorMessage } from '../../components/error-message'
-import { Loader } from '../../components/loader'
+import { OrderDetails } from '../../components/OrderDetails'
+import { ErrorMessage } from '../../components/ErrorMessage'
+import { Loader } from '../../components/Loader'
 import styles from './order.module.css'
 
 const Order = () => {

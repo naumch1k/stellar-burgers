@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import ProfilePageLayout from '../../components/profile-page-layout'
+import { ProfilePageLayout } from '../../components/ProfilePageLayout'
 
 
 const Profile = () => {

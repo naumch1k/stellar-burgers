@@ -1,9 +1,9 @@
 import React from 'react'
-import { HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import './index.css'
-import { App } from './components/app'
+import { App } from './components/App'
 import store from './store/store'
 
 const root = ReactDOM.createRoot(

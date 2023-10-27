@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Modal } from '../modal'
-import { NutritionFacts } from '../nutrition-facts'
+import { Modal } from '../Modal'
+import { NutritionFacts } from '../NutritionFacts'
 import { selectIngredientById } from '../../store/ingredients/selectors'
 import { selectIngredientCount } from '../../store/burgerConstructor/selectors'
 import { IRootState } from '../../store/store'
-import styles from './ingredient.module.css'
+import styles from './Ingredient.module.css'
 
 interface IngredientProps {
   id: string;

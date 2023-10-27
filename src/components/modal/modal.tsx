@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import styles from './modal.module.css'
+import styles from './Modal.module.css'
 
 interface ModalProps {
   isOpen: boolean;

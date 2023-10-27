@@ -7,7 +7,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
 import { useSelector } from 'react-redux'
 import { selectIsAuthenticated, selectUserName } from '../../store/auth/selectors'
-import styles from './header.module.css'
+import styles from './Header.module.css'
 
 export const Header = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated)

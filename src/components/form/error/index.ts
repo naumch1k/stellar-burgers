@@ -1,1 +1,1 @@
-export * from './form-error'
+export * from './FormError'
