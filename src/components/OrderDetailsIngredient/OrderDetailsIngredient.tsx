@@ -4,7 +4,7 @@ import { IngredientThumbnail } from '../ui/IngredientThumbnail'
 import { useSelector } from 'react-redux'
 import { selectIngredientById } from '../../store/ingredients/selectors'
 import { IRootState } from '../../store/store'
-import useOrderDetails from '../../hooks/use-order-details'
+import useOrderDetails from '../../hooks/useOrderDetails'
 import styles from './OrderDetailsIngredient.module.css'
 
 interface IOrderDetailsIngredientProps {
