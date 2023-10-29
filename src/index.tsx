@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import './index.css'
@@ -13,9 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HashRouter>
+      <BrowserRouter basename='stellar-burgers'>
         <App/>
-      </HashRouter>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 )
