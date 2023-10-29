@@ -1,13 +1,25 @@
-import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
+import { useAppDispatch } from '../../store/store'
+import { ingredientsRequest } from '../../store/ingredients/operations'
+import { userInfoRequest } from '../../store/auth/operations'
 import { selectIsAuthenticated } from '../../store/auth/selectors'
 
-interface IProtectedRouteProps {
-  children: JSX.Element;
-}
+export const ProtectedRoute = () => {
+  const dispatch = useAppDispatch()
+  const accessToken = localStorage.getItem('accessToken')
 
-export const ProtectedRoute = ({ children }: IProtectedRouteProps) => {
+  useEffect(() => {
+    dispatch(ingredientsRequest())
+
+    if (accessToken) {
+      dispatch(userInfoRequest())
+    }
+  }, [dispatch, accessToken])
+
   const isAuthenticated = useSelector(selectIsAuthenticated)
 
-  return isAuthenticated ? children : <Navigate to='/login' replace/>
+  return isAuthenticated ? <Outlet/> : <Navigate to='/login' replace/>
 }

@@ -1,84 +1,47 @@
-import { useEffect } from 'react'
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { Loader } from '../Loader'
 import { ProtectedRoute } from '../ProtectedRoute'
-import Main from '../../pages/Main'
-import Login from '../../pages/Login'
-import Register from '../../pages/Register'
-import ForgotPassword from '../../pages/ForgotPassword'
-import ResetPassword from '../../pages/ResetPassword'
-import Feed from '../../pages/Feed'
-import Profile from '../../pages/Profile'
-import Order from '../../pages/Order'
-import { Page } from '../page'
-import { Header } from '../Header'
 import { ProfilePageForm } from '../ProfilePageForm'
 import { OrdersList } from '../OrderList'
-import Logout from '../../pages/Logout'
-import { useAppDispatch } from '../../store/store'
-import { ingredientsRequest } from '../../store/ingredients/operations'
-import { userInfoRequest } from '../../store/auth/operations'
 
-export const App = () => {
-  const dispatch = useAppDispatch()
-  const accessToken = localStorage.getItem('accessToken')
+const Layout = lazy(() => import('../Layout'))
+const Main = lazy(() => import('../../pages/Main'))
+const Login = lazy(() => import('../../pages/Login'))
+const Register = lazy(() => import('../../pages/Register'))
+const ForgotPassword = lazy(() => import('../../pages/ForgotPassword'))
+const ResetPassword = lazy(() => import('../../pages/ResetPassword'))
+const Feed = lazy(() => import('../../pages/Feed'))
+const BurgerBuilder = lazy(() => import('../../pages/BurgerBuilder'))
+const Profile = lazy(() => import('../../pages/Profile'))
+const Order = lazy(() => import('../../pages/Order'))
+const Logout = lazy(() => import('../../pages/Logout'))
 
-  useEffect(() => {
-    dispatch(ingredientsRequest())
+export const App = () => (
+  <Suspense fallback={<Loader/>}>
+    <Routes>
+      <Route path='/' element={<Layout/>}>
 
-    if (accessToken) {
-      dispatch(userInfoRequest())
-    }
-  }, [dispatch, accessToken])
+        <Route index element={<Main/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='register' element={<Register/>}/>
+        <Route path='forgot-password' element={<ForgotPassword/>}/>
+        <Route path='reset-password' element={<ResetPassword/>}/>
+        <Route path='feed' element={<Feed/>}/>
 
-  return (
-    <Page>
-      <Page.Header>
-        <Header/>
-      </Page.Header>
-      <Page.Content>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <ProtectedRoute>
-                <Main/>
-              </ProtectedRoute>
-            }
-          />
-          <Route path='login' element={<Login/>}/>
-          <Route path='register' element={<Register/>}/>
-          <Route path='forgot-password' element={<ForgotPassword/>}/>
-          <Route path='reset-password' element={<ResetPassword/>}/>
-          <Route path='feed' element={<Feed/>}/>
-          <Route
-            path='profile'
-            element={
-              <ProtectedRoute>
-                <Profile/>
-              </ProtectedRoute>
-            }
-          >
+        <Route path='' element={<ProtectedRoute/>}>
+          <Route path='builder' element={<BurgerBuilder/>}/>
+          <Route path='profile' element={<Profile/>}>
             <Route index element={<ProfilePageForm/>}/>
             <Route path='orders' element={<OrdersList/>}/>
+            <Route path='orders/:id' element={<Order/>}/>
           </Route>
-          <Route
-            path='profile/orders/:id'
-            element={
-              <ProtectedRoute>
-                <Order/>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='logout'
-            element={
-              <ProtectedRoute>
-                <Logout/>
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Page.Content>
-    </Page>
-  )
-}
+          <Route path='logout' element={<Logout/>}/>
+        </Route>
+
+      </Route>
+      
+      {/* TODO: route 404 */}
+    </Routes>
+  </Suspense>
+)

@@ -14,7 +14,7 @@ export const Header = () => {
   const userName = useSelector(selectUserName)
 
   return (
-    <div className={styles.root}>
+    <header className={styles.root}>
       <div className={styles.content}>
         <nav className={styles.nav}>
           <ul className={styles.navList}>
@@ -23,7 +23,7 @@ export const Header = () => {
                 className={({ isActive }) =>
                   `text text_type_main-default ${styles.navLink} ${isActive ? `${styles.isActive}` : ''}`
                 }
-                to='/'
+                to='builder'
               >
                 <BurgerIcon  type='primary'/>
                 <span className='ml-2'>Build Your Own</span>
@@ -34,7 +34,7 @@ export const Header = () => {
                 className={({ isActive }) =>
                   `text text_type_main-default ${styles.navLink} ${isActive ? `${styles.isActive}` : ''}`
                 }
-                to='/feed'
+                to='feed'
               >
                 <ListIcon  type='primary'/>
                 <span className='ml-2'>Order Board</span>
@@ -63,6 +63,6 @@ export const Header = () => {
           </ul>
         </nav>
       </div>
-    </div>
+    </header>
   )
 }
