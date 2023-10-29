@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { ProfilePageLayout } from '../../components/ProfilePageLayout'
 
-
 const Profile = () => {
   return (
     <ProfilePageLayout>

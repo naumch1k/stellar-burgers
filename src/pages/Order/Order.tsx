@@ -10,7 +10,7 @@ import { IRootState } from '../../store/store'
 import { OrderDetails } from '../../components/OrderDetails'
 import { ErrorMessage } from '../../components/ErrorMessage'
 import { Loader } from '../../components/Loader'
-import styles from './order.module.css'
+import styles from './Order.module.css'
 
 const Order = () => {
   const { id } = useParams()

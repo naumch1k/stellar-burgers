@@ -1,5 +1,5 @@
 import { ErrorMessage } from '../../components/ErrorMessage'
-import styles from './feed.module.css'
+import styles from './Feed.module.css'
 
 const Feed = () => {
   return (
