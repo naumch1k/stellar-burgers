@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/128.f0b6efb2.chunk.css","mappings":"AAAA,kBAEE,aAAS,CADT,YAAa,CACb,QAAS,CACT,mCACF","sources":["pages/Main/Main.module.css"],"sourcesContent":[".root {\n  display: grid;\n  gap: 40px;\n  grid-template-columns: repeat(2, 1fr);\n}\n"],"names":[],"sourceRoot":""}
