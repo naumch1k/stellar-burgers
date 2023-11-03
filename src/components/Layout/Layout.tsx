@@ -7,7 +7,7 @@ import styles from './Layout.module.css'
 const Layout = () => (
   <div className={styles.root}>
     <Header/>
-    <main className={styles.content}>
+    <main className={`${styles.content} pr-5 pl-5`}>
       <Suspense fallback={<Loader/>}>
         <Outlet/>
       </Suspense>

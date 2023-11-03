@@ -14,7 +14,7 @@ export const BunElement = ({ type }: IBunElementProps) => {
     <div className={`${styles.root} ml-8 pr-4`}>
       <ConstructorElement
         type={type}
-        text={bun ? `${bun.name} ${type === 'top' ? '(top)' : 'bottom'}` : 'Choose your bun'}
+        text={bun ? `${bun.name} ${type === 'top' ? '(top)' : '(bottom)'}` : 'Choose your bun'}
         price={bun ? bun.price : 0}
         thumbnail={bun ? bun.image : 'https://stellarburgers.nomoreparties.site/static/media/loading.89540200.svg'}
         isLocked

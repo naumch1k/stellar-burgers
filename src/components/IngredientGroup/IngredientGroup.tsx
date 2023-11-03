@@ -20,7 +20,7 @@ export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupPro
 
   return (
     <li>
-      <h2 ref={ref} className='text text_type_main-medium mt-10 mb-6'>{capitalizeFirstLetter(type)}</h2>
+      <h2 ref={ref} className='text text_type_main-medium mb-6'>{capitalizeFirstLetter(type)}</h2>
       <IngredientList
         ingredientIds={ingredientIds}
       />
