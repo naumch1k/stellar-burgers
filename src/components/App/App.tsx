@@ -16,6 +16,7 @@ const BurgerBuilder = lazy(() => import('../../pages/BurgerBuilder'))
 const Profile = lazy(() => import('../../pages/Profile'))
 const Order = lazy(() => import('../../pages/Order'))
 const Logout = lazy(() => import('../../pages/Logout'))
+const NotFound = lazy(() => import('../../pages/NotFound'))
 
 export const App = () => (
   <Suspense fallback={<Loader/>}>
@@ -40,8 +41,7 @@ export const App = () => (
         </Route>
 
       </Route>
-      
-      {/* TODO: route 404 */}
+      <Route path='*' element={<NotFound/>}/>
     </Routes>
   </Suspense>
 )
