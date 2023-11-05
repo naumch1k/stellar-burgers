@@ -1,5 +1,5 @@
 import styles from './Loader.module.css'
-import { LoaderSvg } from './loader.svg'
+import { LoaderSvg } from '../../images/icons/loader.svg'
 
 export const Loader = () => {
   return (
