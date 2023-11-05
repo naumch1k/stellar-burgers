@@ -5,10 +5,8 @@ const Feed = () => {
   return (
     <div className={styles.root}>
       <ErrorMessage>
-        Our order feed is&nbsp;experiencing a&nbsp;meteor shower of&nbsp;updates
-        <br/>
-        <br/>
-        Please orbit back later!
+        <span>Our order feed is&nbsp;experiencing a&nbsp;meteor shower of&nbsp;updates</span>
+        <span>Please orbit back later!</span>
       </ErrorMessage>
     </div>
   )

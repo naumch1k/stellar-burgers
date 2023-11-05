@@ -37,10 +37,8 @@ const Order = () => {
         <OrderDetails/>
       ) : (
         <ErrorMessage>
-          Looks like this order launched into deep space 🚀
-          <br/>
-          <br/>
-          No trace found
+          <span>Looks like this order launched into deep space 🚀</span>
+          <span>No trace found...</span>
         </ErrorMessage>
       )}
     </div>
