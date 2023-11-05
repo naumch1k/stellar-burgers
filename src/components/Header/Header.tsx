@@ -54,9 +54,9 @@ export const Header = () => {
                 }
                 to='/profile'
               >
-                <ProfileIcon type='primary'/>
+                {isAuthenticated && <ProfileIcon type='primary'/>}
                 <span className='ml-2'>
-                  {isAuthenticated ? `${userName}` : 'My account'}
+                  {isAuthenticated ? `${userName}` : 'Login'}
                 </span>
               </NavLink>
             </li>
