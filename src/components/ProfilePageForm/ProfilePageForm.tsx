@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Form } from '../Form'
+import { Button } from '../ui/Button'
 import { useSelector } from 'react-redux'
 import { selectAuthState } from '../../store/auth/selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
@@ -125,8 +126,8 @@ export const ProfilePageForm = () => {
       {isBeingEdited &&
         <div className={styles.submitGroup}>
           <Button
-            htmlType='button'
-            type='secondary'
+            type='button'
+            view='secondary'
             onClick={handleCancelEditing}
             disabled={isFetching}
           >
@@ -134,8 +135,8 @@ export const ProfilePageForm = () => {
           </Button>
           <Form.SubmitButton isFetching={isFetching}>
             <Button
-              htmlType='submit'
-              type='primary'
+              type='submit'
+              view='primary'
               disabled={isFetching || !isValid || !hasBeenEdited}
             >
               Save

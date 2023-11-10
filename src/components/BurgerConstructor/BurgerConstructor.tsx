@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useDrop } from 'react-dnd'
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { BunElement } from './BunElement'
 import { FillingElement } from './FillingElement'
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/button'
 import { Loader } from '../Loader'
 import { Modal } from '../Modal'
 import { OrderConfirmation } from '../OrderConfirmation'
+import { Button } from '../ui/Button'
 import { selectBun, selectFillings } from '../../store/burgerConstructor/selectors'
 import { selectOrderState } from '../../store/order/selectors'
 import {
@@ -91,9 +91,9 @@ export const BurgerConstructor = () => {
         </span>
         <div className={styles.submitButton}>
           <Button
-            type='primary'
+            type='button'
+            view='primary'
             size='large'
-            htmlType='button'
             onClick={handlePlaceOrderClick}
             disabled={!bun || !fillings.length}
           >

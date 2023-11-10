@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import { AuthPageLayout } from '../../components/AuthPageLayout'
 import { AuthPageTitle } from '../../components/AuthPageTitle'
 import { Form } from '../../components/Form'
+import { Button } from '../../components/ui/Button'
 import { AuthLink } from '../../components/AuthLink'
 import { selectAuthState } from '../../store/auth/selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
@@ -85,8 +86,8 @@ const Register = () => {
         />
         <Form.SubmitButton isFetching={isFetching}>
           <Button
-            htmlType='submit'
-            type='primary'
+            type='submit'
+            view='primary'
             size='medium'
             disabled={isFetching || !isValid}
           >
