@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Loader } from '../Loader'
+import { PublicRoute } from '../PublicRoute'
 import { ProtectedRoute } from '../ProtectedRoute'
 import { ProfilePageForm } from '../ProfilePageForm'
 import { OrdersList } from '../OrderList'
@@ -24,11 +25,14 @@ export const App = () => (
       <Route path='/' element={<Layout/>}>
 
         <Route index element={<Main/>}/>
-        <Route path='login' element={<Login/>}/>
-        <Route path='register' element={<Register/>}/>
-        <Route path='forgot-password' element={<ForgotPassword/>}/>
-        <Route path='reset-password' element={<ResetPassword/>}/>
         <Route path='feed' element={<Feed/>}/>
+
+        <Route path='' element={<PublicRoute/>}>
+          <Route path='login' element={<Login/>}/>
+          <Route path='register' element={<Register/>}/>
+          <Route path='forgot-password' element={<ForgotPassword/>}/>
+          <Route path='reset-password' element={<ResetPassword/>}/>
+        </Route>
 
         <Route path='' element={<ProtectedRoute/>}>
           <Route path='builder' element={<BurgerBuilder/>}/>

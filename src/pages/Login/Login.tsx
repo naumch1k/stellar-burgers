@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import { AuthPageLayout } from '../../components/AuthPageLayout'
@@ -20,7 +19,6 @@ const initialFormValues = {
 
 const Login = () => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
     const {
     values,
     errors,
@@ -30,19 +28,20 @@ const Login = () => {
 
   const [isPasswordHidden, setIsPasswordHidden] = useState(true)
 
-  const { isFetching, isAuthenticated, error } = useSelector(selectAuthState)
+  const { isFetching, error } = useSelector(selectAuthState)
 
-  useEffect(() => {
-    if (isAuthenticated) navigate('/')
-  }, [isAuthenticated, navigate])
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    dispatch(loginRequest({
-      email: values.email,
-      password: values.password,
-    }))
+    try {
+      await dispatch(loginRequest({
+        email: values.email,
+        password: values.password,
+      })).unwrap()
+    } catch (error) {
+      // TODO: Error Boundary
+      console.log({ error })
+    }
   }
 
   return (
