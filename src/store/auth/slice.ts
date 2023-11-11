@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import { IUserData } from '../../shared/types/user-data';
 import {
   registerRequest,
@@ -161,4 +163,12 @@ const authSlice = createSlice({
   },
 })
 
-export const { reducer, actions } = authSlice
+const { actions } = authSlice
+
+const reducer = persistReducer({
+  key: 'auth',
+  storage,
+  whitelist: ['isAuthenticated', 'user'],
+}, authSlice.reducer)
+
+export { reducer, actions }

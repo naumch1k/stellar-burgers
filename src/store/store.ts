@@ -1,5 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 
 import ingredients, { IIngredientsSliceState } from './ingredients'
 import burgerConstructor, { IBurgerConstructorSliceState } from './burgerConstructor'
@@ -32,10 +41,15 @@ const store = configureStore({
     webSocket,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(socketMiddleware(socket) as any),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(socketMiddleware(socket) as any),
 })
 
 export default store
 
 export type AppDispatch = typeof store.dispatch
 export const useAppDispatch = () => useDispatch<typeof store.dispatch>()
+export const persistor = persistStore(store)
