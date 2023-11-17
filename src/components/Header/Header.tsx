@@ -14,11 +14,11 @@ export const Header = () => {
   const userName = useSelector(selectUserName)
 
   return (
-    <header className={styles.root}>
+    <header className={`${styles.root} pt-4 pb-4`}>
       <div className={styles.content}>
-        <nav className={styles.nav}>
+        <nav>
           <ul className={styles.navList}>
-            <li className='mt-4 mb-4 pl-5 pr-5 pt-4 pb-4'>
+            <li className='pl-5 pr-5 pt-4 pb-4'>
               <NavLink
                 className={({ isActive }) =>
                   `text text_type_main-default ${styles.navLink} ${isActive ? `${styles.isActive}` : ''}`
@@ -29,7 +29,7 @@ export const Header = () => {
                 <span className='ml-2'>Build Your Own</span>
               </NavLink>
             </li>
-            <li className='mt-4 mb-4 pl-5 pr-5 pt-4 pb-4'>
+            <li className='pl-5 pr-5 pt-4 pb-4'>
               <NavLink
                 className={({ isActive }) =>
                   `text text_type_main-default ${styles.navLink} ${isActive ? `${styles.isActive}` : ''}`
@@ -45,23 +45,19 @@ export const Header = () => {
         <Link className={styles.logo} to='/'>
           <Logo/>
         </Link>
-        <nav className={styles.nav}>
-          <ul className={styles.navList}>
-            <li className='mt-4 mb-4 pl-5 pr-5 pt-4 pb-4'>
-              <NavLink
-                className={({ isActive }) =>
-                  `text text_type_main-default ${styles.navLink} ${isActive ? `${styles.isActive}` : ''}`
-                }
-                to='/profile'
-              >
-                {isAuthenticated && <ProfileIcon type='primary'/>}
-                <span className='ml-2'>
-                  {isAuthenticated ? `${userName}` : 'Login'}
-                </span>
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
+        <div className={`${styles.userActions} pl-5 pr-5 pt-4 pb-4`}>
+          <NavLink
+            className={({ isActive }) =>
+              `text text_type_main-default ${styles.navLink} ${isActive ? `${styles.isActive}` : ''}`
+            }
+            to='/profile'
+          >
+            {isAuthenticated && <ProfileIcon type='primary'/>}
+            <span className='ml-2'>
+              {isAuthenticated ? `${userName}` : 'Login'}
+            </span>
+          </NavLink>
+        </div>
       </div>
     </header>
   )

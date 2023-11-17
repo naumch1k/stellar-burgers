@@ -5,26 +5,24 @@
 }
 
 .content {
-  display: flex;
+  display: grid;
   max-width: 1280px;
   align-items: center;
   margin: 0 auto;
-}
-
-.logo {
-  margin-left: 100px;
-}
-
-.nav:last-of-type {
-  margin-left: auto;
+  gap: 20px;
+  grid-template-columns: 1fr max-content 1fr;
 }
 
 .navList {
-  display: flex;
-  align-items: center;
+  display: grid;
   padding: 0;
   margin: 0;
+  grid-template-columns: repeat(2, max-content);
   list-style: none;
+}
+
+.userActions {
+  justify-self: end;
 }
 
 .navLink {
