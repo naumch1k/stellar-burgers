@@ -10,18 +10,3 @@
 .paragraph {
   text-align: center;
 }
-
-.link {
-  font-family: 'Jet Brains Mono';
-	font-size: 16px;
-	line-height: 1.5;
-  color: var(--text-inactive-color);
-	background: transparent;
-	cursor: pointer;
-	transition: var(--common-transition);
-}
-
-.link:hover {
-  color: var(--colors-interface-accent);
-	opacity: 0.9;
-}

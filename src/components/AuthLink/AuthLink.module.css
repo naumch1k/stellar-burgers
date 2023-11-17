@@ -1,9 +1,0 @@
-.link {
-  color: var(--colors-interface-accent);
-  text-decoration: none;
-  transition: var(--common-transition);
-}
-
-.link:hover {
-  opacity: .7;
-}

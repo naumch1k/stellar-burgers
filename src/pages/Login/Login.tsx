@@ -89,12 +89,12 @@ const Login = () => {
         <AuthLink
           leadInText='Not a member yet?'
           linkText='Sign up here!'
-          to='/register'
+          href='/register'
         />
         <AuthLink
           leadInText='Forgot your password?'
           linkText='Reset your password'
-          to='/forgot-password'
+          href='/forgot-password'
         />
       </AuthPageLayout.Links>
     </AuthPageLayout>

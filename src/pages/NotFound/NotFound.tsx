@@ -1,18 +1,16 @@
-import { Link } from 'react-router-dom'
-import styles from './NotFound.module.css'
+import { Link } from '../../components/ui/Link'
 import { BurgerSvg } from '../../images/icons/burger.svg'
+import styles from './NotFound.module.css'
 
 const NotFound = () => (
   <div className={styles.root}>
-    <p className={`${styles.paragraph} text text_type_main-large text_color_inactive`}>Houston, we have a problem!</p>
+    <p className={`${styles.paragraph} text text_type_main-large text_color_default`}>Houston, we have a problem!</p>
     <h2 className='text text_type_digits-large' aria-label='Error 404: page not found'>
       4
       <BurgerSvg/>
       4
     </h2>
-    <Link className={`${styles.link}`} to='/'>
-      Back to Main Page
-    </Link>
+    <Link href='/'>Back to Main Page</Link>
   </div>
 )
 

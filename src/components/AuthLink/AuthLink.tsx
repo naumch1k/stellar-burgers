@@ -1,18 +1,17 @@
-import { Link } from 'react-router-dom'
-import styles from './AuthLink.module.css'
+import { Link } from '../ui/Link'
 
 interface IAuthLinkProps {
   leadInText: string;
   linkText: string;
-  to: string;
+  href: string;
 }
 
 export const AuthLink = (props: IAuthLinkProps) => {
-  const { leadInText, linkText, to } = props
+  const { leadInText, linkText, href } = props
 
   return (
     <p className={'text text_type_main-default text_color_inactive'}>{leadInText}
-    {' '}<Link className={styles.link} to={to}>{linkText}</Link>
+    {' '}<Link href={href}>{linkText}</Link>
   </p>
   )
 }

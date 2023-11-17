@@ -101,7 +101,7 @@ const Register = () => {
         <AuthLink
           leadInText='Already have an account?'
           linkText='Log in here!'
-          to='/login'
+          href='/login'
         />
       </AuthPageLayout.Links>
     </AuthPageLayout>

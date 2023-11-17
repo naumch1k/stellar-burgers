@@ -73,7 +73,7 @@ const ForgotPassword = () => {
         <AuthLink
           leadInText='Remembered the password?'
           linkText='Log in here'
-          to='/login'
+          href='/login'
         />
       </AuthPageLayout.Links>
     </AuthPageLayout>

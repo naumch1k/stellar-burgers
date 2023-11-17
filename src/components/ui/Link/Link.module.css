@@ -1,0 +1,58 @@
+.root {
+  font-family: 'Jet Brains Mono';
+	font-size: 16px;
+	line-height: 1.5;
+  text-decoration: none;
+	transition: var(--common-transition);
+}
+
+.primary {
+	color: var(--colors-interface-accent);
+}
+
+.primary:hover {
+	color: var(--text-primary-color);
+	opacity: 0.9;
+}
+
+.primary:active {
+	color: var(--text-primary-color);
+}
+
+.primary[disabled] {
+	color: var(--text-inactive-color);
+	pointer-events: none;
+}
+
+.secondary {
+	background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  color: var(--text-primary-color);
+  border-radius: var(--common-border-radius);
+}
+
+.secondary:hover {
+	box-shadow: 0 0 16px 8px rgb(51 51 255 / 25%), 0 0 8px 8px rgb(51 51 255 / 25%);
+	filter: drop-shadow(0 4px 32px rgb(51 51 255 / 50%));
+}
+
+.secondary:active {
+	opacity: 0.9;
+}
+
+.secondary[disabled] {
+	background: var(--colors-button-inactive);
+	color: var(--text-inactive-color);
+	pointer-events: none;
+}
+
+.secondary.large {
+  padding: 20px 40px;
+}
+
+.secondary.medium {
+	padding: 16px 40px;
+}
+
+.secondary.small {
+  padding: 10px 32px;
+}
