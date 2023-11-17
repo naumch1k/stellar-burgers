@@ -55,7 +55,7 @@ export const BurgerIngredients = () => {
     <section className='mt-10'>
       <h1 className='text text_type_main-large'>Build Your Own Burger</h1>
       <ul className={`${styles.tabBar} mt-5`}>
-        {[BUNS, BURGERS, TOPPINGS].map(item => (
+        {Object.keys(IngredientGroups).map(item => (
           <li key={item}>
             <Tab
               active={currentTab === item}
