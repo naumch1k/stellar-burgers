@@ -29,9 +29,9 @@ export const OrderDetails = () => {
         {status}
       </p>
       <ul className={`${styles.list} custom-scroll`}>
-        {uniqueIngredients.map((ingredient, i) => {
+        {uniqueIngredients.map(ingredient => {
           return (
-            <OrderDetailsIngredient id={ingredient._id} key={i}/>
+            <OrderDetailsIngredient id={ingredient._id} key={ingredient._id}/>
           )
         })}
       </ul>

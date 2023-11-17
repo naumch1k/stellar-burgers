@@ -75,7 +75,8 @@ export const BurgerConstructor = () => {
         <ul className={`${styles.list} custom-scroll`}>
           {fillings.map((ingredient: IIngredient, i) => (
             <FillingElement
-              key={i}
+              key={ingredient._id}
+              // TODO: check if id can be used here
               index={i}
               ingredient={ingredient}
             />

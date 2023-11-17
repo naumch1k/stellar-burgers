@@ -44,7 +44,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
               if (i < ingredientsToRender) {
                 return (
                   <li
-                    key={i}
+                    key={ingredient._id}
                     className={styles.ingredient}
                     style={{zIndex: `calc(${ingredientsToRender} - ${i})`}}
                   >
@@ -54,7 +54,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
               } else if (i === ingredientsToRender) {
                 return (
                   <li
-                    key={i}
+                    key={ingredient._id}
                     className={styles.ingredient}
                     style={{zIndex: `calc(${ingredientsToRender} - ${i})`}}
                   >
