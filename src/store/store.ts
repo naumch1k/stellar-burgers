@@ -10,26 +10,17 @@ import {
   REGISTER,
 } from 'redux-persist'
 
-import ingredients, { IIngredientsSliceState } from './ingredients'
-import burgerConstructor, { IBurgerConstructorSliceState } from './burgerConstructor'
-import auth, { IAuthSliceState } from './auth'
-import order, { IOrderSliceState } from './order'
-import orders, { IOrdersSliceState } from './orders'
-import webSocket, { IWebSocketSliceState } from './web-socket'
+import ingredients from './ingredients'
+import burgerConstructor from './burgerConstructor'
+import auth from './auth'
+import order from './order'
+import orders from './orders'
+import webSocket from './web-socket'
 
 import { socketMiddleware } from '../middleware/socket-middleware'
 import SocketClient from '../services/socket-client'
 
 const socket = new SocketClient()
-
-export interface IRootState {
-  ingredients: IIngredientsSliceState,
-  burgerConstructor: IBurgerConstructorSliceState,
-  auth: IAuthSliceState,
-  order: IOrderSliceState,
-  orders: IOrdersSliceState,
-  webSocket: IWebSocketSliceState,
-}
 
 const store = configureStore({
   reducer: {
@@ -47,6 +38,8 @@ const store = configureStore({
       },
     }).concat(socketMiddleware(socket) as any),
 })
+
+export type IRootState = ReturnType<typeof store.getState>
 
 export default store
 
