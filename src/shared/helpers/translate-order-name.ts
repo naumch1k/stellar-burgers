@@ -1,5 +1,3 @@
-import { capitalizeFirstLetter } from "./capitalize-first-letter"
-
 export const translateOrderName = (
   orderName: string,
   dictionary: Record<string, string>
@@ -13,9 +11,9 @@ export const translateOrderName = (
     if (dictionary[lowercaseIngredient]) {
       const translatedIngredient = dictionary[lowercaseIngredient]
 
-      translatedIngredients.push(capitalizeFirstLetter(translatedIngredient))
+      translatedIngredients.push(translatedIngredient)
     } else {
-      translatedIngredients.push(capitalizeFirstLetter(ingredient))
+      translatedIngredients.push(ingredient)
     }
   })
 

@@ -2,9 +2,9 @@ import { forwardRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Loader } from '../Loader'
 import { IngredientList } from '../IngredientList'
-import { capitalizeFirstLetter } from '../../shared/helpers/capitalize-first-letter'
 import { selectIsFetching, selectIngredientIdsByType } from '../../store/ingredients/selectors'
 import { IRootState } from '../../store/store'
+import styles from './IngredientGroup.module.css'
 
 interface IngredientGroupProps {
   type: string;
@@ -20,7 +20,7 @@ export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupPro
 
   return (
     <li>
-      <h2 ref={ref} className='text text_type_main-medium mb-6'>{capitalizeFirstLetter(type)}</h2>
+      <h2 ref={ref} className={`${styles.name} text text_type_main-medium mb-6`}>{type}</h2>
       <IngredientList
         ingredientIds={ingredientIds}
       />

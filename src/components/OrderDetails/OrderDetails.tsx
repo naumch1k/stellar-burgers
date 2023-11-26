@@ -20,7 +20,7 @@ export const OrderDetails = () => {
   return (
     <div className={styles.container}>
       <p className={`${styles.number} text text_type_digits-default`}>#{number}</p>
-      <h3 className='text text_type_main-medium mt-10'>{name}</h3>
+      <h3 className={`${styles.name} text text_type_main-medium mt-10`}>{name}</h3>
       <p className={`
         ${styles.status}
         ${status === 'done' ? 'text_color_success' : ''}

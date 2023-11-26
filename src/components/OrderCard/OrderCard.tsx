@@ -35,7 +35,7 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
           />
         </header>
         <div>
-          <h3 className='text text_type_main-medium'>{name}</h3>
+          <h3 className={`${styles.name} text text_type_main-medium`}>{name}</h3>
           <p className={`${styles.status} ${status === 'done' ? 'text_color_success' : ''} text text_type_main-default mt-2`}>{status}</p>
         </div>
         <footer className={styles.footer}>
