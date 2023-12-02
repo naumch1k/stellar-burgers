@@ -1,7 +1,7 @@
 import type { Middleware, MiddlewareAPI } from 'redux'
 import { AppDispatch, IRootState } from '../store/store'
 import { connected } from '../store/web-socket/operations'
-import { setOrders, clearOrders } from '../store/orders/operations'
+import { setOrders, clearOrders } from '../store/orders/orders.slice'
 
 export const socketMiddleware = (socket: any): Middleware => {
   return (store: MiddlewareAPI<AppDispatch, IRootState>) => {

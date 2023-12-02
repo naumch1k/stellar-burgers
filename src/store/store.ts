@@ -14,7 +14,7 @@ import ingredients from './ingredients'
 import burgerConstructor from './burgerConstructor'
 import auth from './auth'
 import order from './order'
-import orders from './orders'
+import { ordersReducer } from './orders/orders.slice'
 import webSocket from './web-socket'
 
 import { socketMiddleware } from '../middleware/socket-middleware'
@@ -28,7 +28,7 @@ const store = configureStore({
     burgerConstructor,
     auth,
     order,
-    orders,
+    orders: ordersReducer,
     webSocket,
   },
   middleware: getDefaultMiddleware =>

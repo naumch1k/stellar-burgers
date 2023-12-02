@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IOrder } from '../../shared/types/order';
+import { IOrder } from '../../shared/types/order'
 
 export interface IOrdersSliceState {
   entities: IOrder[];
@@ -29,5 +29,5 @@ const ordersSlice = createSlice({
   },
 })
 
-export const { reducer, actions } = ordersSlice
-
+export const { setOrders, clearOrders } = ordersSlice.actions
+export const ordersReducer = ordersSlice.reducer

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { selectIngredients } from '../store/ingredients/selectors'
-import { selectOrderById } from '../store/orders/selectors'
+import { selectOrderById } from '../store/orders/orders.selectors'
 import { IRootState } from '../store/store'
 import { IIngredient } from '../shared/types/ingredient'
 import { translateOrderName } from '../shared/helpers/translate-order-name'
