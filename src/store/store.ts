@@ -15,7 +15,7 @@ import { burgerConstructorReducer } from './burgerConstructor/burgerConstructor.
 import auth from './auth'
 import { orderReducer } from './order/order.slice'
 import { ordersReducer } from './orders/orders.slice'
-import webSocket from './web-socket'
+import { webSocketReducer } from './webSocket/webSocket.slice'
 
 import { socketMiddleware } from '../middleware/socket-middleware'
 import SocketClient from '../services/socket-client'
@@ -29,7 +29,7 @@ const store = configureStore({
     auth,
     order: orderReducer,
     orders: ordersReducer,
-    webSocket,
+    webSocket: webSocketReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

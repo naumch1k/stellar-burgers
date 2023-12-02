@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IRootState } from '../store'
 
 export interface IWebSocketSliceState {
   isConnecting: boolean;
@@ -27,4 +28,13 @@ const webSocketSlice = createSlice({
   },
 })
 
-export const { reducer, actions } = webSocketSlice
+export const {
+  connect,
+  connected,
+  disconnect,
+} = webSocketSlice.actions
+
+export const webSocketReducer = webSocketSlice.reducer
+
+// Selectors
+export const selectIsConnecting = (state: IRootState) => state.webSocket.isConnecting

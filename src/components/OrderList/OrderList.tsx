@@ -2,10 +2,13 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { OrderCard } from '../OrderCard'
 import { Loader } from '../Loader'
-import { selectIsConnecting } from '../../store/web-socket/selectors'
+import {
+  selectIsConnecting,
+  connect,
+  disconnect,
+} from '../../store/webSocket/webSocket.slice'
 import { selectOrders } from '../../store/orders/orders.selectors'
 import { useAppDispatch } from '../../store/store'
-import { connect, disconnect } from '../../store/web-socket/operations'
 import { WS_BASE_URL } from '../../shared/constants/ws-base-url'
 import { IOrder } from '../../shared/types/order'
 import styles from './OrderList.module.css'
