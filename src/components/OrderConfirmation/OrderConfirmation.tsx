@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectOrderNumber } from '../../store/order/selectors'
+import { selectOrderNumber } from '../../store/order/order.selectors'
 import successImage from '../../images/success.png'
 import styles from './OrderConfirmation.module.css'
 

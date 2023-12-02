@@ -13,7 +13,7 @@ import {
 import { ingredientsReducer } from './ingredients/ingredients.slice'
 import burgerConstructor from './burgerConstructor'
 import auth from './auth'
-import order from './order'
+import { orderReducer } from './order/order.slice'
 import { ordersReducer } from './orders/orders.slice'
 import webSocket from './web-socket'
 
@@ -27,7 +27,7 @@ const store = configureStore({
     ingredients: ingredientsReducer,
     burgerConstructor,
     auth,
-    order,
+    order: orderReducer,
     orders: ordersReducer,
     webSocket,
   },

@@ -9,14 +9,14 @@ import { Modal } from '../Modal'
 import { OrderConfirmation } from '../OrderConfirmation'
 import { Button } from '../ui/Button'
 import { selectBun, selectFillings } from '../../store/burgerConstructor/selectors'
-import { selectOrderState } from '../../store/order/selectors'
+import { selectOrderState } from '../../store/order/order.selectors'
 import {
   bunAdded,
   fillingAdded,
   ingredientsCleared,
 } from '../../store/burgerConstructor/operations'
-import { placeOrderRequest } from '../../store/order/operations'
-import { orderNumberCleared } from '../../store/order/operations'
+import { placeOrderRequest } from '../../store/order/order.operations'
+import { orderNumberCleared } from '../../store/order/order.slice'
 import { IIngredient } from '../../shared/types/ingredient'
 import { useAppDispatch } from '../../store/store'
 import styles from './BurgerConstructor.module.css'

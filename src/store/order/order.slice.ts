@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { placeOrderRequest } from './operations'
+import { placeOrderRequest } from './order.operations'
 
 export interface IOrderSliceState {
   isFetching: boolean;
@@ -43,4 +43,5 @@ const orderSlice = createSlice({
   },
 })
 
-export const { reducer, actions } = orderSlice
+export const { orderNumberCleared } = orderSlice.actions
+export const orderReducer = orderSlice.reducer
