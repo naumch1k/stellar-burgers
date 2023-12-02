@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { IUserData } from '../../shared/types/user-data';
+import { IUserData } from '../../shared/types/user-data'
 import {
   registerRequest,
   loginRequest,
@@ -10,7 +10,7 @@ import {
   logoutRequest,
   verificationCodeRequest,
   passwordResetRequest,
-} from './operations'
+} from './auth.operations'
 
 export interface IAuthSliceState {
   isAuthenticated: boolean;
@@ -163,12 +163,12 @@ const authSlice = createSlice({
   },
 })
 
-const { actions } = authSlice
+export const { errorCleared } = authSlice.actions
 
-const reducer = persistReducer({
+const authReducer = persistReducer({
   key: 'auth',
   storage,
   whitelist: ['isAuthenticated', 'user'],
 }, authSlice.reducer)
 
-export { reducer, actions }
+export { authReducer }

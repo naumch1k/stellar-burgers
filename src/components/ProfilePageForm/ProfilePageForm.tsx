@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Form } from '../Form'
 import { Button } from '../ui/Button'
-import { useSelector } from 'react-redux'
-import { selectAuthState } from '../../store/auth/selectors'
+import { selectAuthState } from '../../store/auth/auth.selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
 import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 import { useAppDispatch } from '../../store/store'
-import { userInfoUpdateRequest } from '../../store/auth/operations'
-import { errorCleared } from '../../store/auth/operations'
+import { userInfoUpdateRequest } from '../../store/auth/auth.operations'
+import { errorCleared } from '../../store/auth/auth.slice'
 import styles from './ProfilePageForm.module.css'
 
 export const ProfilePageForm = () => {

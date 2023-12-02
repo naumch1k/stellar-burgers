@@ -12,7 +12,7 @@ import {
 
 import { ingredientsReducer } from './ingredients/ingredients.slice'
 import { burgerConstructorReducer } from './burgerConstructor/burgerConstructor.slice'
-import auth from './auth'
+import { authReducer } from './auth/auth.slice'
 import { orderReducer } from './order/order.slice'
 import { ordersReducer } from './orders/orders.slice'
 import { webSocketReducer } from './webSocket/webSocket.slice'
@@ -26,7 +26,7 @@ const store = configureStore({
   reducer: {
     ingredients: ingredientsReducer,
     burgerConstructor: burgerConstructorReducer,
-    auth,
+    auth: authReducer,
     order: orderReducer,
     orders: ordersReducer,
     webSocket: webSocketReducer,

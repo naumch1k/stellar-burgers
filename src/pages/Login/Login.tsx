@@ -6,10 +6,10 @@ import { AuthPageTitle } from '../../components/AuthPageTitle'
 import { Form } from '../../components/Form'
 import { AuthLink } from '../../components/AuthLink'
 import { Button } from '../../components/ui/Button'
-import { selectAuthState } from '../../store/auth/selectors'
+import { selectAuthState } from '../../store/auth/auth.selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
 import { useAppDispatch } from '../../store/store'
-import { loginRequest } from '../../store/auth/operations'
+import { loginRequest } from '../../store/auth/auth.operations'
 import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 
 const initialFormValues = {

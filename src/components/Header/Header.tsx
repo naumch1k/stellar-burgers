@@ -1,12 +1,12 @@
 import { Link, NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 import {
   BurgerIcon,
   ListIcon,
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
-import { useSelector } from 'react-redux'
-import { selectIsAuthenticated, selectUserName } from '../../store/auth/selectors'
+import { selectIsAuthenticated, selectUserName } from '../../store/auth/auth.selectors'
 import styles from './Header.module.css'
 
 export const Header = () => {

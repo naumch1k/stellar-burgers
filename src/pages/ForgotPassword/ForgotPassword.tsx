@@ -7,11 +7,11 @@ import { AuthPageTitle } from '../../components/AuthPageTitle'
 import { Form } from '../../components/Form'
 import { Button } from '../../components/ui/Button'
 import { AuthLink } from '../../components/AuthLink'
-import { selectAuthState } from '../../store/auth/selectors'
+import { selectAuthState } from '../../store/auth/auth.selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
 import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
 import { useAppDispatch } from '../../store/store'
-import { verificationCodeRequest } from '../../store/auth/operations'
+import { verificationCodeRequest } from '../../store/auth/auth.operations'
 
 const initialFormValues = {
   email: '',

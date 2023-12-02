@@ -1,6 +1,5 @@
 import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { actions } from './slice'
 import { mainApi } from '../../services/api'
 import type {
   ISetUserInfoRequest,
@@ -151,6 +150,3 @@ export const passwordResetRequest = createAsyncThunk<
     }
   }
 )
-
-const { errorCleared } = actions
-export { errorCleared }

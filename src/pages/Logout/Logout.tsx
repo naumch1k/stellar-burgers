@@ -3,9 +3,9 @@ import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { AuthPageLayout } from '../../components/AuthPageLayout'
 import { Loader } from '../../components/Loader'
-import { selectIsAuthenticated } from '../../store/auth/selectors'
 import { useAppDispatch } from '../../store/store'
-import { logoutRequest } from '../../store/auth/operations'
+import { selectIsAuthenticated } from '../../store/auth/auth.selectors'
+import { logoutRequest } from '../../store/auth/auth.operations'
 
 const Logout = () => {
   const dispatch = useAppDispatch()
