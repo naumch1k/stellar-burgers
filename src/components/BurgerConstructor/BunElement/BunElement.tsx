@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectBun } from '../../../store/burgerConstructor/selectors'
+import { selectBun } from '../../../store/burgerConstructor/burgerConstructor.selectors'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './BunElement.module.css'
 

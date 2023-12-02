@@ -3,17 +3,17 @@ import type { IRootState } from '../store'
 
 const selectFillingEntities = (state: IRootState) => state.burgerConstructor.fillings
 
-const selectFillings = createSelector(
+export const selectFillings = createSelector(
   selectFillingEntities,
   entities => Object.values(entities)
 )
 
-const selectBun = (state: IRootState) => state.burgerConstructor.bun
+export const selectBun = (state: IRootState) => state.burgerConstructor.bun
 
 const selectAllIngredients = (state: IRootState) =>
   [state.burgerConstructor.bun, ...state.burgerConstructor.fillings]
 
-const selectIngredientCount = createSelector(
+export const selectIngredientCount = createSelector(
   [selectAllIngredients, (_, id: string) => id],
   (ingredients, id) => {
     const count = ingredients.reduce((count, ingredient) => {
@@ -25,11 +25,3 @@ const selectIngredientCount = createSelector(
     return count
   }
 )
-
-export {
-  selectFillingEntities,
-  selectFillings,
-  selectBun,
-  selectAllIngredients,
-  selectIngredientCount,
-}

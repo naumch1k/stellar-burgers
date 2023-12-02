@@ -5,7 +5,7 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import { Modal } from '../Modal'
 import { NutritionFacts } from '../NutritionFacts'
 import { selectIngredientById } from '../../store/ingredients/ingredients.selectors'
-import { selectIngredientCount } from '../../store/burgerConstructor/selectors'
+import { selectIngredientCount } from '../../store/burgerConstructor/burgerConstructor.selectors'
 import { IRootState } from '../../store/store'
 import styles from './Ingredient.module.css'
 

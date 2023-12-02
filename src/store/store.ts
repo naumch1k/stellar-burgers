@@ -11,7 +11,7 @@ import {
 } from 'redux-persist'
 
 import { ingredientsReducer } from './ingredients/ingredients.slice'
-import burgerConstructor from './burgerConstructor'
+import { burgerConstructorReducer } from './burgerConstructor/burgerConstructor.slice'
 import auth from './auth'
 import { orderReducer } from './order/order.slice'
 import { ordersReducer } from './orders/orders.slice'
@@ -25,7 +25,7 @@ const socket = new SocketClient()
 const store = configureStore({
   reducer: {
     ingredients: ingredientsReducer,
-    burgerConstructor,
+    burgerConstructor: burgerConstructorReducer,
     auth,
     order: orderReducer,
     orders: ordersReducer,

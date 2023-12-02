@@ -41,4 +41,12 @@ const burgerConstructorSlice = createSlice({
   },
 })
 
-export const { reducer, actions } = burgerConstructorSlice
+export const {
+  bunAdded,
+  fillingAdded,
+  fillingMoved,
+  fillingDeleted,
+  ingredientsCleared,
+} = burgerConstructorSlice.actions
+
+export const burgerConstructorReducer = burgerConstructorSlice.reducer
