@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IIngredient } from '../../shared/types/ingredient'
-import { ingredientsRequest } from './operations'
+import { ingredientsRequest } from './ingredients.operations'
 
 export interface IIngredientsSliceState {
   isFetching: boolean;
@@ -41,4 +41,4 @@ const ingredientsSlice = createSlice({
   },
 })
 
-export const { reducer, actions } = ingredientsSlice
+export const ingredientsReducer = ingredientsSlice.reducer

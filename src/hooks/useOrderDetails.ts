@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectIngredients } from '../store/ingredients/selectors'
+import { selectIngredients } from '../store/ingredients/ingredients.selectors'
 import { selectOrderById } from '../store/orders/orders.selectors'
 import { IRootState } from '../store/store'
 import { IIngredient } from '../shared/types/ingredient'

@@ -3,7 +3,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { useAppDispatch } from '../../store/store'
-import { ingredientsRequest } from '../../store/ingredients/operations'
+import { ingredientsRequest } from '../../store/ingredients/ingredients.operations'
 import { userInfoRequest } from '../../store/auth/operations'
 import { selectIsAuthenticated } from '../../store/auth/selectors'
 

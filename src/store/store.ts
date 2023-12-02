@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist'
 
-import ingredients from './ingredients'
+import { ingredientsReducer } from './ingredients/ingredients.slice'
 import burgerConstructor from './burgerConstructor'
 import auth from './auth'
 import order from './order'
@@ -24,7 +24,7 @@ const socket = new SocketClient()
 
 const store = configureStore({
   reducer: {
-    ingredients,
+    ingredients: ingredientsReducer,
     burgerConstructor,
     auth,
     order,

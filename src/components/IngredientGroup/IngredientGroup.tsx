@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Loader } from '../Loader'
 import { IngredientList } from '../IngredientList'
-import { selectIsFetching, selectIngredientIdsByType } from '../../store/ingredients/selectors'
+import { selectIsFetching, selectIngredientIdsByType } from '../../store/ingredients/ingredients.selectors'
 import { IRootState } from '../../store/store'
 import styles from './IngredientGroup.module.css'
 
