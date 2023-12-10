@@ -10,27 +10,6 @@
   outline: 1px var(--colors-interface-accent) dashed;
 }
 
-.list {
-  height: calc(100vh - 504px);
-  padding: 0 8px 0 16px;
-  margin: 0;
-  list-style: none;
-  overflow-y: auto;
-}
-
-.list::-webkit-scrollbar-track {
-  margin: 16px 0;
-}
-
-.list::-webkit-scrollbar {
-	width: 8px;
-}
-
-.list::-webkit-scrollbar-thumb {
-  border: none;
-  border-radius: 0;
-}
-
 .submitGroup {
   display: flex;
   align-items: center;

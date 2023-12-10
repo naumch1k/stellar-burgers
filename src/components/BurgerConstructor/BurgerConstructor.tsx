@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { BunElement } from './BunElement'
-import { FillingElement } from './FillingElement'
+import { FillingList } from './FillingList'
 import { Loader } from '../Loader'
 import { Modal } from '../Modal'
 import { OrderConfirmation } from '../OrderConfirmation'
@@ -72,16 +72,7 @@ export const BurgerConstructor = () => {
     <section className={`${styles.root} pt-25 pb-10`}>
       <div ref={dropRef} className={isHovered ? `${styles.isHovered}` : ''}>
         <BunElement type='top'/>
-        <ul className={`${styles.list} custom-scroll`}>
-          {fillings.map((ingredient: IIngredient, i) => (
-            <FillingElement
-              key={ingredient._id}
-              // TODO: check if id can be used here
-              index={i}
-              ingredient={ingredient}
-            />
-          ))}
-        </ul>
+        <FillingList/>
         <BunElement type='bottom'/>
       </div>
       <div className={`${styles.submitGroup} mt-10 pr-4 pl-4`}>

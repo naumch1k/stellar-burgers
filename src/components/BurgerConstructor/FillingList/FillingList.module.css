@@ -1,0 +1,20 @@
+.root {
+  height: calc(100vh - 504px);
+  padding: 0 8px 0 16px;
+  margin: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.root::-webkit-scrollbar-track {
+  margin: 16px 0;
+}
+
+.root::-webkit-scrollbar {
+	width: 8px;
+}
+
+.root::-webkit-scrollbar-thumb {
+  border: none;
+  border-radius: 0;
+}
