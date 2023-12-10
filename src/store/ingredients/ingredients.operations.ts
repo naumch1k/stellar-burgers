@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ingredientsApi } from '../../services/api/ingredients-api'
-import { handleAxiosError } from '../../services/api'
+import { ingredientsApi, handleAxiosError } from '../../services/api'
 import type {
   IngredientsSuccessResponse,
   IApiFailureResponse,

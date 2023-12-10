@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { mainApi } from '../../services/api'
-import { handleAxiosError } from '../../services/api'
+import { mainApi, handleAxiosError } from '../../services/api'
 import type {
   ISetUserInfoRequest,
   ILoginRequest,
