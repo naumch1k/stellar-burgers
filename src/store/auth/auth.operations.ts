@@ -1,6 +1,6 @@
-import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { mainApi } from '../../services/api'
+import { handleAxiosError } from '../../services/api'
 import type {
   ISetUserInfoRequest,
   ILoginRequest,
@@ -10,25 +10,13 @@ import type {
   IAuthSuccessResponse,
   IUserInfoSuccessResponse,
   IPasswordRecoverySuccessResponse,
-  IMainApiFailureResponse,
+  IApiFailureResponse,
 } from '../../services/api'
-
-const handleAxiosError = (error: unknown) => {
-  if (axios.isAxiosError(error)) {
-    const axiosError = error as AxiosError<IMainApiFailureResponse>;
-
-    if (axiosError.response && axiosError.response.data && axiosError.response.data.message) {
-      return { message: axiosError.response.data.message }
-    }
-  }
-
-  return { message: 'An unknown error occurred' }
-}
 
 export const registerRequest = createAsyncThunk<
   IAuthSuccessResponse,
   ISetUserInfoRequest,
-  { rejectValue: IMainApiFailureResponse }
+  { rejectValue: IApiFailureResponse }
 >(
   'auth/registerRequest',
   async (data: ISetUserInfoRequest, { rejectWithValue }) => {
@@ -45,7 +33,7 @@ export const registerRequest = createAsyncThunk<
 export const loginRequest = createAsyncThunk<
   IAuthSuccessResponse,
   ILoginRequest,
-  { rejectValue: IMainApiFailureResponse }
+  { rejectValue: IApiFailureResponse }
 >(
   'auth/loginRequest',
   async (data: ILoginRequest, { rejectWithValue }) => {
@@ -66,7 +54,7 @@ export const loginRequest = createAsyncThunk<
 export const userInfoRequest = createAsyncThunk<
   IUserInfoSuccessResponse,
   void,
-  { rejectValue: IMainApiFailureResponse }
+  { rejectValue: IApiFailureResponse }
 >(
   'auth/getUserInfo',
   async (_, { rejectWithValue }) => {
@@ -83,7 +71,7 @@ export const userInfoRequest = createAsyncThunk<
 export const userInfoUpdateRequest = createAsyncThunk<
   IUserInfoSuccessResponse,
   ISetUserInfoRequest,
-  { rejectValue: IMainApiFailureResponse }
+  { rejectValue: IApiFailureResponse }
 >(
   'auth/userInfoUpdateRequest',
   async (data: ISetUserInfoRequest, { rejectWithValue }) => {
@@ -100,7 +88,7 @@ export const userInfoUpdateRequest = createAsyncThunk<
 export const logoutRequest = createAsyncThunk<
 IAuthSuccessResponse,
 ILogoutRequest,
-{ rejectValue: IMainApiFailureResponse }
+{ rejectValue: IApiFailureResponse }
 >(
   'auth/logoutRequest',
   async (data: ILogoutRequest, { rejectWithValue }) => {
@@ -120,7 +108,7 @@ ILogoutRequest,
 export const verificationCodeRequest = createAsyncThunk<
   IPasswordRecoverySuccessResponse,
   IVerificationCodeRequest,
-  { rejectValue: IMainApiFailureResponse }
+  { rejectValue: IApiFailureResponse }
 >(
   'auth/verificationCodeRequest',
   async (data: IVerificationCodeRequest, { rejectWithValue }) => {
@@ -137,7 +125,7 @@ export const verificationCodeRequest = createAsyncThunk<
 export const passwordResetRequest = createAsyncThunk<
   IPasswordRecoverySuccessResponse,
   IPasswordResetRequest,
-  { rejectValue: IMainApiFailureResponse }
+  { rejectValue: IApiFailureResponse }
 >(
   'auth/resetPasswordRequest',
   async (data: IPasswordResetRequest, { rejectWithValue }) => {

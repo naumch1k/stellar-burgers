@@ -55,10 +55,6 @@ export interface IPlaceOrderSuccessResponse {
   }
 }
 
-export interface IMainApiFailureResponse {
-  message: string;
-}
-
-export interface IIngredientsApiFailureResponse {
+export interface IApiFailureResponse {
   message: string;
 }

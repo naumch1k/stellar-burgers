@@ -1,29 +1,15 @@
-import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ingredientsApi } from '../../services/api/ingredients-api'
+import { handleAxiosError } from '../../services/api'
 import type {
   IngredientsSuccessResponse,
-  IIngredientsApiFailureResponse,
+  IApiFailureResponse,
 } from '../../services/api'
-
-const handleAxiosError = (error: unknown) => {
-  if (axios.isAxiosError(error)) {
-    const axiosError = error as AxiosError<IIngredientsApiFailureResponse>
-
-    if (axiosError.response && axiosError.response.data && axiosError.response.data.message) {
-      return { message: axiosError.response.data.message }
-    }
-
-    return { message: error.message }
-  }
-
-  return { message: 'An unknown error occurred' }
-}
 
 export const ingredientsRequest = createAsyncThunk<
   IngredientsSuccessResponse,
   void,
-  { rejectValue: IIngredientsApiFailureResponse }
+  { rejectValue: IApiFailureResponse }
 >(
   'ingredients/ingredientsRequest',
   async (_, { rejectWithValue }) => {
