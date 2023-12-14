@@ -9,13 +9,3 @@
   border-radius: 20px;
   outline: 1px var(--colors-interface-accent) dashed;
 }
-
-.submitGroup {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.submitButton {
-  position: relative;
-}
