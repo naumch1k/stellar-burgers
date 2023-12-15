@@ -1,5 +1,5 @@
 import { useMatch, NavLink } from 'react-router-dom'
-import { profileNavigationItems } from '../../../shared/constants/profile-navigation-items'
+import { profileNavigationItems } from '../../../shared/constants/profileNavigationItems'
 import styles from './ProfilePageLayoutSideMenu.module.css'
 
 export const ProfilePageLayoutSideMenu = () => {

@@ -9,7 +9,7 @@ import {
 } from '../../store/webSocket/webSocket.slice'
 import { selectOrders } from '../../store/orders/orders.selectors'
 import { useAppDispatch } from '../../store/store'
-import { WS_BASE_URL } from '../../shared/constants/ws-base-url'
+import { WS_BASE_URL } from '../../shared/constants/wsBaseUrl'
 import { IOrder } from '../../shared/types/order'
 import styles from './OrderList.module.css'
 

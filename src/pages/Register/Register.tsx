@@ -10,7 +10,7 @@ import { useAppDispatch } from '../../store/store'
 import { selectAuthState } from '../../store/auth/auth.selectors'
 import { registerRequest } from '../../store/auth/auth.operations'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
-import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
+import { CustomValidationMessages } from '../../shared/constants/customValidationMessages'
 
 const initialFormValues = {
   name: '',

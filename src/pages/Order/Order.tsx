@@ -8,7 +8,7 @@ import {
 } from '../../store/webSocket/webSocket.slice'
 import { selectOrderById } from '../../store/orders/orders.selectors'
 import { IRootState, useAppDispatch } from '../../store/store'
-import { WS_BASE_URL } from '../../shared/constants/ws-base-url'
+import { WS_BASE_URL } from '../../shared/constants/wsBaseUrl'
 import { OrderDetails } from '../../components/OrderDetails'
 import { ErrorMessage } from '../../components/ErrorMessage'
 import { Loader } from '../../components/Loader'

@@ -9,7 +9,7 @@ import { Button } from '../../components/ui/Button'
 import { AuthLink } from '../../components/AuthLink'
 import { selectAuthState } from '../../store/auth/auth.selectors'
 import useFormWithValidation from '../../hooks/useFormWithValidation'
-import { CustomValidationMessages } from '../../shared/constants/custom-validation-messages'
+import { CustomValidationMessages } from '../../shared/constants/customValidationMessages'
 import { useAppDispatch } from '../../store/store'
 import { verificationCodeRequest } from '../../store/auth/auth.operations'
 

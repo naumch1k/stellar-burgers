@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/tab'
 import { IngredientGroup } from '../IngredientGroup'
-import { IngredientGroups } from '../../shared/constants/ingredient-groups'
+import { IngredientGroups } from '../../shared/constants/ingredientGroups'
 import { capitalizeFirstLetter } from '../../shared/helpers/capitalize-first-letter'
 import styles from './BurgerIngredients.module.css'
 
