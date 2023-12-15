@@ -1,22 +1,27 @@
-import { ReactNode } from 'react'
+import { MouseEvent, ReactNode } from 'react'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './Modal.module.css'
 
-interface ModalProps {
+interface IModalProps {
   isOpen: boolean;
   onClose: () => void | undefined;
+  onBackdropClick:(e: MouseEvent) => void;
   children: ReactNode;
 }
 
-export const Modal = (props: ModalProps) => {
+export const Modal = (props: IModalProps) => {
   const {
     isOpen,
     onClose,
+    onBackdropClick,
     children,
   } = props
 
   return (
-    <div className={`${styles.root} ${isOpen ? `${styles.isOpen}` : ''}`}>
+    <div
+      className={`${styles.root} ${isOpen ? `${styles.isOpen}` : ''}`}
+      onClick={onBackdropClick}
+    >
       <div className={styles.container}>
         {children}
         <button

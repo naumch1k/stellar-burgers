@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -7,6 +6,7 @@ import { NutritionFacts } from '../NutritionFacts'
 import { selectIngredientById } from '../../store/ingredients/ingredients.selectors'
 import { selectIngredientCount } from '../../store/burgerConstructor/burgerConstructor.selectors'
 import { IRootState } from '../../store/store'
+import { useModal } from '../../hooks/useModal'
 import styles from './Ingredient.module.css'
 
 interface IngredientProps {
@@ -17,7 +17,12 @@ export const Ingredient = ({ id }: IngredientProps) => {
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
   const { name, image, price } = ingredient!
   const count = useSelector(state => selectIngredientCount(state, id))
-  const [isNutritionFactsModalOpen, setIsNutritionFactsModalOpen] = useState(false)
+  const {
+    isModalOpen,
+    openModal,
+    closeModal,
+    closeByBackdropClick,
+  } = useModal()
 
   const [{ beingDragged }, dragRef] = useDrag({
     type: 'ingredient',
@@ -27,18 +32,12 @@ export const Ingredient = ({ id }: IngredientProps) => {
     }),
   })
 
-  const handleIngredientClick = () => {
-    setIsNutritionFactsModalOpen(true)
-  }
-
-  const handleModalClose = () => setIsNutritionFactsModalOpen(false)
-
   return (
     <>
       <li
         ref={dragRef}
         className={`${styles.root} ${beingDragged ? `${styles.beingDragged}` : ''}`}
-        onClick={handleIngredientClick}
+        onClick={openModal}
       >
         <img className='mr-4 ml-4' src={image} alt={name}/>
         <div className='pt-2'>
@@ -50,10 +49,11 @@ export const Ingredient = ({ id }: IngredientProps) => {
         </div>
         {count > 0 && <Counter count={count} size='default'/>}
       </li>
-      {isNutritionFactsModalOpen &&
+      {isModalOpen &&
         <Modal
-          isOpen={isNutritionFactsModalOpen}
-          onClose={handleModalClose}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          onBackdropClick={closeByBackdropClick}
         >
           <NutritionFacts
             {...ingredient!}

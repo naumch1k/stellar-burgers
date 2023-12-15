@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Button } from '../../ui/Button'
@@ -6,20 +6,23 @@ import { Loader } from '../../Loader'
 import { Modal } from '../../Modal'
 import { OrderConfirmation } from '../../OrderConfirmation'
 import { useAppDispatch } from '../../../store/store'
-import { ingredientsCleared } from '../../../store/burgerConstructor/burgerConstructor.slice'
 import { selectBun, selectFillings } from '../../../store/burgerConstructor/burgerConstructor.selectors'
-import { orderNumberCleared } from '../../../store/order/order.slice'
 import { placeOrderRequest } from '../../../store/order/order.operations'
 import { selectOrderState } from '../../../store/order/order.selectors'
+import { useModal } from '../../../hooks/useModal'
 import { IIngredient } from '../../../shared/types/ingredient'
 import styles from './SubmitGroup.module.css'
 
 export const SubmitGroup = () => {
   const dispatch = useAppDispatch()
-  const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false)
   const { isFetching } = useSelector(selectOrderState)
   const bun = useSelector(selectBun)
   const fillings = useSelector(selectFillings)
+  const {
+    isModalOpen,
+    openModal,
+    closeOrderConfirmationModal,
+  } = useModal()
 
   const bunsPrice = useMemo(() => bun ? bun.price * 2 : 0, [bun])
   const fillingsPrice = useMemo(() => fillings.reduce((prev: number, filling: IIngredient) => prev + filling.price, 0), [fillings])
@@ -31,14 +34,8 @@ export const SubmitGroup = () => {
         .map((ingredient: IIngredient) => ingredient._id)
 
       dispatch(placeOrderRequest({ ingredients }))
-        .then(() => setIsOrderDetailsModalOpen(true))
+        .then(() => openModal())
     }
-  }
-
-  const handleModalClose = () => {
-    dispatch(orderNumberCleared())
-    dispatch(ingredientsCleared())
-    setIsOrderDetailsModalOpen(false)
   }
 
   return (
@@ -61,10 +58,11 @@ export const SubmitGroup = () => {
           </Button>
           {isFetching && <Loader/>}
         </div>
-        {isOrderDetailsModalOpen &&
+        {isModalOpen &&
           <Modal
-            isOpen={isOrderDetailsModalOpen}
-            onClose={handleModalClose}
+            isOpen={isModalOpen}
+            onClose={closeOrderConfirmationModal}
+            onBackdropClick={closeOrderConfirmationModal}
           >
             <OrderConfirmation/>
           </Modal>
