@@ -95,7 +95,8 @@ ILogoutRequest,
       const response = await mainApi.logout(data)
 
       // TODO: refactor to use cookies
-      localStorage.clear()
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('refreshToken')
 
       return response.data
     } catch (error) {
