@@ -3,7 +3,7 @@ import { selectIngredients } from 'store/ingredients/ingredients.selectors'
 import { selectOrderById } from 'store/orders/orders.selectors'
 import { IRootState } from 'store/store'
 import { IIngredient } from 'shared/types/ingredient'
-import { translateOrderName } from 'shared/helpers/translate-order-name'
+import { translateOrderName } from 'shared/helpers/translateOrderName'
 import { IngredientsDictionary } from 'shared/constants/ingredientsDictionary'
 
 function useOrderDetails(orderId: string) {

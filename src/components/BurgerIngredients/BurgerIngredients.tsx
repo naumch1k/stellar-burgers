@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/tab'
 import { IngredientGroup } from 'components/IngredientGroup'
 import { IngredientGroups } from 'shared/constants/ingredientGroups'
-import { capitalizeFirstLetter } from 'shared/helpers/capitalize-first-letter'
+import { capitalizeFirstLetter } from 'shared/helpers/capitalizeFirstLetter'
 import styles from './BurgerIngredients.module.css'
 
 const { BUNS, BURGERS, TOPPINGS } = IngredientGroups
