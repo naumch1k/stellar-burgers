@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { useAppDispatch } from '../../store/store'
-import { ingredientsRequest } from '../../store/ingredients/ingredients.operations'
-import { userInfoRequest } from '../../store/auth/auth.operations'
-import { selectIsAuthenticated } from '../../store/auth/auth.selectors'
+import { useAppDispatch } from 'store/store'
+import { ingredientsRequest } from 'store/ingredients/ingredients.operations'
+import { userInfoRequest } from 'store/auth/auth.operations'
+import { selectIsAuthenticated } from 'store/auth/auth.selectors'
 
 export const ProtectedRoute = () => {
   const dispatch = useAppDispatch()

@@ -1,4 +1,4 @@
-import axios from '../../shared/helpers/configure-axios'
+import axios from 'shared/helpers/configure-axios'
 import type {
   ISetUserInfoRequest,
   ILoginRequest,

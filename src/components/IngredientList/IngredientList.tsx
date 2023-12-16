@@ -1,4 +1,4 @@
-import { Ingredient } from '../Ingredient'
+import { Ingredient } from 'components/Ingredient'
 import styles from './IngredientList.module.css'
 
 interface IngredientListProps {

@@ -1,23 +1,23 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Loader } from '../Loader'
-import { PublicRoute } from '../PublicRoute'
-import { ProtectedRoute } from '../ProtectedRoute'
-import { ProfilePageForm } from '../ProfilePageForm'
-import { OrdersList } from '../OrderList'
+import { Loader } from 'components/Loader'
+import { PublicRoute } from 'components/PublicRoute'
+import { ProtectedRoute } from 'components/ProtectedRoute'
+import { ProfilePageForm } from 'components/ProfilePageForm'
+import { OrdersList } from 'components/OrderList'
 
-const Layout = lazy(() => import('../Layout'))
-const Main = lazy(() => import('../../pages/Main'))
-const Login = lazy(() => import('../../pages/Login'))
-const Register = lazy(() => import('../../pages/Register'))
-const ForgotPassword = lazy(() => import('../../pages/ForgotPassword'))
-const ResetPassword = lazy(() => import('../../pages/ResetPassword'))
-const Feed = lazy(() => import('../../pages/Feed'))
-const BurgerBuilder = lazy(() => import('../../pages/BurgerBuilder'))
-const Profile = lazy(() => import('../../pages/Profile'))
-const Order = lazy(() => import('../../pages/Order'))
-const Logout = lazy(() => import('../../pages/Logout'))
-const NotFound = lazy(() => import('../../pages/NotFound'))
+const Layout = lazy(() => import('components/Layout'))
+const Main = lazy(() => import('pages/Main'))
+const Login = lazy(() => import('pages/Login'))
+const Register = lazy(() => import('pages/Register'))
+const ForgotPassword = lazy(() => import('pages/ForgotPassword'))
+const ResetPassword = lazy(() => import('pages/ResetPassword'))
+const Feed = lazy(() => import('pages/Feed'))
+const BurgerBuilder = lazy(() => import('pages/BurgerBuilder'))
+const Profile = lazy(() => import('pages/Profile'))
+const Order = lazy(() => import('pages/Order'))
+const Logout = lazy(() => import('pages/Logout'))
+const NotFound = lazy(() => import('pages/NotFound'))
 
 export const App = () => (
   <Suspense fallback={<Loader/>}>

@@ -1,17 +1,17 @@
 import { useParams } from 'react-router'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { OrderDetails } from 'components/OrderDetails'
+import { ErrorMessage } from 'components/ErrorMessage'
+import { Loader } from 'components/Loader'
+import { IRootState, useAppDispatch } from 'store/store'
 import {
   selectIsConnecting,
   connect,
   disconnect,
-} from '../../store/webSocket/webSocket.slice'
-import { selectOrderById } from '../../store/orders/orders.selectors'
-import { IRootState, useAppDispatch } from '../../store/store'
-import { WS_BASE_URL } from '../../shared/constants/wsBaseUrl'
-import { OrderDetails } from '../../components/OrderDetails'
-import { ErrorMessage } from '../../components/ErrorMessage'
-import { Loader } from '../../components/Loader'
+} from 'store/webSocket/webSocket.slice'
+import { selectOrderById } from 'store/orders/orders.selectors'
+import { WS_BASE_URL } from 'shared/constants/wsBaseUrl'
 import styles from './Order.module.css'
 
 const Order = () => {

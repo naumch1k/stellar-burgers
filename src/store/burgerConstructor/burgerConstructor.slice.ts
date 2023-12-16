@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IIngredient } from '../../shared/types/ingredient'
+import { IIngredient } from 'shared/types/ingredient'
 
 export interface IBurgerConstructorSliceState {
   bun: IIngredient | undefined;

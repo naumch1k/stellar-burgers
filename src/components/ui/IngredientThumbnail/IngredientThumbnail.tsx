@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
-import { selectIngredientById } from '../../../store/ingredients/ingredients.selectors'
-import { IRootState } from '../../../store/store'
+import { IRootState } from 'store/store'
+import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
 import styles from './IngredientThumbnail.module.css'
 
 interface IIngredientThumbnailProps {

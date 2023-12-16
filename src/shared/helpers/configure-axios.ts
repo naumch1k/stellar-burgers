@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MAIN_API } from '../constants/mainApi'
+import { MAIN_API } from 'shared/constants/mainApi'
 
 const instance = axios.create({
   baseURL: MAIN_API,

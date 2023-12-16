@@ -17,8 +17,8 @@ import { orderReducer } from './order/order.slice'
 import { ordersReducer } from './orders/orders.slice'
 import { webSocketReducer } from './webSocket/webSocket.slice'
 
-import { socketMiddleware } from '../services/middleware/socketMiddleware'
-import SocketClient from '../services/socketClient'
+import { socketMiddleware } from 'services/middleware/socketMiddleware'
+import SocketClient from 'services/socketClient'
 
 const socket = new SocketClient()
 

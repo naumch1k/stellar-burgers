@@ -1,16 +1,16 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { OrderCard } from '../OrderCard'
-import { Loader } from '../Loader'
+import { OrderCard } from 'components/OrderCard'
+import { Loader } from 'components/Loader'
+import { useAppDispatch } from 'store/store'
 import {
   selectIsConnecting,
   connect,
   disconnect,
-} from '../../store/webSocket/webSocket.slice'
-import { selectOrders } from '../../store/orders/orders.selectors'
-import { useAppDispatch } from '../../store/store'
-import { WS_BASE_URL } from '../../shared/constants/wsBaseUrl'
-import { IOrder } from '../../shared/types/order'
+} from 'store/webSocket/webSocket.slice'
+import { selectOrders } from 'store/orders/orders.selectors'
+import { WS_BASE_URL } from 'shared/constants/wsBaseUrl'
+import { IOrder } from 'shared/types/order'
 import styles from './OrderList.module.css'
 
 export const OrdersList = () => {

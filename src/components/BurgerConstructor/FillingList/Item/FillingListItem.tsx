@@ -2,9 +2,9 @@ import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
-import { useAppDispatch } from '../../../../store/store'
-import { fillingMoved, fillingDeleted } from '../../../../store/burgerConstructor/burgerConstructor.slice'
-import { IIngredient } from '../../../../shared/types/ingredient'
+import { useAppDispatch } from 'store/store'
+import { fillingMoved, fillingDeleted } from 'store/burgerConstructor/burgerConstructor.slice'
+import { IIngredient } from 'shared/types/ingredient'
 import styles from './FillingListItem.module.css'
 
 interface IFillingListItemProps {

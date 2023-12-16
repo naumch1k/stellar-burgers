@@ -1,8 +1,8 @@
 import { useParams } from 'react-router'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { OrderDetailsIngredient } from '../OrderDetailsIngredient'
-import { FormattedDate } from '../ui/FormattedDate'
-import useOrderDetails from '../../hooks/useOrderDetails'
+import { OrderDetailsIngredient } from 'components/OrderDetailsIngredient'
+import { FormattedDate } from 'components/ui/FormattedDate'
+import useOrderDetails from 'hooks/useOrderDetails'
 import styles from './OrderDetails.module.css'
 
 export const OrderDetails = () => {

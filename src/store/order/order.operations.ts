@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { mainApi, handleAxiosError } from '../../services/api'
+import { mainApi, handleAxiosError } from 'services/api'
 import type {
   IPlaceOrderRequest,
   IPlaceOrderSuccessResponse,
   IApiFailureResponse,
-} from '../../services/api'
+} from 'services/api'
 
 export const placeOrderRequest = createAsyncThunk<
   IPlaceOrderSuccessResponse,

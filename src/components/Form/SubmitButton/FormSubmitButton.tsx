@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Loader } from '../../Loader';
+import { Loader } from 'components/Loader';
 import styles from './FormSubmitButton.module.css'
 
 interface IFormSubmitButtonProps {

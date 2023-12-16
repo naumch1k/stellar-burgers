@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { mainApi, handleAxiosError } from '../../services/api'
+import { mainApi, handleAxiosError } from 'services/api'
 import type {
   ISetUserInfoRequest,
   ILoginRequest,
@@ -10,7 +10,7 @@ import type {
   IUserInfoSuccessResponse,
   IPasswordRecoverySuccessResponse,
   IApiFailureResponse,
-} from '../../services/api'
+} from 'services/api'
 
 export const registerRequest = createAsyncThunk<
   IAuthSuccessResponse,

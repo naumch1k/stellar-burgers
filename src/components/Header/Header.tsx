@@ -6,7 +6,7 @@ import {
   ListIcon,
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
-import { selectIsAuthenticated, selectUserName } from '../../store/auth/auth.selectors'
+import { selectIsAuthenticated, selectUserName } from 'store/auth/auth.selectors'
 import styles from './Header.module.css'
 
 export const Header = () => {

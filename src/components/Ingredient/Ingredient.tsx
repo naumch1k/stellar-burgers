@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Modal } from '../Modal'
-import { NutritionFacts } from '../NutritionFacts'
-import { selectIngredientById } from '../../store/ingredients/ingredients.selectors'
-import { selectIngredientCount } from '../../store/burgerConstructor/burgerConstructor.selectors'
-import { IRootState } from '../../store/store'
-import { useModal } from '../../hooks/useModal'
+import { Modal } from 'components/Modal'
+import { NutritionFacts } from 'components/NutritionFacts'
+import { IRootState } from 'store/store'
+import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
+import { selectIngredientCount } from 'store/burgerConstructor/burgerConstructor.selectors'
+import { useModal } from 'hooks/useModal'
 import styles from './Ingredient.module.css'
 
 interface IngredientProps {

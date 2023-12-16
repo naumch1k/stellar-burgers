@@ -1,4 +1,4 @@
-import { Link } from '../ui/Link'
+import { Link } from 'components/ui/Link'
 
 interface IAuthLinkProps {
   leadInText: string;

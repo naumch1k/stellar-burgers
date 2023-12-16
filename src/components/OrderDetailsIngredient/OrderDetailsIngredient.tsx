@@ -1,10 +1,10 @@
 import { useParams } from 'react-router'
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { IngredientThumbnail } from '../ui/IngredientThumbnail'
 import { useSelector } from 'react-redux'
-import { selectIngredientById } from '../../store/ingredients/ingredients.selectors'
-import { IRootState } from '../../store/store'
-import useOrderDetails from '../../hooks/useOrderDetails'
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { IngredientThumbnail } from 'components/ui/IngredientThumbnail'
+import { IRootState } from 'store/store'
+import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
+import useOrderDetails from 'hooks/useOrderDetails'
 import styles from './OrderDetailsIngredient.module.css'
 
 interface IOrderDetailsIngredientProps {

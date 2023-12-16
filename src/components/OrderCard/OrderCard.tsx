@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { IngredientThumbnail } from '../ui/IngredientThumbnail'
-import { FormattedDate } from '../ui/FormattedDate'
-import useOrderDetails from '../../hooks/useOrderDetails'
+import { IngredientThumbnail } from 'components/ui/IngredientThumbnail'
+import { FormattedDate } from 'components/ui/FormattedDate'
+import useOrderDetails from 'hooks/useOrderDetails'
 import styles from './OrderCard.module.css'
 
 const ingredientsToRender = 5;

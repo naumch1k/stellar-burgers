@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from 'react'
-import { useAppDispatch } from '../store/store'
-import { ingredientsCleared } from '../store/burgerConstructor/burgerConstructor.slice'
-import { orderNumberCleared } from '../store/order/order.slice'
+import { useAppDispatch } from 'store/store'
+import { ingredientsCleared } from 'store/burgerConstructor/burgerConstructor.slice'
+import { orderNumberCleared } from 'store/order/order.slice'
 
 export const useModal = () => {
   const dispatch = useAppDispatch()

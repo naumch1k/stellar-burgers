@@ -2,9 +2,9 @@ import { useDrop } from 'react-dnd'
 import { BunElement } from './BunElement'
 import { FillingList } from './FillingList'
 import { SubmitGroup } from './SubmitGroup'
-import { useAppDispatch } from '../../store/store'
-import { bunAdded, fillingAdded } from '../../store/burgerConstructor/burgerConstructor.slice'
-import { IIngredient } from '../../shared/types/ingredient'
+import { useAppDispatch } from 'store/store'
+import { bunAdded, fillingAdded } from 'store/burgerConstructor/burgerConstructor.slice'
+import { IIngredient } from 'shared/types/ingredient'
 import styles from './BurgerConstructor.module.css'
 
 export const BurgerConstructor = () => {

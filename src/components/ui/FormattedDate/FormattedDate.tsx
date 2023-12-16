@@ -3,7 +3,7 @@ import {
   isYesterday,
   isToday,
   getFormattedTime,
- } from '../../../shared/helpers/get-formatted-date'
+ } from 'shared/helpers/get-formatted-date'
 
  interface IFormattedDateProps {
   date: Date;

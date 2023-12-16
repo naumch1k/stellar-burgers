@@ -1,4 +1,4 @@
-import { ErrorMessage } from '../../components/ErrorMessage'
+import { ErrorMessage } from 'components/ErrorMessage'
 import styles from './Feed.module.css'
 
 const Feed = () => {

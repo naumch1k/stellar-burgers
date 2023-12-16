@@ -1,5 +1,5 @@
-import { Link } from '../../components/ui/Link'
-import { BurgerSvg } from '../../images/icons/burger.svg'
+import { Link } from 'components/ui/Link'
+import { BurgerSvg } from 'images/icons/burger.svg'
 import styles from './NotFound.module.css'
 
 const NotFound = () => (

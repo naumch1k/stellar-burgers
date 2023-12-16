@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IIngredient } from '../../shared/types/ingredient'
+import { IIngredient } from 'shared/types/ingredient'
 import { ingredientsRequest } from './ingredients.operations'
 
 export interface IIngredientsSliceState {
