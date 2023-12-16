@@ -5,12 +5,8 @@ interface IProfilePageLayoutProps {
   children: ReactNode;
 }
 
-export const ProfilePageLayout = (props: IProfilePageLayoutProps) => {
-  const { children } = props
-
-  return (
-    <div className={styles.root}>
-      {children}
-    </div>
-  )
-}
+export const ProfilePageLayout = ({ children }: IProfilePageLayoutProps) => (
+  <div className={styles.root}>
+    {children}
+  </div>
+)

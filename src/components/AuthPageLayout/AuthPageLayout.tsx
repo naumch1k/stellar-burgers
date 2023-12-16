@@ -5,12 +5,8 @@ interface IAuthPageLayoutProps {
   children: ReactNode;
 }
 
-export const AuthPageLayout = (props: IAuthPageLayoutProps) => {
-  const { children } = props
-
-  return (
-    <div className={styles.root}>
-      {children}
-    </div>
-  )
-}
+export const AuthPageLayout = ({ children }: IAuthPageLayoutProps) => (
+  <div className={styles.root}>
+    {children}
+  </div>
+)

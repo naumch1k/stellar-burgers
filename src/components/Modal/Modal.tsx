@@ -9,30 +9,26 @@ interface IModalProps {
   children: ReactNode;
 }
 
-export const Modal = (props: IModalProps) => {
-  const {
-    isOpen,
-    onClose,
-    onBackdropClick,
-    children,
-  } = props
-
-  return (
-    <div
-      className={`${styles.root} ${isOpen ? `${styles.isOpen}` : ''}`}
-      onClick={onBackdropClick}
-    >
-      <div className={styles.container}>
-        {children}
-        <button
-          className={styles.closeButton}
-          type='button'
-          aria-label='Close modal'
-          onClick={onClose}
-        >
-          <CloseIcon type="primary"/>
-        </button>
-      </div>
+export const Modal = ({
+  isOpen,
+  onClose,
+  onBackdropClick,
+  children,
+}: IModalProps) => (
+  <div
+    className={`${styles.root} ${isOpen ? `${styles.isOpen}` : ''}`}
+    onClick={onBackdropClick}
+  >
+    <div className={styles.container}>
+      {children}
+      <button
+        className={styles.closeButton}
+        type='button'
+        aria-label='Close modal'
+        onClick={onClose}
+      >
+        <CloseIcon type="primary"/>
+      </button>
     </div>
-  )
-}
+  </div>
+)

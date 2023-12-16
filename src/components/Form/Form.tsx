@@ -6,10 +6,11 @@ interface IFormProps {
   children: ReactNode;
 }
 
-export const Form: React.FC<IFormProps> = ({ onSubmit, children }) => {
-  return (
-    <form className={styles.root} onSubmit={onSubmit}>
-      {children}
-    </form>
-  )
-}
+export const Form = ({
+  onSubmit,
+  children,
+}: IFormProps): JSX.Element => (
+  <form className={styles.root} onSubmit={onSubmit}>
+    {children}
+  </form>
+)

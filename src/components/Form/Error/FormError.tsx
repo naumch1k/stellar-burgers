@@ -5,12 +5,8 @@ interface IFormErrorProps {
   children: ReactNode;
 }
 
-export const FormError = (props: IFormErrorProps): JSX.Element => {
-  const { children } = props
-
-  return (
-    <p className={`${styles.root} text text_type_main-default`}>
-      {children}
-    </p>
-  )
-}
+export const FormError = ({ children }: IFormErrorProps): JSX.Element => (
+  <p className={`${styles.root} text text_type_main-default`}>
+    {children}
+  </p>
+)

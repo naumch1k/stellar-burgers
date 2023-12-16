@@ -6,12 +6,12 @@ interface IAuthLinkProps {
   href: string;
 }
 
-export const AuthLink = (props: IAuthLinkProps) => {
-  const { leadInText, linkText, href } = props
-
-  return (
-    <p className={'text text_type_main-default text_color_inactive'}>{leadInText}
-    {' '}<Link href={href}>{linkText}</Link>
+export const AuthLink = ({
+  leadInText,
+  linkText,
+  href,
+}: IAuthLinkProps) => (
+  <p className={'text text_type_main-default text_color_inactive'}>{leadInText}
+  {' '}<Link href={href}>{linkText}</Link>
   </p>
-  )
-}
+)

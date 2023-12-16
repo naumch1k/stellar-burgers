@@ -5,10 +5,8 @@ interface IErrorMessageProps {
   children: ReactNode;
 }
 
-export const ErrorMessage = ({ children }: IErrorMessageProps) => {
-  return (
-    <p className={`${styles.root} text text_type_main-large text_color_inactive`}>
-      {children}
-    </p>
-  )
-}
+export const ErrorMessage = ({ children }: IErrorMessageProps) => (
+  <p className={`${styles.root} text text_type_main-large text_color_inactive`}>
+    {children}
+  </p>
+)

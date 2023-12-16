@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/Loader'
 import styles from './FormSubmitButton.module.css'
 
 interface IFormSubmitButtonProps {
@@ -7,13 +7,12 @@ interface IFormSubmitButtonProps {
   children: ReactNode;
 }
 
-export const FormSubmitButton = (props: IFormSubmitButtonProps): JSX.Element => {
-  const { children, isFetching } = props
-
-  return (
-    <div className={styles.root}>
-      {children}
-      {isFetching && <Loader/>}
-    </div>
-  )
-}
+export const FormSubmitButton = ({
+  isFetching,
+  children,
+}: IFormSubmitButtonProps): JSX.Element => (
+  <div className={styles.root}>
+    {children}
+    {isFetching && <Loader/>}
+  </div>
+)
