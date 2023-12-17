@@ -1,7 +1,14 @@
-import { IIngredient } from 'shared/types/ingredient'
+import { useSelector } from 'react-redux'
+import { IRootState } from 'store/store'
+import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
 import styles from './NutritionFacts.module.css'
 
-export const NutritionFacts = (props: IIngredient) => {
+interface INutritionFactsProps {
+  ingredientId: string;
+}
+
+export const NutritionFacts = ({ ingredientId }: INutritionFactsProps) => {
+  const ingredient = useSelector((state: IRootState) => selectIngredientById(state, ingredientId))
   const {
     name,
     calories,
@@ -9,7 +16,7 @@ export const NutritionFacts = (props: IIngredient) => {
     fat,
     proteins,
     image_large,
-  } = props
+  } = ingredient!
 
   const descriptionTermClasses = 'mb-2 text text_type_main-default text_color_inactive'
   const descriptionDetailsClasses = 'mb-2 text text_type_digits-default text_color_inactive'

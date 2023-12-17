@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Button } from 'components/ui/Button'
 import { Loader } from 'components/Loader'
-import { Modal } from 'components/Modal'
-import { OrderConfirmation } from 'components/OrderConfirmation'
+import { OrderConfirmationModal } from 'components/OrderConfirmationModal'
 import { useAppDispatch } from 'store/store'
 import { selectBun, selectFillings } from 'store/burgerConstructor/burgerConstructor.selectors'
 import { placeOrderRequest } from 'store/order/order.operations'
@@ -59,13 +58,11 @@ export const SubmitGroup = () => {
           {isFetching && <Loader/>}
         </div>
         {isModalOpen &&
-          <Modal
+          <OrderConfirmationModal
             isOpen={isModalOpen}
             onClose={closeOrderConfirmationModal}
             onBackdropClick={closeOrderConfirmationModal}
-          >
-            <OrderConfirmation/>
-          </Modal>
+          />
         }
         {/* TODO: notify user if there is an error sending order */}
       </div>

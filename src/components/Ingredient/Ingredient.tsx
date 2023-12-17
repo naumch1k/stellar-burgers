@@ -1,19 +1,18 @@
 import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Modal } from 'components/Modal'
-import { NutritionFacts } from 'components/NutritionFacts'
+import { NutritionFactsModal } from 'components/NutritionFactsModal'
 import { IRootState } from 'store/store'
 import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
 import { selectIngredientCount } from 'store/burgerConstructor/burgerConstructor.selectors'
 import { useModal } from 'hooks/useModal'
 import styles from './Ingredient.module.css'
 
-interface IngredientProps {
+interface IIngredientProps {
   id: string;
 }
 
-export const Ingredient = ({ id }: IngredientProps) => {
+export const Ingredient = ({ id }: IIngredientProps) => {
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
   const { name, image, price } = ingredient!
   const count = useSelector(state => selectIngredientCount(state, id))
@@ -50,15 +49,12 @@ export const Ingredient = ({ id }: IngredientProps) => {
         {count > 0 && <Counter count={count} size='default'/>}
       </li>
       {isModalOpen &&
-        <Modal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          onBackdropClick={closeByBackdropClick}
-        >
-          <NutritionFacts
-            {...ingredient!}
-          />
-        </Modal>
+      <NutritionFactsModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onBackdropClick={closeByBackdropClick}
+        ingredientId={id}
+      />
       }
     </>
   )
