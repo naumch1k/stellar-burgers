@@ -18,22 +18,26 @@
 .container {
   position: relative;
   width: 720px;
-  min-height: 492px;
   box-sizing: border-box;
   border-radius: 40px;
   background-color: var(--background);
 }
 
 .closeButton {
+  width: 32px;
+  height: 32px;
+  padding: 0;
   position: absolute;
-  top: 62px;
-  right: 34px;
+  top: 40px;
+  right: 40px;
   border: unset;
   background-color: unset;
   cursor: pointer;
 }
 
 .closeButton > svg {
+  width: 100%;
+  height: 100%;
   transition: opacity .3s ease;
 }
 

@@ -2,6 +2,5 @@
   display: grid;
   max-width: 640px;
   text-align: center;
-  transform: translateY(-50%);
   row-gap: 26px;
 }

@@ -19,7 +19,7 @@ export const Modal = ({
     className={`${styles.root} ${isOpen ? `${styles.isOpen}` : ''}`}
     onClick={onBackdropClick}
   >
-    <div className={styles.container}>
+    <div className={`${styles.container} pt-25 pr-10 pb-25 pl-10`}>
       {children}
       <button
         className={styles.closeButton}

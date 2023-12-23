@@ -22,10 +22,10 @@ export const NutritionFacts = ({ ingredientId }: INutritionFactsProps) => {
   const descriptionDetailsClasses = 'mb-2 text text_type_digits-default text_color_inactive'
 
   return (
-    <div className={`${styles.root} pt-10 pr-10 pb-15 pl-10`}>
-      <h2 className={`${styles.heading} mt-4 mb-4 text text_type_main-large`}>Nutrition Facts</h2>
-      <img className={styles.image} src={image_large} alt={name}/>
-      <p className='mt-4 mb-8 text text_type_main-medium'>{name}</p>
+    <div className={styles.root}>
+      <h2 className='text text_type_main-large'>Nutrition Facts</h2>
+      <img className={`${styles.image} mt-4`} src={image_large} alt={name}/>
+      <p className='mt-4 text text_type_main-medium'>{name}</p>
       <dl className={styles.list}>
         <div className={styles.listItem}>
           <dt className={descriptionTermClasses}>Calories</dt>
