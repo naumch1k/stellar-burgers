@@ -55,7 +55,7 @@ export const userInfoRequest = createAsyncThunk<
   void,
   { rejectValue: IApiFailureResponse }
 >(
-  'auth/getUserInfo',
+  'auth/userInfoRequest',
   async (_, { rejectWithValue }) => {
     try {
       const response = await mainApi.getUserInfo()
