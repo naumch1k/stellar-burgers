@@ -20,6 +20,9 @@ const orderSlice = createSlice({
     orderNumberCleared(state) {
       state.number = initialState.number
     },
+    errorCleared(state) {
+      state.error = null
+    },
   },
   extraReducers: builder => {
     builder
@@ -43,5 +46,5 @@ const orderSlice = createSlice({
   },
 })
 
-export const { orderNumberCleared } = orderSlice.actions
+export const { orderNumberCleared, errorCleared } = orderSlice.actions
 export const orderReducer = orderSlice.reducer

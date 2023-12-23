@@ -4,6 +4,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { Button } from 'components/ui/Button'
 import { Loader } from 'components/Loader'
 import { OrderConfirmationModal } from 'components/OrderConfirmationModal'
+import { ErrorModal } from 'components/ErrorModal'
 import { useAppDispatch } from 'store/store'
 import { selectBun, selectFillings } from 'store/burgerConstructor/burgerConstructor.selectors'
 import { placeOrderRequest } from 'store/order/order.operations'
@@ -14,13 +15,14 @@ import styles from './SubmitGroup.module.css'
 
 export const SubmitGroup = () => {
   const dispatch = useAppDispatch()
-  const { isFetching } = useSelector(selectOrderState)
+  const { isFetching, error } = useSelector(selectOrderState)
   const bun = useSelector(selectBun)
   const fillings = useSelector(selectFillings)
   const {
     isModalOpen,
     openModal,
     closeOrderConfirmationModal,
+    closeOrderErrorModal,
   } = useModal()
 
   const bunsPrice = useMemo(() => bun ? bun.price * 2 : 0, [bun])
@@ -57,14 +59,21 @@ export const SubmitGroup = () => {
           </Button>
           {isFetching && <Loader/>}
         </div>
-        {isModalOpen &&
+        {!error && isModalOpen &&
           <OrderConfirmationModal
             isOpen={isModalOpen}
             onClose={closeOrderConfirmationModal}
             onBackdropClick={closeOrderConfirmationModal}
           />
         }
-        {/* TODO: notify user if there is an error sending order */}
+        {error &&
+          <ErrorModal
+            isOpen={isModalOpen}
+            onClose={closeOrderErrorModal}
+            onBackdropClick={closeOrderErrorModal}
+            errorText={error}
+          />
+        }
       </div>
     </>
   )
