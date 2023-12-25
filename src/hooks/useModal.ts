@@ -1,7 +1,6 @@
 import { useState, MouseEvent } from 'react'
 import { useAppDispatch } from 'store/store'
-import { ingredientsCleared } from 'store/burgerConstructor/burgerConstructor.slice'
-import { orderNumberCleared, errorCleared } from 'store/order/order.slice'
+import { errorCleared } from 'store/order/order.slice'
 
 export const useModal = () => {
   const dispatch = useAppDispatch()
@@ -14,12 +13,6 @@ export const useModal = () => {
     if (e.target === e.currentTarget) setIsModalOpen(false)
   }
 
-  const closeOrderConfirmationModal = () => {
-    dispatch(orderNumberCleared())
-    dispatch(ingredientsCleared())
-    closeModal()
-  }
-
   const closeOrderErrorModal = () => {
     dispatch(errorCleared())
     closeModal()
@@ -30,7 +23,6 @@ export const useModal = () => {
     openModal,
     closeModal,
     closeByBackdropClick,
-    closeOrderConfirmationModal,
     closeOrderErrorModal,
   }
 }
