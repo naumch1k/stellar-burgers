@@ -5,6 +5,8 @@ export const selectIsFetching = (state: IRootState) => state.ingredients.isFetch
 
 const selectIngredientEntities = (state: IRootState) => state.ingredients.entities
 
+export const selectPreviewedIngredientId = (state: IRootState) => state.ingredients.previewedIngredientId
+
 export const selectIngredients = createSelector(
   selectIngredientEntities,
   entities => Object.values(entities)

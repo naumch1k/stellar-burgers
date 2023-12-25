@@ -1,11 +1,10 @@
 import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { NutritionFactsModal } from 'components/NutritionFactsModal'
-import { IRootState } from 'store/store'
+import { IRootState, useAppDispatch } from 'store/store'
 import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
 import { selectIngredientCount } from 'store/burgerConstructor/burgerConstructor.selectors'
-import { useModal } from 'hooks/useModal'
+import { setPreviewedIngredientId } from 'store/ingredients/ingredients.slice'
 import styles from './Ingredient.module.css'
 
 interface IIngredientProps {
@@ -13,15 +12,10 @@ interface IIngredientProps {
 }
 
 export const Ingredient = ({ id }: IIngredientProps) => {
+  const dispatch = useAppDispatch()
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
   const { name, image, price } = ingredient!
   const count = useSelector(state => selectIngredientCount(state, id))
-  const {
-    isModalOpen,
-    openModal,
-    closeModal,
-    closeByBackdropClick,
-  } = useModal()
 
   const [{ beingDragged }, dragRef] = useDrag({
     type: 'ingredient',
@@ -31,12 +25,14 @@ export const Ingredient = ({ id }: IIngredientProps) => {
     }),
   })
 
+  const handleIngredientClick = (id: string) => dispatch(setPreviewedIngredientId(id))
+
   return (
     <>
       <li
         ref={dragRef}
         className={`${styles.root} ${beingDragged ? `${styles.beingDragged}` : ''}`}
-        onClick={openModal}
+        onClick={() => handleIngredientClick(id)}
       >
         <img className='mr-4 ml-4' src={image} alt={name}/>
         <div className='pt-2'>
@@ -48,14 +44,6 @@ export const Ingredient = ({ id }: IIngredientProps) => {
         </div>
         {count > 0 && <Counter count={count} size='default'/>}
       </li>
-      {isModalOpen &&
-      <NutritionFactsModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onBackdropClick={closeByBackdropClick}
-        ingredientId={id}
-      />
-      }
     </>
   )
 }

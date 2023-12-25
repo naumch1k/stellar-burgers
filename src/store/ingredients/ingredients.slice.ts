@@ -6,18 +6,26 @@ export interface IIngredientsSliceState {
   isFetching: boolean;
   error: string | null;
   entities: Record<number, IIngredient>;
+  previewedIngredientId: string | undefined;
 }
 
 const initialState: IIngredientsSliceState = {
   isFetching: false,
   error: null,
   entities: {},
+  previewedIngredientId: undefined,
 }
 
 const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
+    setPreviewedIngredientId(state, action) {
+      state.previewedIngredientId = action.payload
+    },
+    clearPreviewedIngredientId(state) {
+      state.previewedIngredientId = initialState.previewedIngredientId
+    },
   },
   extraReducers: builder => {
     builder
@@ -41,4 +49,5 @@ const ingredientsSlice = createSlice({
   },
 })
 
+export const { setPreviewedIngredientId, clearPreviewedIngredientId } = ingredientsSlice.actions
 export const ingredientsReducer = ingredientsSlice.reducer
