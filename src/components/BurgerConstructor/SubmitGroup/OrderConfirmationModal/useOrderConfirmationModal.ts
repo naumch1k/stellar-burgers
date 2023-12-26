@@ -7,8 +7,8 @@ import {
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'store/store'
 import { selectOrderNumber } from 'store/order/order.selectors'
-import { ingredientsCleared } from 'store/burgerConstructor/burgerConstructor.slice'
-import { orderNumberCleared } from 'store/order/order.slice'
+import { clearIngredients } from 'store/burgerConstructor/burgerConstructor.slice'
+import { clearOrderNumber } from 'store/order/order.slice'
 
 export const useOrderConfirmationModal = () => {
   const dispatch = useAppDispatch()
@@ -20,8 +20,8 @@ export const useOrderConfirmationModal = () => {
   }, [])
 
   const closeModal = useCallback(() => {
-    dispatch(orderNumberCleared())
-    dispatch(ingredientsCleared())
+    dispatch(clearOrderNumber())
+    dispatch(clearIngredients())
     setIsModalOpen(false)
   }, [dispatch])
 

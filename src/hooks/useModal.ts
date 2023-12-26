@@ -1,6 +1,6 @@
 import { useState, MouseEvent } from 'react'
 import { useAppDispatch } from 'store/store'
-import { errorCleared } from 'store/order/order.slice'
+import { clearError } from 'store/order/order.slice'
 
 export const useModal = () => {
   const dispatch = useAppDispatch()
@@ -14,7 +14,7 @@ export const useModal = () => {
   }
 
   const closeOrderErrorModal = () => {
-    dispatch(errorCleared())
+    dispatch(clearError())
     closeModal()
   }
 

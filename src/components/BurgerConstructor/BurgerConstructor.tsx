@@ -3,7 +3,7 @@ import { BunElement } from './BunElement'
 import { FillingList } from './FillingList'
 import { SubmitGroup } from './SubmitGroup'
 import { useAppDispatch } from 'store/store'
-import { bunAdded, fillingAdded } from 'store/burgerConstructor/burgerConstructor.slice'
+import { addBun, addFilling } from 'store/burgerConstructor/burgerConstructor.slice'
 import { IIngredient } from 'shared/types/ingredient'
 import styles from './BurgerConstructor.module.css'
 
@@ -22,9 +22,9 @@ export const BurgerConstructor = () => {
 
   const handleDrop = (ingredient: IIngredient) => {
     if (ingredient.type === 'bun') {
-      dispatch(bunAdded(ingredient))
+      dispatch(addBun(ingredient))
     } else {
-      dispatch(fillingAdded(ingredient))
+      dispatch(addFilling(ingredient))
     }
   }
 

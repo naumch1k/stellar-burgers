@@ -4,7 +4,7 @@ import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Form } from 'components/Form'
 import { Button } from 'components/ui/Button'
 import { useAppDispatch } from 'store/store'
-import { errorCleared } from 'store/auth/auth.slice'
+import { clearError } from 'store/auth/auth.slice'
 import { selectAuthState } from 'store/auth/auth.selectors'
 import { userInfoUpdateRequest } from 'store/auth/auth.operations'
 import useFormWithValidation from 'hooks/useFormWithValidation'
@@ -54,7 +54,7 @@ export const ProfilePageForm = () => {
       password: true,
     }))
     resetForm()
-    dispatch(errorCleared())
+    dispatch(clearError())
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

@@ -15,14 +15,14 @@ const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
   reducers: {
-    bunAdded(state, action: PayloadAction<IIngredient>) {
+    addBun(state, action: PayloadAction<IIngredient>) {
       state.bun = action.payload
     },
-    fillingAdded(state, action: PayloadAction<IIngredient>) {
+    addFilling(state, action: PayloadAction<IIngredient>) {
       const ingredient = action.payload
       state.fillings.push(ingredient)
     },
-    fillingMoved(state, action) {
+    moveFilling(state, action) {
       const { fromIndex, toIndex } = action.payload
 
       const reorderedFillings = [...state.fillings]
@@ -31,10 +31,10 @@ const burgerConstructorSlice = createSlice({
 
       state.fillings = reorderedFillings
     },
-    fillingDeleted(state, action) {
+    removeFilling(state, action) {
       state.fillings = state.fillings.filter((_, index) => index !== action.payload)
     },
-    ingredientsCleared(state) {
+    clearIngredients(state) {
       state.bun = initialState.bun
       state.fillings = initialState.fillings
     }
@@ -42,11 +42,11 @@ const burgerConstructorSlice = createSlice({
 })
 
 export const {
-  bunAdded,
-  fillingAdded,
-  fillingMoved,
-  fillingDeleted,
-  ingredientsCleared,
+  addBun,
+  addFilling,
+  moveFilling,
+  removeFilling,
+  clearIngredients,
 } = burgerConstructorSlice.actions
 
 export const burgerConstructorReducer = burgerConstructorSlice.reducer
