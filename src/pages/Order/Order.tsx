@@ -6,7 +6,7 @@ import { ErrorMessage } from 'components/ErrorMessage'
 import { Loader } from 'components/Loader'
 import { IRootState, useAppDispatch } from 'store/store'
 import {
-  selectIsConnecting,
+  selectWebSocketState,
   connect,
   disconnect,
 } from 'store/webSocket/webSocket.slice'
@@ -16,10 +16,9 @@ import styles from './Order.module.css'
 
 const Order = () => {
   const { id } = useParams()
-  const order = useSelector((state: IRootState) => selectOrderById(state, id!))
   const dispatch = useAppDispatch()
-  const isConnecting = useSelector(selectIsConnecting)
-
+  const { isConnecting, isFetching } = useSelector(selectWebSocketState)
+  const order = useSelector((state: IRootState) => selectOrderById(state, id!))
   // TODO: refactor to helper func
   const accessToken = localStorage.getItem('accessToken')?.split('Bearer ')[1]
 
@@ -29,9 +28,9 @@ const Order = () => {
     return () => {
       dispatch(disconnect())
     }
-  }, [])
+  }, [dispatch, accessToken])
 
-  if (isConnecting) return <Loader/>
+  if (isConnecting || isFetching) return <Loader/>
 
   return (
     <div className={styles.root}>

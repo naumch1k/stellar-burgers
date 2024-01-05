@@ -3,11 +3,13 @@ import { IRootState } from '../store'
 
 export interface IWebSocketSliceState {
   isConnecting: boolean;
+  isFetching: boolean;
   connected: boolean;
 }
 
 const initialState: IWebSocketSliceState = {
   isConnecting: false,
+  isFetching: false,
   connected: false,
 }
 
@@ -19,8 +21,12 @@ const webSocketSlice = createSlice({
       state.isConnecting = true
     },
     connected(state) {
-      state.isConnecting = false
       state.connected = true
+      state.isConnecting = false
+      state.isFetching = true
+    },
+    dataFetched(state) {
+      state.isFetching = false;
     },
     disconnect(state) {
       state.connected = false
@@ -31,10 +37,11 @@ const webSocketSlice = createSlice({
 export const {
   connect,
   connected,
+  dataFetched,
   disconnect,
 } = webSocketSlice.actions
 
 export const webSocketReducer = webSocketSlice.reducer
 
 // Selectors
-export const selectIsConnecting = (state: IRootState) => state.webSocket.isConnecting
+export const selectWebSocketState = (state:IRootState) => state.webSocket

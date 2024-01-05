@@ -4,7 +4,7 @@ import { OrderCard } from 'components/OrderCard'
 import { Loader } from 'components/Loader'
 import { useAppDispatch } from 'store/store'
 import {
-  selectIsConnecting,
+  selectWebSocketState,
   connect,
   disconnect,
 } from 'store/webSocket/webSocket.slice'
@@ -15,7 +15,7 @@ import styles from './OrderList.module.css'
 
 export const OrdersList = () => {
   const dispatch = useAppDispatch()
-  const isConnecting = useSelector(selectIsConnecting)
+  const { isConnecting, isFetching } = useSelector(selectWebSocketState)
   const orders = useSelector(selectOrders)
   // TODO: refactor to helper func
   const accessToken = localStorage.getItem('accessToken')?.split('Bearer ')[1]
@@ -26,9 +26,9 @@ export const OrdersList = () => {
     return () => {
       dispatch(disconnect())
     }
-  }, [])
+  }, [dispatch, accessToken])
 
-  if (isConnecting) return <Loader/>
+  if (isConnecting || isFetching) return <Loader/>
 
   return (
     orders.length
