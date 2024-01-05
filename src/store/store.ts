@@ -17,6 +17,7 @@ import { orderReducer } from './order/order.slice'
 import { ordersReducer } from './orders/orders.slice'
 import { webSocketReducer } from './webSocket/webSocket.slice'
 
+import authMiddleware from 'services/middleware/authMiddleware'
 import { socketMiddleware } from 'services/middleware/socketMiddleware'
 import SocketClient from 'services/socketClient'
 
@@ -36,7 +37,9 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(socketMiddleware(socket) as any),
+    }).concat(
+      authMiddleware(), 
+      socketMiddleware(socket) as any),
 })
 
 export type IRootState = ReturnType<typeof store.getState>

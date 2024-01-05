@@ -2,6 +2,7 @@ import axios from 'shared/helpers/configureAxios'
 import type {
   ISetUserInfoRequest,
   ILoginRequest,
+  IUpdateTokenRequest,
   ILogoutRequest,
   IPlaceOrderRequest,
   IVerificationCodeRequest,
@@ -12,7 +13,9 @@ const register = (data: ISetUserInfoRequest ) => axios.post('/auth/register', da
 
 const login = (data: ILoginRequest) => axios.post('/auth/login', data)
 
-const getUserInfo = () => axios.get('/auth/user')
+const checkUserAccess = () => axios.get('/auth/user')
+
+const updateToken = ({ refreshToken }: IUpdateTokenRequest) => axios.post('/auth/token', { token: refreshToken })
 
 const updateUserInfo = (data: ISetUserInfoRequest) => axios.patch('/auth/user', data)
 
@@ -27,7 +30,8 @@ const resetPassword = (data: IPasswordResetRequest) => axios.post('/password-res
 export const mainApi = {
   register,
   login,
-  getUserInfo,
+  checkUserAccess,
+  updateToken,
   updateUserInfo,
   logout,
   placeOrder,

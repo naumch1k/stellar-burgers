@@ -1,10 +1,14 @@
-import { lazy, Suspense } from 'react'
+import { lazy, useEffect, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Loader } from 'components/Loader'
 import { PublicRoute } from 'components/PublicRoute'
 import { ProtectedRoute } from 'components/ProtectedRoute'
 import { ProfilePageForm } from 'components/ProfilePageForm'
 import { OrdersList } from 'components/OrderList'
+
+import { useAppDispatch } from 'store/store'
+import { ingredientsRequest } from 'store/ingredients/ingredients.operations'
+import { checkUserAccessRequest } from 'store/auth/auth.operations'
 
 const Layout = lazy(() => import('components/Layout'))
 const Main = lazy(() => import('pages/Main'))
@@ -19,33 +23,42 @@ const Order = lazy(() => import('pages/Order'))
 const Logout = lazy(() => import('pages/Logout'))
 const NotFound = lazy(() => import('pages/NotFound'))
 
-export const App = () => (
-  <Suspense fallback={<Loader/>}>
-    <Routes>
-      <Route path='/' element={<Layout/>}>
+export const App = () => {
+  const dispatch = useAppDispatch()
 
-        <Route index element={<Main/>}/>
-        <Route path='feed' element={<Feed/>}/>
+  useEffect(() => {
+    dispatch(ingredientsRequest())
+    dispatch(checkUserAccessRequest())
+  }, [dispatch])
 
-        <Route path='' element={<PublicRoute/>}>
-          <Route path='login' element={<Login/>}/>
-          <Route path='register' element={<Register/>}/>
-          <Route path='forgot-password' element={<ForgotPassword/>}/>
-          <Route path='reset-password' element={<ResetPassword/>}/>
-        </Route>
+  return (
+    <Suspense fallback={<Loader/>}>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
 
-        <Route path='' element={<ProtectedRoute/>}>
-          <Route path='builder' element={<BurgerBuilder/>}/>
-          <Route path='profile' element={<Profile/>}>
-            <Route index element={<ProfilePageForm/>}/>
-            <Route path='orders' element={<OrdersList/>}/>
-            <Route path='orders/:id' element={<Order/>}/>
+          <Route index element={<Main/>}/>
+          <Route path='feed' element={<Feed/>}/>
+
+          <Route path='' element={<PublicRoute/>}>
+            <Route path='login' element={<Login/>}/>
+            <Route path='register' element={<Register/>}/>
+            <Route path='forgot-password' element={<ForgotPassword/>}/>
+            <Route path='reset-password' element={<ResetPassword/>}/>
           </Route>
-          <Route path='logout' element={<Logout/>}/>
-        </Route>
 
-      </Route>
-      <Route path='*' element={<NotFound/>}/>
-    </Routes>
-  </Suspense>
-)
+          <Route path='' element={<ProtectedRoute/>}>
+            <Route path='builder' element={<BurgerBuilder/>}/>
+            <Route path='profile' element={<Profile/>}>
+              <Route index element={<ProfilePageForm/>}/>
+              <Route path='orders' element={<OrdersList/>}/>
+              <Route path='orders/:id' element={<Order/>}/>
+            </Route>
+            <Route path='logout' element={<Logout/>}/>
+          </Route>
+
+        </Route>
+        <Route path='*' element={<NotFound/>}/>
+      </Routes>
+    </Suspense>
+  )
+}

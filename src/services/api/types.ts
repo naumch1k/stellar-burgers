@@ -12,9 +12,11 @@ export interface ILoginRequest {
   password: string;
 }
 
-export interface ILogoutRequest {
+export interface IUpdateTokenRequest {
   refreshToken: string;
 }
+
+export interface ILogoutRequest extends IUpdateTokenRequest {}
 
 export interface IVerificationCodeRequest {
   email: string;
@@ -51,7 +53,7 @@ export interface IPlaceOrderSuccessResponse {
   success: boolean;
   name: string;
   order: {
-      number: number;
+    number: number;
   }
 }
 

@@ -5,8 +5,9 @@ import { IUserData } from 'shared/types/userData'
 import {
   registerRequest,
   loginRequest,
-  userInfoRequest,
+  checkUserAccessRequest,
   userInfoUpdateRequest,
+  updateTokenRequest,
   logoutRequest,
   verificationCodeRequest,
   passwordResetRequest,
@@ -46,9 +47,17 @@ const authSlice = createSlice({
         state.isAuthenticated = true
         state.user = action.payload.user
       })
-      .addCase(userInfoRequest.fulfilled, (state, action) => {
+      .addCase(checkUserAccessRequest.fulfilled, (state) => {
         state.isAuthenticated = true
-        state.user = action.payload.user
+      })
+      .addCase(checkUserAccessRequest.rejected, (state) => {
+        state.isFetching = false
+      })
+      .addCase(updateTokenRequest.fulfilled, state => {
+        state.isAuthenticated = true
+      })
+      .addCase(updateTokenRequest.rejected, state => {
+        state.isAuthenticated = false
       })
       .addCase(userInfoUpdateRequest.fulfilled, (state, action) => {
         state.user = action.payload.user
@@ -67,8 +76,9 @@ const authSlice = createSlice({
         isAnyOf(
           registerRequest.pending,
           loginRequest.pending,
-          userInfoRequest.pending,
+          checkUserAccessRequest.pending,
           userInfoUpdateRequest.pending,
+          updateTokenRequest.pending,
           logoutRequest.pending,
           verificationCodeRequest.pending,
           passwordResetRequest.pending,
@@ -81,8 +91,9 @@ const authSlice = createSlice({
         isAnyOf(
           registerRequest.fulfilled,
           loginRequest.fulfilled,
-          userInfoRequest.fulfilled,
+          checkUserAccessRequest.fulfilled,
           userInfoUpdateRequest.fulfilled,
+          updateTokenRequest.fulfilled,
           logoutRequest.fulfilled,
           verificationCodeRequest.fulfilled,
           passwordResetRequest.fulfilled,
@@ -96,8 +107,8 @@ const authSlice = createSlice({
         isAnyOf(
           registerRequest.rejected,
           loginRequest.rejected,
-          userInfoRequest.rejected,
           userInfoUpdateRequest.rejected,
+          updateTokenRequest.rejected,
           logoutRequest.rejected,
           verificationCodeRequest.rejected,
           passwordResetRequest.rejected,

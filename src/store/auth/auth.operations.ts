@@ -10,6 +10,7 @@ import type {
   IUserInfoSuccessResponse,
   IPasswordRecoverySuccessResponse,
   IApiFailureResponse,
+  IUpdateTokenRequest,
 } from 'services/api'
 
 export const registerRequest = createAsyncThunk<
@@ -50,17 +51,11 @@ export const loginRequest = createAsyncThunk<
   }
 )
 
-export const userInfoRequest = createAsyncThunk<
-  IUserInfoSuccessResponse,
-  void,
-  { rejectValue: IApiFailureResponse }
->(
-  'auth/userInfoRequest',
+export const checkUserAccessRequest = createAsyncThunk(
+  'auth/checkUserAccessRequest',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await mainApi.getUserInfo()
-
-      return response.data
+      await mainApi.checkUserAccess()
     } catch (error) {
       return rejectWithValue(handleAxiosError(error))
     }
@@ -76,6 +71,26 @@ export const userInfoUpdateRequest = createAsyncThunk<
   async (data: ISetUserInfoRequest, { rejectWithValue }) => {
     try {
       const response = await mainApi.updateUserInfo(data)
+
+      return response.data
+    } catch (error) {
+      return rejectWithValue(handleAxiosError(error))
+    }
+  }
+)
+
+export const updateTokenRequest = createAsyncThunk<
+IAuthSuccessResponse,
+IUpdateTokenRequest,
+{ rejectValue: IApiFailureResponse }
+>(
+  'auth/updateTokenRequest',
+  async (data: IUpdateTokenRequest, { rejectWithValue }) => {
+    try {
+      const response = await mainApi.updateToken(data)
+
+      localStorage.setItem('accessToken', response.data.accessToken)
+      localStorage.setItem('refreshToken', response.data.refreshToken)
 
       return response.data
     } catch (error) {
