@@ -11,7 +11,7 @@ import {
   disconnect,
 } from 'store/webSocket/webSocket.slice'
 import { selectOrderById } from 'store/orders/orders.selectors'
-import { WS_BASE_URL } from 'shared/constants/wsBaseUrl'
+import { WS_BASE_URL } from 'shared/constants'
 import styles from './Order.module.css'
 
 const Order = () => {

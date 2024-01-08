@@ -9,7 +9,7 @@ import {
   disconnect,
 } from 'store/webSocket/webSocket.slice'
 import { selectOrders } from 'store/orders/orders.selectors'
-import { WS_BASE_URL } from 'shared/constants/wsBaseUrl'
+import { WS_BASE_URL } from 'shared/constants'
 import { IOrder } from 'shared/types/order'
 import styles from './OrderList.module.css'
 

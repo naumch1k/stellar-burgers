@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { MAIN_API } from 'shared/constants/mainApi'
+import { MAIN_API_BASE_URL } from 'shared/constants'
 
 const instance = axios.create({
-  baseURL: MAIN_API,
+  baseURL: MAIN_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
