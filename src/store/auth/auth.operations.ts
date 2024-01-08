@@ -12,6 +12,7 @@ import type {
   IApiFailureResponse,
   IUpdateTokenRequest,
 } from 'services/api'
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from 'shared/constants'
 
 export const registerRequest = createAsyncThunk<
   IAuthSuccessResponse,
@@ -41,8 +42,8 @@ export const loginRequest = createAsyncThunk<
       const response = await mainApi.login(data)
 
       // TODO: refactor to use cookies
-      localStorage.setItem('accessToken', response.data.accessToken)
-      localStorage.setItem('refreshToken', response.data.refreshToken)
+      localStorage.setItem(ACCESS_TOKEN_KEY, response.data.accessToken)
+      localStorage.setItem(REFRESH_TOKEN_KEY, response.data.refreshToken)
 
       return response.data
     } catch (error) {
@@ -89,8 +90,8 @@ IUpdateTokenRequest,
     try {
       const response = await mainApi.updateToken(data)
 
-      localStorage.setItem('accessToken', response.data.accessToken)
-      localStorage.setItem('refreshToken', response.data.refreshToken)
+      localStorage.setItem(ACCESS_TOKEN_KEY, response.data.accessToken)
+      localStorage.setItem(REFRESH_TOKEN_KEY, response.data.refreshToken)
 
       return response.data
     } catch (error) {
@@ -110,8 +111,8 @@ ILogoutRequest,
       const response = await mainApi.logout(data)
 
       // TODO: refactor to use cookies
-      localStorage.removeItem('accessToken')
-      localStorage.removeItem('refreshToken')
+      localStorage.removeItem(ACCESS_TOKEN_KEY)
+      localStorage.removeItem(REFRESH_TOKEN_KEY)
 
       return response.data
     } catch (error) {

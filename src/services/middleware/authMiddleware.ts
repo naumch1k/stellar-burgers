@@ -1,6 +1,7 @@
 import type { Middleware, MiddlewareAPI } from 'redux'
 import { AppDispatch, IRootState } from 'store/store'
 import { updateTokenRequest } from 'store/auth/auth.operations'
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from 'shared/constants'
 
 const authMiddleware = (): Middleware => {
   return (store: MiddlewareAPI<AppDispatch, IRootState>) => {
@@ -9,8 +10,8 @@ const authMiddleware = (): Middleware => {
     return next => action => {
       if (action.type === 'auth/checkUserAccessRequest/rejected') {
         // TODO: set up constants for refreshToken and accessToken
-        const refreshToken = localStorage.getItem('refreshToken')
-        const accessToken = localStorage.getItem('accessToken')
+        const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY)
+        const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)
 
         // No refreshToken and accessToken means first-time or logged-out users.
         // Early return doesn't trigger updateTokenRequest and won't display an error.

@@ -9,7 +9,7 @@ import {
   disconnect,
 } from 'store/webSocket/webSocket.slice'
 import { selectOrders } from 'store/orders/orders.selectors'
-import { WS_BASE_URL } from 'shared/constants'
+import { WS_BASE_URL, ACCESS_TOKEN_KEY } from 'shared/constants'
 import { IOrder } from 'shared/types/order'
 import styles from './OrderList.module.css'
 
@@ -18,7 +18,7 @@ export const OrdersList = () => {
   const { isConnecting, isFetching } = useSelector(selectWebSocketState)
   const orders = useSelector(selectOrders)
   // TODO: refactor to helper func
-  const accessToken = localStorage.getItem('accessToken')?.split('Bearer ')[1]
+  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)?.split('Bearer ')[1]
 
   useEffect(() => {
     dispatch(connect(`${WS_BASE_URL}?token=${accessToken}`))

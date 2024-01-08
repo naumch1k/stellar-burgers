@@ -6,6 +6,7 @@ import { Loader } from 'components/Loader'
 import { useAppDispatch } from 'store/store'
 import { selectIsAuthenticated } from 'store/auth/auth.selectors'
 import { logoutRequest } from 'store/auth/auth.operations'
+import { REFRESH_TOKEN_KEY } from 'shared/constants'
 
 const Logout = () => {
   const dispatch = useAppDispatch()
@@ -13,7 +14,7 @@ const Logout = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated)
 
   useEffect(() => {
-    const refreshToken = localStorage.getItem('refreshToken')
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY)
 
     if (refreshToken) dispatch(logoutRequest({ refreshToken }))
   }, [dispatch])

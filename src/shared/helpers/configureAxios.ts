@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MAIN_API_BASE_URL } from 'shared/constants'
+import { MAIN_API_BASE_URL, ACCESS_TOKEN_KEY } from 'shared/constants'
 
 const instance = axios.create({
   baseURL: MAIN_API_BASE_URL,
@@ -9,7 +9,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(config => {
-  const accessToken = localStorage.getItem('accessToken')
+  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)
 
   if (accessToken) {
     config.headers['Authorization'] = accessToken
