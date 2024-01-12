@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkstellar_burgers=self.webpackChunkstellar_burgers||[]).push([[128],{3128:(s,e,r)=>{r.r(e),r.d(e,{default:()=>c});const l="Main_root__slkAg";var a=r(184);const c=()=>(0,a.jsx)("div",{className:l,children:(0,a.jsx)("h1",{children:"Main"})})}}]);
-//# sourceMappingURL=128.f67a77fa.chunk.js.map
