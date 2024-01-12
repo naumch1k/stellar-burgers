@@ -1,6 +1,6 @@
 .root {
   display: grid;
   max-width: 640px;
-  text-align: center;
   row-gap: 26px;
+  text-align: center;
 }

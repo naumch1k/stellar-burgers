@@ -25,9 +25,9 @@
 }
 
 .secondary {
+  border-radius: var(--common-border-radius);
 	background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
   color: var(--text-primary-color);
-  border-radius: var(--common-border-radius);
 }
 
 .secondary:hover {
