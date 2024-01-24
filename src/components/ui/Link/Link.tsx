@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import styles from './Link.module.css'
 
 interface ILinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  className?: string;
   href: string,
   isOutsideLink?: boolean;
   view?: 'primary' | 'secondary';
@@ -12,13 +13,14 @@ interface ILinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 export const Link = (props: ILinkProps) => {
   const {
     children,
+    className,
     href,
     isOutsideLink = false,
     view = 'primary',
     size,
   } = props
 
-  const classes = `${styles.root} ${styles[view]} ${size ? styles[size] : ''}`
+  const classes = `${className} ${styles.root} ${styles[view]} ${size ? styles[size] : ''}`
 
   return (
     !isOutsideLink ? (
