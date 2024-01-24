@@ -9,7 +9,6 @@ const authMiddleware = (): Middleware => {
 
     return next => action => {
       if (action.type === 'auth/checkUserAccessRequest/rejected') {
-        // TODO: set up constants for refreshToken and accessToken
         const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY)
         const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)
 
