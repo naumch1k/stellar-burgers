@@ -1,12 +1,17 @@
 .root {
   display: flex;
   min-height: 100vh;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  padding: 0 20px;
 }
 
-.paragraph {
-  text-align: center;
+.link {
+  justify-self: start;
+}
+
+@media (width < 660px) {
+  .link {
+    justify-self: unset;
+  }
 }

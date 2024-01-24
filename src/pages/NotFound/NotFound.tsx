@@ -1,16 +1,29 @@
+import { NotificationScreen } from 'components/NotificationScreen'
 import { Link } from 'components/ui/Link'
-import { BurgerSvg } from 'images/icons/burger.svg'
 import styles from './NotFound.module.css'
 
 const NotFound = () => (
   <div className={styles.root}>
-    <p className={`${styles.paragraph} text text_type_main-large text_color_default`}>Houston, we have a problem!</p>
-    <h2 className='text text_type_digits-large' aria-label='Error 404: page not found'>
-      4
-      <BurgerSvg/>
-      4
-    </h2>
-    <Link href='/'>Back to Main Page</Link>
+    <NotificationScreen>
+      <p className='text text_type_main-large'>
+        Houston,
+        we&nbsp;have&nbsp;a&nbsp;problem!
+        404&nbsp;error detected
+      </p>
+      <p className='text text_color_inactive'>
+        The page you're looking for isn't here.
+        It&nbsp;could be&nbsp;an&nbsp;incorrect address, deletion, nonexistence,
+        or&nbsp;maybe you&rsquo;re just lost in&nbsp;a&nbsp;cosmic daydream..
+      </p>
+      <Link
+        className={styles.link}
+        href="/"
+        view="secondary"
+        size="medium"
+      >
+        Back to Main Page
+      </Link>
+    </NotificationScreen>
   </div>
 )
 

@@ -1,0 +1,30 @@
+.root {
+  display: grid;
+  max-width: 680px;
+  gap: 23px 35px;
+  grid-template-columns: 117px 1fr;
+}
+
+.root > .image {
+  grid-row: 1 / 4;
+}
+
+.root > p:not(:first-of-type) {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+@media (width < 660px) {
+  .root {
+    gap: 30px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .root > .image {
+    width: 120px;
+    grid-row: 1 / 2;
+  }
+}
