@@ -1,5 +1,6 @@
 import { lazy, useEffect, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { WindowHint } from 'components/WindowHint'
 import { Loader } from 'components/Loader'
 import { PublicRoute } from 'components/PublicRoute'
 import { ProtectedRoute } from 'components/ProtectedRoute'
@@ -9,6 +10,8 @@ import { OrdersList } from 'components/OrderList'
 import { useAppDispatch } from 'store/store'
 import { ingredientsRequest } from 'store/ingredients/ingredients.operations'
 import { checkUserAccessRequest } from 'store/auth/auth.operations'
+import useWindowWidth from 'hooks/useWindowWidth'
+import { breakpoints } from 'shared/breakpoints'
 
 const Layout = lazy(() => import('components/Layout'))
 const Main = lazy(() => import('pages/Main'))
@@ -25,11 +28,14 @@ const NotFound = lazy(() => import('pages/NotFound'))
 
 export const App = () => {
   const dispatch = useAppDispatch()
+  const { windowWidth } = useWindowWidth()
 
   useEffect(() => {
     dispatch(ingredientsRequest())
     dispatch(checkUserAccessRequest())
   }, [dispatch])
+
+  if (windowWidth < breakpoints.desktop) return <WindowHint/>
 
   return (
     <Suspense fallback={<Loader/>}>
