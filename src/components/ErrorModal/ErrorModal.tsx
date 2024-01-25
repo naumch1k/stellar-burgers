@@ -1,25 +1,35 @@
-import { MouseEvent } from 'react'
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Modal } from 'components/Modal'
 import { ErrorMessage } from 'components/ErrorMessage'
+import { useErrorModal } from './hooks/useErrorModal'
+import styles from './ErrorModal.module.css'
 
-interface IOrderConfirmationModalProps {
+interface IErrorModalProps {
   isOpen: boolean;
-  onClose: () => void | undefined;
-  onBackdropClick:(e: MouseEvent) => void;
   errorText: string;
 }
 
 export const ErrorModal = ({
   isOpen,
-  onClose,
-  onBackdropClick,
   errorText,
-}: IOrderConfirmationModalProps) => (
-  <Modal
-    isOpen={isOpen}
-    onClose={onClose}
-    onBackdropClick={onBackdropClick}
-  >
-    <ErrorMessage>{errorText}</ErrorMessage>
-  </Modal>
-)
+}: IErrorModalProps) => {
+  const {
+    closeModal,
+    closeByBackdropClick,
+  } = useErrorModal()
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={closeModal}
+      onBackdropClick={closeByBackdropClick}
+    >
+      <div className={styles.content}>
+        <div className={styles.errorSign}>
+          <CloseIcon type='primary'/>
+        </div>
+        <ErrorMessage>{errorText}</ErrorMessage>
+      </div>
+    </Modal>
+  )
+}

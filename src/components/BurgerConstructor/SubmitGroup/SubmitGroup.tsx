@@ -4,12 +4,11 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { Button } from 'components/ui/Button'
 import { Loader } from 'components/Loader'
 import { OrderConfirmationModal } from './OrderConfirmationModal'
-import { ErrorModal } from 'components/ErrorModal'
+import { ErrorModal, useErrorModal } from 'components/ErrorModal'
 import { useAppDispatch } from 'store/store'
 import { selectBun, selectFillings } from 'store/burgerConstructor/burgerConstructor.selectors'
 import { placeOrderRequest } from 'store/order/order.operations'
 import { selectOrderState } from 'store/order/order.selectors'
-import { useModal } from 'hooks/useModal'
 import { IIngredient } from 'shared/types'
 import styles from './SubmitGroup.module.css'
 
@@ -21,8 +20,7 @@ export const SubmitGroup = () => {
   const {
     isModalOpen,
     openModal,
-    closeOrderErrorModal,
-  } = useModal()
+  } = useErrorModal()
 
   const bunsPrice = useMemo(() => bun ? bun.price * 2 : 0, [bun])
   const fillingsPrice = useMemo(() => fillings.reduce((prev: number, filling: IIngredient) => prev + filling.price, 0), [fillings])
@@ -62,8 +60,6 @@ export const SubmitGroup = () => {
         {error &&
           <ErrorModal
             isOpen={isModalOpen}
-            onClose={closeOrderErrorModal}
-            onBackdropClick={closeOrderErrorModal}
             errorText={error}
           />
         }
