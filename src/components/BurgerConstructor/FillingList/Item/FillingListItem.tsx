@@ -4,7 +4,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
 import { useAppDispatch } from 'store/store'
 import { moveFilling, removeFilling } from 'store/burgerConstructor/burgerConstructor.slice'
-import { IIngredient } from 'shared/types/ingredient'
+import { IIngredient } from 'shared/types'
 import styles from './FillingListItem.module.css'
 
 interface IFillingListItemProps {

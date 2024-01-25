@@ -7,7 +7,7 @@ import {
   selectIngredientIdsByType,
 } from 'store/ingredients/ingredients.selectors'
 import { IRootState } from 'store/store'
-import { IIngredientGroup } from 'shared/types/ingredientGroup'
+import { IIngredientGroup } from 'shared/types'
 
 export const IngredientGroup = forwardRef<HTMLHeadingElement, IIngredientGroup>(
   ({ type, label }, ref) => {

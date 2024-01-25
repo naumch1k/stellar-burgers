@@ -10,7 +10,7 @@ import {
 } from 'store/webSocket/webSocket.slice'
 import { selectOrders } from 'store/orders/orders.selectors'
 import { WS_BASE_URL, ACCESS_TOKEN_KEY } from 'shared/constants'
-import { IOrder } from 'shared/types/order'
+import { IOrder } from 'shared/types'
 import styles from './OrderList.module.css'
 
 export const OrdersList = () => {

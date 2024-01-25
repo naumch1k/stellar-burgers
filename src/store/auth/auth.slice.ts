@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { IUserData } from 'shared/types/userData'
+import { IUserData } from 'shared/types'
 import {
   registerRequest,
   loginRequest,

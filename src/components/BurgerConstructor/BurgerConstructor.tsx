@@ -4,7 +4,7 @@ import { FillingList } from './FillingList'
 import { SubmitGroup } from './SubmitGroup'
 import { useAppDispatch } from 'store/store'
 import { addBun, addFilling } from 'store/burgerConstructor/burgerConstructor.slice'
-import { IIngredient } from 'shared/types/ingredient'
+import { IIngredient } from 'shared/types'
 import styles from './BurgerConstructor.module.css'
 
 export const BurgerConstructor = () => {

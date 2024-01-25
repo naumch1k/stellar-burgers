@@ -10,7 +10,7 @@ import { selectBun, selectFillings } from 'store/burgerConstructor/burgerConstru
 import { placeOrderRequest } from 'store/order/order.operations'
 import { selectOrderState } from 'store/order/order.selectors'
 import { useModal } from 'hooks/useModal'
-import { IIngredient } from 'shared/types/ingredient'
+import { IIngredient } from 'shared/types'
 import styles from './SubmitGroup.module.css'
 
 export const SubmitGroup = () => {

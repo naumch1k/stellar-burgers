@@ -1,7 +1,6 @@
 import { useState, createRef, useRef } from 'react'
 import { IngredientGroups } from 'shared/constants/ingredientGroups'
-import { IIngredientGroup } from 'shared/types/ingredientGroup'
-import { IngredientGroupRef } from 'shared/types/ingredientGroupRef'
+import { IIngredientGroup, IngredientGroupRef } from 'shared/types'
 
 function useIngredientsScroll() {
   const [currentTab, setCurrentTab] = useState<string>(IngredientGroups[0].type)

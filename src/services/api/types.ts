@@ -1,5 +1,4 @@
-import { IIngredient } from 'shared/types/ingredient'
-import { IUserData } from 'shared/types/userData'
+import { IIngredient, IUserData } from 'shared/types'
 
 export interface ISetUserInfoRequest {
   name: string;

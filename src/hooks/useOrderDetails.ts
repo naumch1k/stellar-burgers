@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { selectIngredients } from 'store/ingredients/ingredients.selectors'
 import { selectOrderById } from 'store/orders/orders.selectors'
 import { IRootState } from 'store/store'
-import { IIngredient } from 'shared/types/ingredient'
+import { IIngredient } from 'shared/types'
 import { translateOrderName } from 'shared/helpers/translateOrderName'
 import { IngredientsDictionary } from 'shared/constants/ingredientsDictionary'
 

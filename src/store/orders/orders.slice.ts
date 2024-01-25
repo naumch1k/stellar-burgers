@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IOrder } from 'shared/types/order'
+import { IOrder } from 'shared/types'
 
 export interface IOrdersSliceState {
   entities: IOrder[];
