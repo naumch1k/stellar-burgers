@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/stellar-burgers/static/css/main.a36811e3.css",
-    "main.js": "/stellar-burgers/static/js/main.5ea0e225.js",
+    "main.js": "/stellar-burgers/static/js/main.f55a1852.js",
     "static/css/38.a133851d.chunk.css": "/stellar-burgers/static/css/38.a133851d.chunk.css",
     "static/js/38.f9ad3820.chunk.js": "/stellar-burgers/static/js/38.f9ad3820.chunk.js",
     "static/css/110.3336666e.chunk.css": "/stellar-burgers/static/css/110.3336666e.chunk.css",
@@ -16,12 +16,12 @@
     "static/js/55.3f065d2c.chunk.js": "/stellar-burgers/static/js/55.3f065d2c.chunk.js",
     "static/css/73.28280af9.chunk.css": "/stellar-burgers/static/css/73.28280af9.chunk.css",
     "static/js/73.28d74461.chunk.js": "/stellar-burgers/static/js/73.28d74461.chunk.js",
-    "static/css/751.6123e679.chunk.css": "/stellar-burgers/static/css/751.6123e679.chunk.css",
-    "static/js/751.46e8dc25.chunk.js": "/stellar-burgers/static/js/751.46e8dc25.chunk.js",
+    "static/css/473.78e16d34.chunk.css": "/stellar-burgers/static/css/473.78e16d34.chunk.css",
+    "static/js/473.28404ce2.chunk.js": "/stellar-burgers/static/js/473.28404ce2.chunk.js",
     "static/css/532.47b9ab72.chunk.css": "/stellar-burgers/static/css/532.47b9ab72.chunk.css",
     "static/js/532.06df81cc.chunk.js": "/stellar-burgers/static/js/532.06df81cc.chunk.js",
-    "static/css/851.d90c1822.chunk.css": "/stellar-burgers/static/css/851.d90c1822.chunk.css",
-    "static/js/851.aa818d81.chunk.js": "/stellar-burgers/static/js/851.aa818d81.chunk.js",
+    "static/css/851.4282be7b.chunk.css": "/stellar-burgers/static/css/851.4282be7b.chunk.css",
+    "static/js/851.9c740253.chunk.js": "/stellar-burgers/static/js/851.9c740253.chunk.js",
     "static/css/707.cf1e0649.chunk.css": "/stellar-burgers/static/css/707.cf1e0649.chunk.css",
     "static/js/707.4bfc516a.chunk.js": "/stellar-burgers/static/js/707.4bfc516a.chunk.js",
     "static/css/325.ab7d6c4e.chunk.css": "/stellar-burgers/static/css/325.ab7d6c4e.chunk.css",
@@ -37,7 +37,7 @@
     "static/media/success.png": "/stellar-burgers/static/media/success.ffd5c56d9db3cece5522.png",
     "index.html": "/stellar-burgers/index.html",
     "main.a36811e3.css.map": "/stellar-burgers/static/css/main.a36811e3.css.map",
-    "main.5ea0e225.js.map": "/stellar-burgers/static/js/main.5ea0e225.js.map",
+    "main.f55a1852.js.map": "/stellar-burgers/static/js/main.f55a1852.js.map",
     "38.a133851d.chunk.css.map": "/stellar-burgers/static/css/38.a133851d.chunk.css.map",
     "38.f9ad3820.chunk.js.map": "/stellar-burgers/static/js/38.f9ad3820.chunk.js.map",
     "110.3336666e.chunk.css.map": "/stellar-burgers/static/css/110.3336666e.chunk.css.map",
@@ -52,12 +52,12 @@
     "55.3f065d2c.chunk.js.map": "/stellar-burgers/static/js/55.3f065d2c.chunk.js.map",
     "73.28280af9.chunk.css.map": "/stellar-burgers/static/css/73.28280af9.chunk.css.map",
     "73.28d74461.chunk.js.map": "/stellar-burgers/static/js/73.28d74461.chunk.js.map",
-    "751.6123e679.chunk.css.map": "/stellar-burgers/static/css/751.6123e679.chunk.css.map",
-    "751.46e8dc25.chunk.js.map": "/stellar-burgers/static/js/751.46e8dc25.chunk.js.map",
+    "473.78e16d34.chunk.css.map": "/stellar-burgers/static/css/473.78e16d34.chunk.css.map",
+    "473.28404ce2.chunk.js.map": "/stellar-burgers/static/js/473.28404ce2.chunk.js.map",
     "532.47b9ab72.chunk.css.map": "/stellar-burgers/static/css/532.47b9ab72.chunk.css.map",
     "532.06df81cc.chunk.js.map": "/stellar-burgers/static/js/532.06df81cc.chunk.js.map",
-    "851.d90c1822.chunk.css.map": "/stellar-burgers/static/css/851.d90c1822.chunk.css.map",
-    "851.aa818d81.chunk.js.map": "/stellar-burgers/static/js/851.aa818d81.chunk.js.map",
+    "851.4282be7b.chunk.css.map": "/stellar-burgers/static/css/851.4282be7b.chunk.css.map",
+    "851.9c740253.chunk.js.map": "/stellar-burgers/static/js/851.9c740253.chunk.js.map",
     "707.cf1e0649.chunk.css.map": "/stellar-burgers/static/css/707.cf1e0649.chunk.css.map",
     "707.4bfc516a.chunk.js.map": "/stellar-burgers/static/js/707.4bfc516a.chunk.js.map",
     "325.ab7d6c4e.chunk.css.map": "/stellar-burgers/static/css/325.ab7d6c4e.chunk.css.map",
@@ -66,6 +66,6 @@
   },
   "entrypoints": [
     "static/css/main.a36811e3.css",
-    "static/js/main.5ea0e225.js"
+    "static/js/main.f55a1852.js"
   ]
 }
