@@ -1,50 +1,41 @@
-import { useState, useRef } from 'react'
+import { useState, createRef, useRef } from 'react'
 import { IngredientGroups } from 'shared/constants/ingredientGroups'
-
-const { BUNS, BURGERS, TOPPINGS } = IngredientGroups
+import { IIngredientGroup } from 'shared/types/ingredientGroup'
+import { IngredientGroupRef } from 'shared/types/ingredientGroupRef'
 
 function useIngredientsScroll() {
-  const [currentTab, setCurrentTab] = useState(IngredientGroups.BUNS)
+  const [currentTab, setCurrentTab] = useState<string>(IngredientGroups[0].type)
   const ingredientsRef = useRef<HTMLUListElement>(null)
-  const bunsIngredientGroupRef = useRef<HTMLHeadingElement>(null)
-  const burgersIngredientGroupRef = useRef<HTMLHeadingElement>(null)
-  const toppingsIngredientGroupRef = useRef<HTMLHeadingElement>(null)
+  const ingredientGroupRefs: Record<string, IngredientGroupRef> = {}
 
-  const scrollToRef = (ref: React.RefObject<HTMLHeadingElement>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' })
-    }
+  IngredientGroups.forEach((group: IIngredientGroup) =>
+    ingredientGroupRefs[group.type] = createRef<HTMLHeadingElement>()
+  )
+
+  const scrollToRef = (ref: IngredientGroupRef) => {
+    if (ref.current) ref.current.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const handleTabClick = (ingredientGroup: string) => {
-		switch (ingredientGroup) {
-			case BUNS: {
-        scrollToRef(bunsIngredientGroupRef)
-				break
-			}
-			case BURGERS: {
-        scrollToRef(burgersIngredientGroupRef)
-				break
-			}
-			case TOPPINGS: {
-        scrollToRef(toppingsIngredientGroupRef)
-				break
-			}
-		}
+  const handleTabClick = (ingredientGroupType: string) => {
+    const selectedGroup = IngredientGroups.find(group => group.type === ingredientGroupType)
+
+    if (selectedGroup) {
+      const { type } = selectedGroup
+      scrollToRef(ingredientGroupRefs[type])
+    }
 	}
 
   const handleIngredientsScroll = () => {
     const lineY = ingredientsRef.current?.getBoundingClientRect().y
-    const bunsOffset = Math.abs(bunsIngredientGroupRef.current!.getBoundingClientRect().y - (lineY as number))
-    const burgersOffset = Math.abs(burgersIngredientGroupRef.current!.getBoundingClientRect().y - (lineY as number))
-		const toppingsOffset = Math.abs(toppingsIngredientGroupRef.current!.getBoundingClientRect().y - (lineY as number))
 
-    if (bunsOffset < burgersOffset && bunsOffset < toppingsOffset)
-      setCurrentTab(BUNS)
-		if (burgersOffset < bunsOffset && burgersOffset < toppingsOffset)
-      setCurrentTab(BURGERS)
-    if (toppingsOffset < bunsOffset && toppingsOffset < burgersOffset)
-      setCurrentTab(TOPPINGS)
+    // Calculate offsets for each ingredient group dynamically
+    const offsets = IngredientGroups.map(group =>
+      Math.abs(ingredientGroupRefs[group.type]!.current!.getBoundingClientRect().y - (lineY as number))
+    )
+
+    // Find the minimum offset and set the corresponding tab as current
+    const minOffsetIndex = offsets.indexOf(Math.min(...offsets))
+    setCurrentTab(IngredientGroups[minOffsetIndex].type)
   }
 
   return {
@@ -52,9 +43,7 @@ function useIngredientsScroll() {
     handleTabClick,
     handleIngredientsScroll,
     ingredientsRef,
-    bunsIngredientGroupRef,
-    burgersIngredientGroupRef,
-    toppingsIngredientGroupRef,
+    ingredientGroupRefs,
   }
 }
 

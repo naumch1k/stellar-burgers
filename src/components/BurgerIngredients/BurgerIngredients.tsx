@@ -3,7 +3,6 @@ import { IngredientGroup } from 'components/IngredientGroup'
 import { NutritionFactsModal } from 'components/NutritionFactsModal'
 import useIngredientsScroll from './hooks/useIngredientsScroll'
 import { IngredientGroups } from 'shared/constants/ingredientGroups'
-import { capitalizeFirstLetter } from 'shared/helpers/capitalizeFirstLetter'
 import styles from './BurgerIngredients.module.css'
 
 export const BurgerIngredients = () => {
@@ -12,9 +11,7 @@ export const BurgerIngredients = () => {
     handleTabClick,
     handleIngredientsScroll,
     ingredientsRef,
-    bunsIngredientGroupRef,
-    burgersIngredientGroupRef,
-    toppingsIngredientGroupRef,
+    ingredientGroupRefs,
   } = useIngredientsScroll()
 
   return (
@@ -22,14 +19,14 @@ export const BurgerIngredients = () => {
       <section className='mt-10'>
         <h1 className='text text_type_main-large'>Build Your Own Burger</h1>
         <ul className={`${styles.tabBar} mt-5`}>
-          {Object.keys(IngredientGroups).map(item => (
-            <li key={item}>
+          {IngredientGroups.map(group => (
+            <li key={group.type}>
               <Tab
-                active={currentTab === item}
-                value={item}
+                active={currentTab === group.type}
+                value={group.type}
                 onClick={handleTabClick}
               >
-                {capitalizeFirstLetter(item)}
+                {group.label}
               </Tab>
             </li>
           ))}
@@ -39,18 +36,14 @@ export const BurgerIngredients = () => {
           ref={ingredientsRef}
           onScroll={handleIngredientsScroll}
         >
-          <IngredientGroup
-            type='bun'
-            ref={bunsIngredientGroupRef}
-          />
-          <IngredientGroup
-            type='burger'
-            ref={burgersIngredientGroupRef}
-          />
-          <IngredientGroup
-            type='topping'
-            ref={toppingsIngredientGroupRef}
-          />
+          {IngredientGroups.map(group => (
+            <IngredientGroup
+              key={group.type}
+              type={group.type}
+              label={group.label}
+              ref={ingredientGroupRefs[group.type]}
+            />
+          ))}
         </ul>
       </section>
       <NutritionFactsModal/>

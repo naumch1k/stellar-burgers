@@ -7,14 +7,10 @@ import {
   selectIngredientIdsByType,
 } from 'store/ingredients/ingredients.selectors'
 import { IRootState } from 'store/store'
-import styles from './IngredientGroup.module.css'
+import { IIngredientGroup } from 'shared/types/ingredientGroup'
 
-interface IngredientGroupProps {
-  type: string;
-}
-
-export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupProps>(
-  ({ type }, ref) => {
+export const IngredientGroup = forwardRef<HTMLHeadingElement, IIngredientGroup>(
+  ({ type, label }, ref) => {
 
   const isFetching = useSelector(selectIsFetching)
   const ingredientIds = useSelector((state: IRootState) => selectIngredientIdsByType(state, type))
@@ -23,10 +19,8 @@ export const IngredientGroup = forwardRef<HTMLHeadingElement, IngredientGroupPro
 
   return (
     <li>
-      <h2 ref={ref} className={`${styles.name} text text_type_main-medium mb-6`}>{type}</h2>
-      <IngredientList
-        ingredientIds={ingredientIds}
-      />
+      <h2 ref={ref} className='text text_type_main-medium mb-6'>{label}</h2>
+      <IngredientList ingredientIds={ingredientIds}/>
     </li>
   )
 })
