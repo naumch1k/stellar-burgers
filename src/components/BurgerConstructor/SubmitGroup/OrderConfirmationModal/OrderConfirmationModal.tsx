@@ -1,6 +1,6 @@
 import { Modal } from 'components/Modal'
 import { OrderConfirmation } from './OrderConfirmation'
-import { useOrderConfirmationModal } from './useOrderConfirmationModal'
+import { useOrderConfirmationModal } from './hooks/useOrderConfirmationModal'
 
 export const OrderConfirmationModal = () => {
   const {

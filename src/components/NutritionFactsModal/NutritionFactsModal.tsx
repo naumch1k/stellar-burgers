@@ -1,6 +1,6 @@
 import { Modal } from 'components/Modal'
-import { NutritionFacts } from 'components/NutritionFacts/NutritionFacts'
-import { useNutritionFactsModal } from './useNutritionFactsModal'
+import { NutritionFacts } from 'components/NutritionFacts'
+import { useNutritionFactsModal } from './hooks/useNutritionFactsModal'
 
 export const NutritionFactsModal = () => {
   const {
