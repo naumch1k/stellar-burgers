@@ -19,14 +19,14 @@ export const BurgerIngredients = () => {
       <section className='mt-10'>
         <h1 className='text text_type_main-large'>Build Your Own Burger</h1>
         <ul className={`${styles.tabBar} mt-5`}>
-          {IngredientGroups.map(group => (
-            <li key={group.type}>
+          {IngredientGroups.map(({ type, label }) => (
+            <li key={type}>
               <Tab
-                active={currentTab === group.type}
-                value={group.type}
+                active={currentTab === type}
+                value={type}
                 onClick={handleTabClick}
               >
-                {group.label}
+                {label}
               </Tab>
             </li>
           ))}
@@ -36,12 +36,12 @@ export const BurgerIngredients = () => {
           ref={ingredientsRef}
           onScroll={handleIngredientsScroll}
         >
-          {IngredientGroups.map(group => (
+          {IngredientGroups.map(({ type, label }) => (
             <IngredientGroup
-              key={group.type}
-              type={group.type}
-              label={group.label}
-              ref={ingredientGroupRefs[group.type]}
+              key={type}
+              type={type}
+              label={label}
+              ref={ingredientGroupRefs[type]}
             />
           ))}
         </ul>
