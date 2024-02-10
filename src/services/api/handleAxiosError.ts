@@ -11,5 +11,8 @@ export const handleAxiosError = (error: unknown) => {
   if (errorMessage === 'Token is invalid')
     return { message: 'Your session has timed out. Please log in again.' }
 
+  if (errorMessage === 'jwt expired' || 'invalid toked')
+    return { message: 'Your session has timed out. Please refresh the page and try again.' }
+
   return { message: errorMessage || axiosError.message || 'An unknown error occurred' }
 }

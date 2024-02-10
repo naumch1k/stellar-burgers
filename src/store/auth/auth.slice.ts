@@ -19,6 +19,8 @@ export interface IAuthSliceState {
   error: string | null;
   user: IUserData | null;
   isResettingPassword: boolean;
+  isCheckingUserAccess: boolean;
+  isUpdatingToken: boolean;
 }
 
 const initialState: IAuthSliceState = {
@@ -27,6 +29,8 @@ const initialState: IAuthSliceState = {
   error: null,
   user: null,
   isResettingPassword: false,
+  isCheckingUserAccess: false,
+  isUpdatingToken: false,
 }
 
 const authSlice = createSlice({
@@ -47,18 +51,6 @@ const authSlice = createSlice({
         state.isAuthenticated = true
         state.user = action.payload.user
       })
-      .addCase(checkUserAccessRequest.fulfilled, (state) => {
-        state.isAuthenticated = true
-      })
-      .addCase(checkUserAccessRequest.rejected, (state) => {
-        state.isFetching = false
-      })
-      .addCase(updateTokenRequest.fulfilled, state => {
-        state.isAuthenticated = true
-      })
-      .addCase(updateTokenRequest.rejected, state => {
-        state.isAuthenticated = false
-      })
       .addCase(userInfoUpdateRequest.fulfilled, (state, action) => {
         state.user = action.payload.user
       })
@@ -72,13 +64,39 @@ const authSlice = createSlice({
       .addCase(passwordResetRequest.fulfilled, state => {
         state.isResettingPassword = false
       })
+      .addCase(checkUserAccessRequest.pending, (state) => {
+        state.isCheckingUserAccess = true
+      })
+      .addCase(checkUserAccessRequest.fulfilled, (state) => {
+        state.isAuthenticated = true
+        state.isCheckingUserAccess = false
+        state.error = null
+      })
+      .addCase(checkUserAccessRequest.rejected, (state) => {
+        state.isCheckingUserAccess = false
+      })
+      .addCase(updateTokenRequest.pending, state => {
+        state.isUpdatingToken = true
+      })
+      .addCase(updateTokenRequest.fulfilled, state => {
+        state.isUpdatingToken = false
+        state.error = null
+      })
+      .addCase(updateTokenRequest.rejected, (state, action) => {
+        state.isAuthenticated = false
+        state.isUpdatingToken = false
+
+        if (action.payload) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'An unknown error occurred'
+        }
+      })
       .addMatcher(
         isAnyOf(
           registerRequest.pending,
           loginRequest.pending,
-          checkUserAccessRequest.pending,
           userInfoUpdateRequest.pending,
-          updateTokenRequest.pending,
           logoutRequest.pending,
           verificationCodeRequest.pending,
           passwordResetRequest.pending,
@@ -91,9 +109,7 @@ const authSlice = createSlice({
         isAnyOf(
           registerRequest.fulfilled,
           loginRequest.fulfilled,
-          checkUserAccessRequest.fulfilled,
           userInfoUpdateRequest.fulfilled,
-          updateTokenRequest.fulfilled,
           logoutRequest.fulfilled,
           verificationCodeRequest.fulfilled,
           passwordResetRequest.fulfilled,
@@ -108,7 +124,6 @@ const authSlice = createSlice({
           registerRequest.rejected,
           loginRequest.rejected,
           userInfoUpdateRequest.rejected,
-          updateTokenRequest.rejected,
           logoutRequest.rejected,
           verificationCodeRequest.rejected,
           passwordResetRequest.rejected,
