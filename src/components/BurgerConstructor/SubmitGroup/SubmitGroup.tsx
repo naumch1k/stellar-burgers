@@ -25,7 +25,7 @@ export const SubmitGroup = () => {
 
   const handlePlaceOrderClick = () => {
     if (bun && fillings.length) {
-      const ingredients = [bun, ...fillings, bun]
+      const ingredients = [bun, ...fillings]
         .map((ingredient: IIngredient) => ingredient._id)
 
       dispatch(placeOrderRequest({ ingredients }))

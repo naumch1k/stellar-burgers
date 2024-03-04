@@ -7,7 +7,7 @@ function useOrderPriceCalculator() {
   const bun = useSelector(selectBun)
   const fillings = useSelector(selectFillings)
 
-  const bunsPrice = useMemo(() => bun ? bun.price * 2 : 0, [bun])
+  const bunsPrice = useMemo(() => bun ? bun.price : 0, [bun])
   const fillingsPrice = useMemo(() => fillings.reduce((prev: number, filling: IIngredient) => prev + filling.price, 0), [fillings])
   const orderPrice = bunsPrice + fillingsPrice
 
