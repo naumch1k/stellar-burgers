@@ -5,6 +5,7 @@ import { IngredientThumbnail } from 'components/ui/IngredientThumbnail'
 import { IRootState } from 'store/store'
 import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
 import useOrderDetails from 'hooks/useOrderDetails'
+import useIngredientCount from 'hooks/useIngredientCount'
 import styles from './OrderDetailsIngredient.module.css'
 
 interface IOrderDetailsIngredientProps {
@@ -15,16 +16,10 @@ export const OrderDetailsIngredient = ({ id }: IOrderDetailsIngredientProps) => 
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
   const { id: orderId } = useParams()
   const { ingredients } = useOrderDetails(orderId!)
-
-  const getIngredientQty = (id: string) => {
-    let counter = 0
-
-    ingredients.forEach(item => {
-      if (item._id === id) counter += 1
-    })
-
-    return counter
-  }
+  const { ingredientCount } = useIngredientCount({
+    ingredients,
+    ingredientId: id,
+  })
 
   return (
     <li className={styles.root}>
@@ -33,7 +28,7 @@ export const OrderDetailsIngredient = ({ id }: IOrderDetailsIngredientProps) => 
         {ingredient!.name}
       </p>
       <p className={`${styles.price} text text_type_digits-default`}>
-        {getIngredientQty(id)} x {ingredient!.price}
+        {ingredientCount} x {ingredient!.price}
         {' '}
         <CurrencyIcon type='primary' />
       </p>

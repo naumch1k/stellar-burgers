@@ -3,8 +3,9 @@ import { useDrag } from 'react-dnd'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { IRootState, useAppDispatch } from 'store/store'
 import { selectIngredientById } from 'store/ingredients/ingredients.selectors'
-import { selectIngredientCount } from 'store/burgerConstructor/burgerConstructor.selectors'
+import { selectAllIngredients } from 'store/burgerConstructor/burgerConstructor.selectors'
 import { setPreviewedIngredientId } from 'store/ingredients/ingredients.slice'
+import useIngredientCount from 'hooks/useIngredientCount'
 import styles from './Ingredient.module.css'
 
 interface IIngredientProps {
@@ -13,9 +14,13 @@ interface IIngredientProps {
 
 export const Ingredient = ({ id }: IIngredientProps) => {
   const dispatch = useAppDispatch()
+  const ingredients = useSelector(selectAllIngredients)
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
   const { name, image, price } = ingredient!
-  const count = useSelector(state => selectIngredientCount(state, id))
+  const { ingredientCount } = useIngredientCount({
+    ingredients,
+    ingredientId: id,
+  })
 
   const [{ beingDragged }, dragRef] = useDrag({
     type: 'ingredient',
@@ -42,7 +47,7 @@ export const Ingredient = ({ id }: IIngredientProps) => {
           </p>
           <p className={`${styles.name} text text_type_main-default mt-2`}>{name}</p>
         </div>
-        {count > 0 && <Counter count={count} size='default'/>}
+        {ingredientCount > 0 && <Counter count={ingredientCount} size='default'/>}
       </li>
     </>
   )
