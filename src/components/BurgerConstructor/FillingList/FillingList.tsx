@@ -11,10 +11,7 @@ export const FillingList = () => {
     <ul className={`${styles.root} custom-scroll`}>
       {fillings.map((ingredient: IIngredient, i) => (
         <FillingListItem
-          // TODO: When using _id as a key
-          // 'Encountered two children with the same key'
-          key={ingredient._id}
-          // TODO: check if id can be used here
+          key={i}
           index={i}
           ingredient={ingredient}
         />
