@@ -12,7 +12,7 @@ function useIngredientCount({
     return count
   }, 0)
 
-  return { ingredientCount }
+  return ingredientCount
 }
 
 export default useIngredientCount

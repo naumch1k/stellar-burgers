@@ -28,7 +28,7 @@ const NotFound = lazy(() => import('pages/NotFound'))
 
 export const App = () => {
   const dispatch = useAppDispatch()
-  const { windowWidth } = useWindowWidth()
+  const windowWidth = useWindowWidth()
 
   useEffect(() => {
     dispatch(ingredientsRequest())

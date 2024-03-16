@@ -17,7 +17,7 @@ export const SubmitGroup = () => {
   const { isFetching, error } = useSelector(selectOrderState)
   const bun = useSelector(selectBun)
   const fillings = useSelector(selectFillings)
-  const { orderPrice } = useOrderPriceCalculator()
+  const orderPrice = useOrderPriceCalculator()
   const {
     isModalOpen,
     openModal,

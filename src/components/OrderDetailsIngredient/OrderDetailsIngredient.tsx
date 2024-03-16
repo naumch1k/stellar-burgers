@@ -16,7 +16,7 @@ export const OrderDetailsIngredient = ({ id }: IOrderDetailsIngredientProps) => 
   const ingredient = useSelector((state: IRootState) => selectIngredientById(state, id))
   const { id: orderId } = useParams()
   const { ingredients } = useOrderDetails(orderId!)
-  const { ingredientCount } = useIngredientCount({
+  const ingredientCount = useIngredientCount({
     ingredients,
     ingredientId: id,
   })

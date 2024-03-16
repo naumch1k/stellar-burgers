@@ -12,7 +12,7 @@ function useWindowWidth() {
     return () => window.removeEventListener('resize', updateWindowWidth)
   }, [])
 
-  return { windowWidth }
+  return windowWidth
 }
 
 export default useWindowWidth

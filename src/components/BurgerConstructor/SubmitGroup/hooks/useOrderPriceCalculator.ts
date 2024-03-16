@@ -11,7 +11,7 @@ function useOrderPriceCalculator() {
   const fillingsPrice = useMemo(() => fillings.reduce((prev: number, filling: IIngredient) => prev + filling.price, 0), [fillings])
   const orderPrice = bunsPrice + fillingsPrice
 
-  return { orderPrice }
+  return orderPrice
 }
 
 export default useOrderPriceCalculator
