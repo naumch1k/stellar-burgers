@@ -41,7 +41,6 @@ export const loginRequest = createAsyncThunk<
     try {
       const response = await mainApi.login(data)
 
-      // TODO: refactor to use cookies
       localStorage.setItem(ACCESS_TOKEN_KEY, response.data.accessToken)
       localStorage.setItem(REFRESH_TOKEN_KEY, response.data.refreshToken)
 
@@ -110,7 +109,6 @@ ILogoutRequest,
     try {
       const response = await mainApi.logout(data)
 
-      // TODO: refactor to use cookies
       localStorage.removeItem(ACCESS_TOKEN_KEY)
       localStorage.removeItem(REFRESH_TOKEN_KEY)
 

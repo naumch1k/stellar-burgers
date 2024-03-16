@@ -17,7 +17,6 @@ export const OrdersList = () => {
   const dispatch = useAppDispatch()
   const { isConnecting, isFetching } = useSelector(selectWebSocketState)
   const orders = useSelector(selectOrders)
-  // TODO: refactor to helper func
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)?.split('Bearer ')[1]
 
   useEffect(() => {

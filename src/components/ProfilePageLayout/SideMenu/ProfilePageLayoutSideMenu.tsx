@@ -22,7 +22,6 @@ export const ProfilePageLayoutSideMenu = () => {
           </li>
         ))}
       </ul>
-      {/* TODO: move hardcoded texts out of component */}
       <p className='text text_type_main-default text_color_inactive mt-20'>
         {isIndex
           ? 'Here, you can update your personal information'

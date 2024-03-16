@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 function useWindowWidth() {
-  // TODO: add debouncer
+  // TODO: add throttling
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   const updateWindowWidth = () => setWindowWidth(window.innerWidth)
