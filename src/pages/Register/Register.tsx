@@ -34,16 +34,11 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    try {
-      await dispatch(registerRequest({
-        name: values.name,
-        email: values.email,
-        password: values.password
-      })).unwrap()
-    } catch (error) {
-      // TODO: Error Boundary
-      console.log({ error })
-    }
+    dispatch(registerRequest({
+      name: values.name,
+      email: values.email,
+      password: values.password
+    }))
   }
 
   return (

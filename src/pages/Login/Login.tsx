@@ -33,15 +33,10 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    try {
-      await dispatch(loginRequest({
-        email: values.email,
-        password: values.password,
-      })).unwrap()
-    } catch (error) {
-      // TODO: Error Boundary
-      console.log({ error })
-    }
+    dispatch(loginRequest({
+      email: values.email,
+      password: values.password,
+    }))
   }
 
   return (
