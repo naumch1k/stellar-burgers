@@ -16,7 +16,7 @@ export const BunElement = ({ type }: IBunElementProps) => {
         type={type}
         text={bun ? `${bun.name} ${type === 'top' ? '(top)' : '(bottom)'}` : 'Choose your bun'}
         price={bun ? bun.price : 0}
-        thumbnail={bun ? bun.image : 'https://stellarburgers.nomoreparties.site/static/media/loading.89540200.svg'}
+        thumbnail={bun ? bun.image : 'https://raw.githubusercontent.com/naumch1k/misc/refs/heads/main/icons/burger-logo-white.svg'}
         isLocked
       />
     </div>
