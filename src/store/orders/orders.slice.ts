@@ -1,13 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IOrder } from 'shared/types'
+import { userOrdersRequest } from './orders.operations'
 
 export interface IOrdersSliceState {
+  isFetching: boolean;
+  error: string | null;
   entities: IOrder[];
   total: number | null;
   totalToday: number | null;
 }
 
 const initialState: IOrdersSliceState = {
+  isFetching: false,
+  error: null,
   entities: [],
   total: null,
   totalToday: null,
@@ -26,6 +31,26 @@ const ordersSlice = createSlice({
     clearOrders() {
       return initialState
     },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(userOrdersRequest.pending, state => {
+        state.isFetching = true
+      })
+      .addCase(userOrdersRequest.fulfilled, (state, action) => {
+        state.isFetching = false
+        state.error = null
+        state.entities = action.payload.orders
+      })
+      .addCase(userOrdersRequest.rejected, (state, action) => {
+        state.isFetching = false
+
+         if (action.payload) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'An unknown error occurred'
+        }
+      })
   },
 })
 

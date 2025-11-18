@@ -3,31 +3,21 @@ import { useSelector } from 'react-redux'
 import { OrderCard } from 'components/OrderCard'
 import { Loader } from 'components/Loader'
 import { useAppDispatch } from 'store/store'
-import {
-  selectWebSocketState,
-  connect,
-  disconnect,
-} from 'store/webSocket/webSocket.slice'
-import { selectOrders } from 'store/orders/orders.selectors'
-import { WS_BASE_URL, ACCESS_TOKEN_KEY } from 'shared/constants'
+import { selectIsFetching, selectOrders } from 'store/orders/orders.selectors'
+import { userOrdersRequest } from 'store/orders/orders.operations'
 import { IOrder } from 'shared/types'
 import styles from './OrderList.module.css'
 
 export const OrdersList = () => {
   const dispatch = useAppDispatch()
-  const { isConnecting, isFetching } = useSelector(selectWebSocketState)
+  const isFetching = useSelector(selectIsFetching)
   const orders = useSelector(selectOrders)
-  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)?.split('Bearer ')[1]
 
   useEffect(() => {
-    dispatch(connect(`${WS_BASE_URL}?token=${accessToken}`))
+    dispatch(userOrdersRequest())
+  }, [dispatch])
 
-    return () => {
-      dispatch(disconnect())
-    }
-  }, [dispatch, accessToken])
-
-  if (isConnecting || isFetching) return <Loader/>
+  if (isFetching) return <Loader/>
 
   return (
     orders.length

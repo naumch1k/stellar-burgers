@@ -1,4 +1,4 @@
-import { IIngredient, IUserData } from 'shared/types'
+import { IIngredient, IUserData, IOrder } from 'shared/types'
 
 export interface ISetUserInfoRequest {
   name: string;
@@ -54,6 +54,13 @@ export interface IPlaceOrderSuccessResponse {
   order: {
     number: number;
   }
+}
+
+export interface IOrdersSuccessResponse {
+  success: boolean;
+  orders: IOrder[];
+  total: number;
+  totalToday: number;
 }
 
 export interface IApiFailureResponse {
