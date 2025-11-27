@@ -23,6 +23,8 @@ const logout = ({ refreshToken }: ILogoutRequest) => axios.post('/auth/logout', 
 
 const placeOrder = (data: IPlaceOrderRequest) => axios.post('/orders', data)
 
+const getAllOrders = () => axios.get('/orders/all')
+
 const getUserOrders = () => axios.get('/orders')
 
 const requestVerificationCode = (data: IVerificationCodeRequest) => axios.post('/password-reset', data)
@@ -37,6 +39,7 @@ export const mainApi = {
   updateUserInfo,
   logout,
   placeOrder,
+  getAllOrders,
   getUserOrders,
   requestVerificationCode,
   resetPassword,

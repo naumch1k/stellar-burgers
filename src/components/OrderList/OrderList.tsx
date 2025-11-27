@@ -26,6 +26,7 @@ export const OrdersList = () => {
         <OrderCard
           key={order._id}
           id={order._id}
+          showStatus
         />
       ))}
     </ul>

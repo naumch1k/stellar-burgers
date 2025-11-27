@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { IOrder } from 'shared/types'
-import { userOrdersRequest } from './orders.operations'
+import { allOrdersRequest, userOrdersRequest } from './orders.operations'
 
 export interface IOrdersSliceState {
   isFetching: boolean;
@@ -21,38 +21,46 @@ const initialState: IOrdersSliceState = {
 const ordersSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {
-    setOrders(state, action) {
-      const { orders, total, totalToday } = action.payload
-      state.entities = orders
-      state.total = total
-      state.totalToday = totalToday
-    },
-    clearOrders() {
-      return initialState
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(userOrdersRequest.pending, state => {
-        state.isFetching = true
+      .addCase(allOrdersRequest.fulfilled, (state, action) => {
+        state.isFetching = false
+        state.error = null
+        state.entities = action.payload.orders
+        state.total = action.payload.total
+        state.totalToday = action.payload.totalToday
       })
       .addCase(userOrdersRequest.fulfilled, (state, action) => {
         state.isFetching = false
         state.error = null
-        state.entities = action.payload.orders
+        state.entities = [...action.payload.orders].reverse()
       })
-      .addCase(userOrdersRequest.rejected, (state, action) => {
-        state.isFetching = false
-
-         if (action.payload) {
-          state.error = action.payload.message
-        } else {
-          state.error = 'An unknown error occurred'
+      .addMatcher(
+        isAnyOf(
+          allOrdersRequest.pending,
+          userOrdersRequest.pending,
+        ),
+        state => {
+          state.isFetching = true
         }
-      })
+      )
+      .addMatcher(
+        isAnyOf(
+          allOrdersRequest.rejected,
+          userOrdersRequest.rejected,
+        ),
+        (state, action) => {
+          state.isFetching = false
+
+          if (action.payload) {
+            state.error = action.payload.message
+          } else {
+            state.error = 'An unknown error occurred'
+          }
+        }
+      )
   },
 })
 
-export const { setOrders, clearOrders } = ordersSlice.actions
 export const ordersReducer = ordersSlice.reducer

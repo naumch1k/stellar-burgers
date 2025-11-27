@@ -1,7 +1,7 @@
 import type { Middleware, MiddlewareAPI } from 'redux'
 import { AppDispatch, IRootState } from 'store/store'
 import { connected, dataFetched } from 'store/webSocket/webSocket.slice'
-import { setOrders, clearOrders } from 'store/orders/orders.slice'
+// import { setOrders, clearOrders } from 'store/orders/orders.slice'
 
 export const socketMiddleware = (socket: any): Middleware => {
   return (store: MiddlewareAPI<AppDispatch, IRootState>) => {
@@ -20,7 +20,7 @@ export const socketMiddleware = (socket: any): Middleware => {
 
           socket.on('message', (event: MessageEvent) => {
             const { success, ...data } = JSON.parse(event.data)
-            dispatch(setOrders(data))
+            // dispatch(setOrders(data))
             dispatch(dataFetched())
           })
 
@@ -28,7 +28,7 @@ export const socketMiddleware = (socket: any): Middleware => {
 
         case 'webSocket/disconnect':
           socket.disconnect()
-          dispatch(clearOrders())
+          // dispatch(clearOrders())
           break
 
         default:

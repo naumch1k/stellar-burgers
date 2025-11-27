@@ -9,9 +9,10 @@ const ingredientsToRender = 5;
 
 interface IOrderCardProps {
   id: string;
+  showStatus?: boolean;
 }
 
-export const OrderCard = ({ id }: IOrderCardProps) => {
+export const OrderCard = ({ id, showStatus = false }: IOrderCardProps) => {
   const {
     number,
     createdAt,
@@ -36,7 +37,9 @@ export const OrderCard = ({ id }: IOrderCardProps) => {
         </header>
         <div>
           <h3 className={`${styles.name} text text_type_main-medium`}>{name}</h3>
-          <p className={`${styles.status} ${status === 'done' ? 'text_color_success' : ''} text text_type_main-default mt-2`}>{status}</p>
+          {showStatus && <p className={`${styles.status} ${status === 'done' ? 'text_color_success' : ''} text text_type_main-default mt-2`}>
+            {status}
+          </p>}
         </div>
         <footer className={styles.footer}>
           <ul className={styles.ingredients}>

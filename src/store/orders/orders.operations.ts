@@ -5,6 +5,24 @@ import type {
   IApiFailureResponse,
 } from 'services/api'
 
+// TODO: Practice a generic thunk factory
+export const allOrdersRequest = createAsyncThunk<
+  IOrdersSuccessResponse,
+  void,
+  { rejectValue: IApiFailureResponse }
+>(
+  'orders/allOrdersRequest',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await mainApi.getAllOrders()
+
+      return response.data
+    } catch (error) {
+      return rejectWithValue(handleAxiosError(error))
+    }
+  }
+)
+
 export const userOrdersRequest = createAsyncThunk<
   IOrdersSuccessResponse,
   void,
