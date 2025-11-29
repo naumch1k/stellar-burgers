@@ -10,6 +10,7 @@ import { OrdersList } from 'components/OrderList'
 import { useAppDispatch } from 'store/store'
 import { ingredientsRequest } from 'store/ingredients/ingredients.operations'
 import { checkUserAccessRequest } from 'store/auth/auth.operations'
+import { selectOrders } from 'store/orders/orders.selectors'
 import useWindowWidth from 'hooks/useWindowWidth'
 import { breakpoints } from 'shared/breakpoints'
 
@@ -56,7 +57,9 @@ export const App = () => {
             <Route path='builder' element={<BurgerBuilder/>}/>
             <Route path='profile' element={<Profile/>}>
               <Route index element={<ProfilePageForm/>}/>
-              <Route path='orders' element={<OrdersList/>}/>
+              <Route path='orders' element={
+                <OrdersList selector={selectOrders} variant='profile'/>}
+              />
               <Route path='orders/:id' element={<Order/>}/>
             </Route>
             <Route path='logout' element={<Logout/>}/>

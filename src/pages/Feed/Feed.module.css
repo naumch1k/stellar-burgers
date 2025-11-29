@@ -4,25 +4,6 @@
   gap: 60px;
 }
 
-.orderList {
-  display: flex;
-  height: calc(100vh - 184px);
-  flex-direction: column;
-  padding: 0 8px 0 0;
-  margin: 0;
-  gap: 16px;
-  list-style: none;
-  overflow-y: auto;
-}
-
-.orderList::-webkit-scrollbar-track { margin: 0; }
-.orderList::-webkit-scrollbar { width: 8px; }
-
-.orderList::-webkit-scrollbar-thumb {
-  border: none;
-  border-radius: 0;
-}
-
 .orderStats {
   display: grid;
   grid-template-areas:
